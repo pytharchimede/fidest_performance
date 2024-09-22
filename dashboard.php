@@ -60,7 +60,7 @@ include('header_dashboard.php');
       <div class="alert alert-danger alert-dismissible fade show alert-clignotante" role="alert" id="alert-expired">
         <i class="fas fa-exclamation-triangle mr-2"></i>
         <strong>Alerte !</strong> Vous avez <?= $nbTachesExpired; ?> tâches avec un délai expiré.
-        <a href="taches_expirees.php" class="btn btn-warning btn-sm ml-3">
+        <a href="taches_en_attente.php" class="btn btn-warning btn-sm ml-3">
           <i class="fas fa-tasks"></i> Voir les tâches expirées
         </a>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

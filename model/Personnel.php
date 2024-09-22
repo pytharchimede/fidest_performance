@@ -381,6 +381,13 @@ class Personnel{
         return $personnels;
     }
 
+    public function getPointagesEntreDates($dateDebut, $dateFin) {
+        $query = "SELECT id_personnel, nom_personnel, date_pointage, statut FROM pointages WHERE date_pointage BETWEEN :dateDebut AND :dateFin";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['dateDebut' => $dateDebut, 'dateFin' => $dateFin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+  
     
 
 }
