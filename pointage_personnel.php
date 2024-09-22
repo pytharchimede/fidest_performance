@@ -10,50 +10,7 @@ if($_SESSION['acces_rh']!=1){
   header('Location: acces_refuse.php');
 }
 
-// Inclure la classe Personnel pour lister le personnel
-require_once 'model/Personnel.php';
-$personnelObj = new Personnel();
-$personnels = $personnelObj->listerPersonnel(); // Méthode qui retourne les données du personnel
-
-// Traitement du pointage AJAX
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_personnel']) && isset($_POST['action'])) {
-  $id_personnel = $_POST['id_personnel'];
-  $date_pointage = date('Y-m-d');
-  $heure_pointage = date('H:i:s');
-  $action = $_POST['action'];
-  
-  // Vérifier si le pointage existe déjà pour aujourd'hui
-  $pointageExistant = $personnelObj->verifierPointageDuJour($id_personnel, $date_pointage);
-  
-  if ($action === 'present') {
-      if (!$pointageExistant) {
-          // Enregistrer la présence (pointage) si elle n'a pas encore été faite aujourd'hui
-          $personnelObj->enregistrerPresence($id_personnel, $date_pointage, $heure_pointage, 1);
-          echo json_encode(['status' => 'success', 'message' => 'Pointage enregistré', 'id_personnel' => $id_personnel]);
-      } else {
-          echo json_encode(['status' => 'error', 'message' => 'Pointage déjà effectué pour aujourd\'hui']);
-      }
-  } elseif ($action === 'absent') {
-      if (!$pointageExistant) {
-          // Enregistrer l'absence (pointage) si elle n'a pas encore été faite aujourd'hui
-          $personnelObj->enregistrerPresence($id_personnel, $date_pointage, '00:00:00', 0);
-          echo json_encode(['status' => 'success', 'message' => 'Absence enregistrée', 'id_personnel' => $id_personnel]);
-      } else {
-          // Optionnel : mettre à jour l'entrée existante pour refléter l'absence si nécessaire
-          $personnelObj->mettreAJourPresence($id_personnel, $date_pointage, '00:00:00', 0);
-          echo json_encode(['status' => 'success', 'message' => 'Absence enregistrée', 'id_personnel' => $id_personnel]);
-      }
-  }
-  exit;
-}
-
-//
-$effectif_personnel = count($personnelObj->listerPersonnel());
-$effectif_pointe_aujourdhui = count($personnelObj->verifierPointageDuJourPourToutLeMonde(date('Y-m-d')));
-
-
-// Inclure la méthode pour vérifier les pointages existants pour aujourd'hui
-$pointagesAujourdHui = $personnelObj->verifierPointageDuJourPourToutLeMonde(date('Y-m-d'));
+include('header_pointage_personnel.php');
 ?>
 
 <!DOCTYPE html>
@@ -64,108 +21,7 @@ $pointagesAujourdHui = $personnelObj->verifierPointageDuJourPourToutLeMonde(date
   <title>Pointage du Personnel</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    .list-group-item {
-      cursor: pointer;
-    }
-    .list-group-item.clicked {
-      opacity: 0.7;
-    }
-    .pointer-btn {
-      cursor: pointer;
-      display: inline-block;
-      padding: 5px 10px;
-      background-color: #007bff;
-      color: #fff;
-      border-radius: 5px;
-    }
-    .pointer-btn.success {
-      background-color: #28a745;
-    }
-    .highlighted-title {
-      border-bottom: 2px solid #fabd02;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-    .central-box {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
-
-    /**Design badge avertissement */
-    .wow-btn {
-      background: linear-gradient(45deg, #1d2b57, #fabd02);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 18px;
-      display: inline-block;
-      transition: 0.3s ease-in-out;
-      text-transform: uppercase;
-  }
-  
-  .wow-btn i {
-      margin-right: 8px;
-  }
-
-  .wow-btn:hover {
-      background: linear-gradient(45deg, #fabd02, #1d2b57);
-      color: #fff;
-      transform: scale(1.1);
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .wow-badge {
-      background-color: #ffcc00;
-      color: #22254b;
-      font-weight: bold;
-      border-radius: 20px;
-      font-size: 16px;
-      display: inline-block;
-      padding: 10px 15px;
-  }
-
-  .wow-badge i {
-      margin-right: 8px;
-  }
-
-  .wow-badge:hover {
-      background-color: #ff9933;
-      color: #fff;
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .text-center {
-      text-align: center;
-  }
-
-  /* Dans votre fichier CSS */
-
-  .pointer-btn {
-      border: none;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-  }
-
-  .point-btn-present {
-      background-color: #28a745; /* Vert */
-  }
-
-  .point-btn-absent {
-      background-color: #dc3545; /* Rouge */
-  }
-
-  .status {
-      font-weight: bold;
-  }
-
-  </style>
+  <link href="css/style_pointage_personnel.css" rel="stylesheet">
 </head>
 <body>
 
@@ -203,6 +59,18 @@ $pointagesAujourdHui = $personnelObj->verifierPointageDuJourPourToutLeMonde(date
 
   <div class="container mt-5 central-box">
     <h2 class="highlighted-title">Pointage du Personnel - <span id="current-date"></span></h2>
+
+    <div class="mb-4">
+    <form id="search-form" method="GET" action="pointage_personnel.php">
+        <div class="input-group">
+            <input type="date" class="form-control" name="date" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Rechercher</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
    <!-- Bouton d'exportation avec une icône -->
   <?php if($effectif_personnel == $effectif_pointe_aujourdhui){ ?>
