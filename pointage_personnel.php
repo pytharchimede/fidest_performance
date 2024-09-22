@@ -60,18 +60,6 @@ include('header_pointage_personnel.php');
   <div class="container mt-5 central-box">
     <h2 class="highlighted-title">Pointage du Personnel - <span id="current-date"></span></h2>
 
-    <div class="mb-4">
-    <form id="search-form" method="GET" action="pointage_personnel.php">
-        <div class="input-group">
-            <input type="date" class="form-control" name="date" required>
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">Rechercher</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
    <!-- Bouton d'exportation avec une icône -->
   <?php if($effectif_personnel == $effectif_pointe_aujourdhui){ ?>
       <div class="mb-4 text-center">
