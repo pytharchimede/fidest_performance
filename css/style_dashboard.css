@@ -1,0 +1,20 @@
+/* Animation de clignotement */
+
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Classe pour l'alerte clignotante */
+
+.alert-clignotante {
+    animation: clignoter 1s infinite;
+}
