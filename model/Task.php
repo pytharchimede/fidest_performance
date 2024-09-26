@@ -92,6 +92,12 @@ class Task {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getTasksGroupedByStatus() {
+        // Requête pour récupérer le nombre de tâches par statut
+        $query = $this->conn->query("SELECT statut, COUNT(*) as total FROM tasks GROUP BY statut");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function checkTaskHasImage($id_task){
 
         $response = false;
@@ -108,6 +114,27 @@ class Task {
         return $response;
 
     }
+
+    public function getTimeForTask($taskId) {
+        $query = "SELECT duree FROM tasks WHERE id = :taskId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':taskId', $taskId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+   
+    public function getTotalTimeByStatus($matricule, $status) {
+        $query = "SELECT SUM(TIME_TO_SEC(duree)) AS total_seconds 
+                  FROM tasks 
+                  WHERE assigned_to = :matricule AND statut = :status";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':matricule', $matricule);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['total_seconds'] : 0;
+    }
+    
 
     
 }

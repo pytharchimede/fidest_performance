@@ -19,6 +19,20 @@ include('header_dashboard.php');
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style_dashboard.css" rel="stylesheet">
+  <style>
+    body {
+  background-color: #f8f9fa;
+    }
+
+    h2 {
+      color: #1d2b57; /* Couleur bleue */
+    }
+
+    canvas {
+      border: 1px solid #ddd; /* Bordure des graphiques */
+    }
+
+  </style>
 </head>
 <body>
   <!-- Menu mobile-friendly -->
@@ -113,6 +127,35 @@ include('header_dashboard.php');
           </div>
         </div>
       </div>
+
+
+      <!-- Section pour le temps de travail -->
+      <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card bg-white shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-secondary">Temps de Travail</h5>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <i class="fas fa-hourglass-half"></i> Temps En Attente: 
+                <span class="badge badge-warning"><?= $totalTimeEnAttenteHrs ?>h <?= $totalTimeEnAttenteMin ?>m</span>
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check-circle"></i> Temps Effectué: 
+                <span class="badge badge-success"><?= $totalTimeEffectueesHrs ?>h <?= $totalTimeEffectueesMin ?>m</span>
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-times-circle"></i> Temps Rejeté: 
+                <span class="badge badge-danger"><?= $totalTimeRejeteesHrs ?>h <?= $totalTimeRejeteesMin ?>m</span>
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-clock"></i> Temps Restant: 
+                <span class="badge badge-secondary"><?= $totalTimeRestantHrs ?>h <?= $totalTimeRestantMin ?>m</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
       <!-- Score et classement -->
       <div class="col-lg-6 col-md-12 mb-4">

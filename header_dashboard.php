@@ -28,17 +28,19 @@ $role = $personnelObj->getRoleById($personnelId);
 
 $matricule = $_SESSION['matricule_personnel_tasks'];
 
+/*
 if ($role == 'superviseur') {
   $tachesEnAttente = $taskObj->getTasksByStatus('En Attente');
   $tachesOk = $taskObj->getTasksByStatus('Termine');
   $tachesRefusees = $taskObj->getTasksByStatus('Refusee');
   $tachesAnnulees = $taskObj->getTasksByStatus('Annulee');
 } else {
+  */
   $tachesEnAttente = $taskObj->getTasksByMatriculeAndStatus($matricule, 'En Attente');
   $tachesOk = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Termine');
   $tachesRefusees = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Refusee');
   $tachesAnnulees = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Annulee');
-}
+/*}*/
 
 $nbTachesEnAttente = count($tachesEnAttente);
 $nbTachesOk = count($tachesOk);
@@ -80,4 +82,28 @@ usort($allPersonnel, function($a, $b) {
 
 // Trouver le classement du personnel connecté
 $ranking = array_search($personnelId, array_column($allPersonnel, 'id_personnel_tasks')) + 1;
+
+
+// Temps total des tâches en attente
+$totalTimeEnAttenteSec = $taskObj->getTotalTimeByStatus($matricule, 'En Attente');
+$totalTimeEnAttenteHrs = floor($totalTimeEnAttenteSec / 3600);
+$totalTimeEnAttenteMin = floor(($totalTimeEnAttenteSec % 3600) / 60);
+
+// Temps total des tâches effectuées
+$totalTimeEffectueesSec = $taskObj->getTotalTimeByStatus($matricule, 'Termine');
+$totalTimeEffectueesHrs = floor($totalTimeEffectueesSec / 3600);
+$totalTimeEffectueesMin = floor(($totalTimeEffectueesSec % 3600) / 60);
+
+// Temps total des tâches rejetées
+$totalTimeRejeteesSec = $taskObj->getTotalTimeByStatus($matricule, 'Refusee');
+$totalTimeRejeteesHrs = floor($totalTimeRejeteesSec / 3600);
+$totalTimeRejeteesMin = floor(($totalTimeRejeteesSec % 3600) / 60);
+
+// Temps restant
+$totalTimeTotalSec = $totalTimeEnAttenteSec + $totalTimeEffectueesSec + $totalTimeRejeteesSec;
+$totalTimeRestantSec = $totalTimeTotalSec - $totalTimeEffectueesSec;
+$totalTimeRestantHrs = floor($totalTimeRestantSec / 3600);
+$totalTimeRestantMin = floor(($totalTimeRestantSec % 3600) / 60);
+
+
 ?>
