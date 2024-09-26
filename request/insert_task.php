@@ -27,6 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $duree = $_POST['duree'];
         $matricule_assignateur = $_POST['matricule_assignateur'];
 
+        // Convertir la durée en secondes
+        $dureeExploded = explode(':', $duree); // Séparer les heures, minutes et secondes
+        $heures = isset($dureeExploded[0]) ? (int)$dureeExploded[0] : 0;
+        $minutes = isset($dureeExploded[1]) ? (int)$dureeExploded[1] : 0;
+        $secondes = isset($dureeExploded[2]) ? (int)$dureeExploded[2] : 0;
+
+        // Calcul de la durée totale en secondes
+        $dureeEnSecondes = ($heures * 3600) + ($minutes * 60) + $secondes;
+
         $task = new Task();
         $nbTask = count($task->getAllTasks());
         $indice = $nbTask+1;
@@ -57,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insérer les données dans la base de données
-        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur)');
+        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur, dureeEnSecondes) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur, :dureeEnSecondes)');
         $stmt->execute([
             ':taskCode' => $taskCode,
             ':description' => $taskDescription,
@@ -66,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':images' => json_encode($images), // Convertir le tableau des images en JSON
             ':statut' => $statut,
             ':duree' => $duree,
-            ':matricule_assignateur' => $matricule_assignateur
-
+            ':matricule_assignateur' => $matricule_assignateur,
+            ':dureeEnSecondes' => $dureeEnSecondes
         ]);
 
         // Ajout de la traçabilité

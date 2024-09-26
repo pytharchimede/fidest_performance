@@ -368,18 +368,37 @@ class Personnel{
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         $personnels = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
         $helper = new Helper();
-
-        foreach ($personnels as $personnel) {
-            $nbTachesEnAttente = (new Task())->getTasksByMatriculeAndStatus($personnel['matricule_personnel_tasks'], 'En Attente');
-            $nbTachesOk = (new Task())->getTasksByMatriculeAndStatus($personnel['matricule_personnel_tasks'], 'Termine');
-            $score = $helper->calculerScore(count($nbTachesOk), count($nbTachesEnAttente));
+    
+        foreach ($personnels as &$personnel) {  // Utiliser une référence pour modifier l'élément directement
+            // Récupérer toutes les tâches du personnel avec leur durée en secondes et statut
+            $tasks = (new Task())->getTasksByMatricule($personnel['matricule_personnel_tasks']);
+            
+            $totalAssignedDuration = 0;  // Temps de travail total assigné (toutes les tâches en secondes)
+            $totalCompletedDuration = 0; // Temps de travail terminé (tâches terminées uniquement en secondes)
+    
+            foreach ($tasks as $task) {
+                // Ajouter la durée de la tâche au total assigné
+                $totalAssignedDuration += (int)$task['dureeEnSecondes']; // Utiliser dureeEnSecondes directement
+    
+                // Si la tâche est terminée, ajouter la durée au total terminé
+                if ($task['statut'] === 'Termine') { // Assurez-vous que le champ de statut est correct
+                    $totalCompletedDuration += (int)$task['dureeEnSecondes'];
+                }
+            }
+    
+            // Calcul du pourcentage de travail terminé
+            $score = $helper->calculerScore($totalCompletedDuration, $totalAssignedDuration);
             $personnel['score'] = $score;
         }
-
+    
         return $personnels;
     }
+    
+    
+    
+    
 
     public function getPointagesEntreDates($dateDebut, $dateFin) {
         $query = "SELECT id_personnel, nom_personnel, date_pointage, statut FROM pointages WHERE date_pointage BETWEEN :dateDebut AND :dateFin";

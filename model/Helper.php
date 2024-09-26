@@ -8,28 +8,17 @@ class Helper {
         $this->conn = Database::getConnection();
     }
 
-    public function calculerScore($value1, $value2) {
-        // Convertir les valeurs en flottants pour les calculs
-        $qt1 = floatval($value1);
-        $qt2 = floatval($value2);
-
-        // Vérifier si $qt2 est différent de zéro pour éviter la division par zéro
-        if ($qt2 == 0) {
-            // Retourner 0 ou une valeur appropriée si la division par zéro est une situation non valide
-            return 0;
+    public function calculerScore($completedDuration, $assignedDuration) {
+        if ($assignedDuration == 0) {
+            return 0; // Éviter division par zéro si aucune tâche n'est assignée
         }
 
-        // Calculer le score en pourcentage
-        $score = ($qt1 / $qt2) * 100;
+        // Calculer le pourcentage du temps de travail terminé
+        $score = ($completedDuration / $assignedDuration) * 100;
 
-        // Vérifier si le score est négatif et le corriger si nécessaire
-        if ($score < 0) {
-            $score = 0;
-        }
-
-        // Retourner le score calculé
-        return $score;
+        return round($score, 2); // Arrondi à deux décimales
     }
+    
 
     public function dateEnFrancais($date_time){
         // Configurer la locale en français
