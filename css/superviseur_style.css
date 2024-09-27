@@ -1,0 +1,50 @@
+/* Style général */
+
+body {
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+.dashboard-title {
+    color: #1d2b57;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+
+/* Cartes des graphiques */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #22254b;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+/* Bootstrap responsive grid */
+
+@media (min-width: 992px) {
+    .row {
+        margin-bottom: 30px;
+    }
+}
+
+
+/* Adaptation mobile-first */
+
+@media (max-width: 768px) {
+    .card-title {
+        text-align: center;
+    }
+}

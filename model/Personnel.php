@@ -401,12 +401,47 @@ class Personnel{
     
 
     public function getPointagesEntreDates($dateDebut, $dateFin) {
-        $query = "SELECT id_personnel, nom_personnel, date_pointage, statut FROM pointages WHERE date_pointage BETWEEN :dateDebut AND :dateFin";
-        $stmt = $this->db->prepare($query);
+        $query = "SELECT id_personnel, nom_personnel, date_pointage, statut, heure_pointage FROM pointages WHERE date_pointage BETWEEN :dateDebut AND :dateFin";
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute(['dateDebut' => $dateDebut, 'dateFin' => $dateFin]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
   
-    
+    // Méthode pour récupérer les données de présence, retard et absence
+    public function getAttendanceData() {
+        // Heure limite pour être à l'heure
+        $heureLimite = '08:30:00';
+
+        // Requête SQL pour récupérer les données de pointage
+        $sql = "SELECT present, heure_pointage FROM pointage_personnel";
+        $result = $this->pdo->query($sql);
+
+        $presence = 0;
+        $retard = 0;
+        $absence = 0;
+
+        if ($result) {
+            foreach ($result as $row) {
+                if ($row['present'] == 1) {
+                    // Vérifier si le personnel est en retard
+                    if ($row['heure_pointage'] > $heureLimite) {
+                        $retard++;
+                    } else {
+                        $presence++;
+                    }
+                } else {
+                    // Personnel absent
+                    $absence++;
+                }
+            }
+        }
+
+        // Retourner les données sous forme de tableau
+        return [
+            'presence' => $presence,
+            'retard' => $retard,
+            'absence' => $absence
+        ];
+    }
 
 }

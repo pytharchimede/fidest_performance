@@ -180,6 +180,11 @@ include('header_dashboard.php');
 
   </div>
 
+      <!-- Bouton flottant vers l'espace superviseur -->
+      <a href="superviseur_dashboard.php" class="btn-float" title="Espace Superviseur">
+        <i class="fas fa-user-tie"></i> Espace Superviseur
+      </a>
+
   <!-- Alerte gênante pour tâches expirées -->
   <script>
     // Vérifier s'il y a des tâches expirées et afficher une alerte
