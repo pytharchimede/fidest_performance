@@ -33,5 +33,18 @@ class Helper {
         return strftime('%A %d %B %Y à %H:%M', $timestamp);
     }
 
+    public function dateEnFrancaisSansHeure($date_time){
+        // Configurer la locale en français
+        setlocale(LC_TIME, 'fr_FR.UTF-8', 'french'); // Pour Linux
+        // Si vous êtes sur un serveur Windows, utilisez 'french' :
+        // setlocale(LC_TIME, 'french');
+
+        // Convertir la date en timestamp
+        $timestamp = strtotime($date_time);
+
+        // Formater et afficher la date en français
+        return strftime('%A %d %B %Y', $timestamp);
+    }
+
 }
 ?>

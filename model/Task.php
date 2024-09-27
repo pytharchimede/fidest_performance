@@ -42,6 +42,16 @@ class Task {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getThisMonthTasksByMatricule($matricule) {
+        $query = "SELECT * FROM tasks WHERE assigned_to = ? AND 
+                  MONTH(created_at) = MONTH(CURRENT_DATE()) AND 
+                  YEAR(created_at) = YEAR(CURRENT_DATE())";
+                  
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$matricule]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getTasksByMatriculeAndAssignateur($matriculeAssignateur) {
         $query = "SELECT * FROM tasks WHERE matricule_assignateur = ?";
         $stmt = $this->conn->prepare($query);

@@ -48,3 +48,140 @@ body {
         text-align: center;
     }
 }
+
+.employee-photo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.employee-photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 5px solid #1d2b57;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employee-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.employee-crown {
+    top: -10px;
+    right: -10px;
+}
+
+.worked-time {
+    background-color: #fabd02;
+    padding: 10px 20px;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #1d2b57;
+}
+
+.text-highlight {
+    color: #1d2b57;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.hours-text {
+    margin-left: 5px;
+    font-size: 1.1rem;
+}
+
+.payment-icons a {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.payment-icons a:hover {
+    transform: scale(1.1);
+}
+
+.payment-invitation {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #1d2b57;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #fabd02;
+    color: #1d2b57;
+}
+
+@media (max-width: 768px) {
+    .employee-photo {
+        width: 120px;
+    }
+    .worked-time {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+    .payment-icons a img {
+        width: 50px;
+        height: 30px;
+    }
+    .payment-invitation {
+        font-size: 1rem;
+    }
+    .btn-primary {
+        font-size: 1rem;
+        padding: 8px 20px;
+    }
+}
+
+
+/* Style de la photo de profil */
+
+.img-fluid {
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.1);
+}
+
+
+/* Style du tableau */
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #1d2b57;
+    /* Bleu personnalisé */
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+    /* Couleur de fond alternée */
+}
+
+.table-striped tbody tr:hover {
+    background-color: #f0f4f8;
+    /* Effet de survol */
+}
+
+.badge {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    display: inline-block;
+}

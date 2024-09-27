@@ -51,6 +51,38 @@ $attendanceData = $personnelObj->getAttendanceData();
 
 
 //Trouver l'employé #1
-$employe = $personnelObj->getPersonnelById(3); // Employé #1
+
+// Trouver l'employé ayant le plus grand temps de travail
+
+// Récupérer tous les personnels avec leur temps total travaillé
+$allPersonnel = $personnelObj->getAllPersonnelWithTotalWorkedTimeAndRanking();
+
+// Préparation de la variable $employees pour utilisation dans le tableau de classement
+$employees = $allPersonnel;
+
+// Trier les employés en fonction du temps de travail (du plus grand au plus petit)
+usort($employees, function ($a, $b) {
+    return $b['totalWorkedTime'] <=> $a['totalWorkedTime'];
+});
+
+$employeTopWorker = null;
+$maxWorkedTime = -1;
+
+foreach ($allPersonnel as $personnel) {
+    // Vérifier si la clé 'totalWorkedTime' est définie
+    if (isset($personnel['totalWorkedTime']) && $personnel['totalWorkedTime'] > $maxWorkedTime) {
+        $maxWorkedTime = $personnel['totalWorkedTime'];
+        $employeTopWorker = $personnel;
+        $maxWorkedTimeInHours = round($maxWorkedTime / 3600, 2);
+    }
+    //echo 'Nom du personnel : ' . $personnel['nom_personnel_tasks'] . ' | Temps total travaillé : ' . $personnel['totalWorkedTimeInHours'] . ' heures<br>';
+}
+
+// Récupérer les infos de l'employé avec le plus grand temps travaillé
+if ($employeTopWorker) {
+    $employe = $personnelObj->getPersonnelById($employeTopWorker['id_personnel_tasks']);
+}
+
+
 
 ?>

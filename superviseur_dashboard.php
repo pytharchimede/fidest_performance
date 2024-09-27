@@ -60,18 +60,62 @@ include('header_superviseur_dashboard.php');
             </div>
         </div>
 
-          <!-- Section pour afficher les informations de l'employé #1 -->
-          <div class="row mb-5">
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="card shadow-sm">
+        <!-- Section pour afficher l'employé du mois -->
+        <div class="row mb-5 justify-content-center">
+            <div class="col-12 col-lg-8 mb-4">
+                <div class="card shadow-lg p-4">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Employé du mois</h5>
-                        <img src="https://stock.fidest.ci/app/&_gestion/photo/<?php echo $employe['photo_personnel_tasks']; ?>" alt="Photo de l'employé" class="img-fluid rounded-circle mb-3" width="150">
-                        <h6><?php echo $employe['nom_personnel_tasks']; ?></h6>
+                        <h3 class="card-title text-primary">Employé du Mois</h3>
+                        <div class="employee-photo-container position-relative mb-3">
+                            <img src="https://stock.fidest.ci/app/&_gestion/photo/<?php echo $employe['photo_personnel_tasks']; ?>" alt="Photo de l'employé" class="img-fluid rounded-circle employee-photo shadow" width="180">
+                            <span class="employee-crown position-absolute">
+                                <i class="fas fa-crown text-warning fa-2x"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-dark"><?php echo $employe['nom_personnel_tasks']; ?></h4>
+
+                        <!-- Temps Total Travaillé mis en évidence -->
+                        <div class="worked-time my-3">
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                            Temps total travaillé : 
+                            <strong class="text-highlight">
+                                <?php echo $maxWorkedTimeInHours; ?>
+                            </strong>
+                            <span class="hours-text">heures</span>
+                        </div>
+
+                        <div class="payment-invitation mb-3">
+                            <p class="text-muted">Récompensez l'employé d'excellence avec une prime via :</p>
+                        </div>
+                        
+                        <!-- Icônes de paiement -->
+                        <div class="payment-icons d-flex justify-content-center mb-4">
+                            <a href="#" class="payment-icon mx-2">
+                                <img src="https://elephantech.ci/wp-content/uploads/2022/09/orange-money-logo.jpg" alt="Orange Money" class="img-fluid rounded" width="60">
+                            </a>
+                            <a href="#" class="payment-icon mx-2">
+                                <img src="https://yop.l-frii.com/wp-content/uploads/2024/01/WAVE-recrute-pour-ce-poste-10-Janvier-2024.jpg" alt="Wave" class="img-fluid rounded" width="60">
+                            </a>
+                            <a href="#" class="payment-icon mx-2">
+                                <img src="https://warehouse.canal-overseas.com/content/0001/07/ed21f02f1a158b1f43e5e57e640ec727f30ec0d1.png" alt="MTN Money" class="img-fluid rounded" width="60">
+                            </a>
+                            <a href="#" class="payment-icon mx-2">
+                                <img src="https://pbs.twimg.com/profile_images/1567825623841755137/D4eG9XT6_400x400.png" alt="Djamo" class="img-fluid rounded" width="60">
+                            </a>
+                        </div>
+
+                        <!-- Bouton d'invitation au paiement -->
+                        <a href="#" class="btn btn-primary btn-lg">
+                            Effectuer le Paiement <i class="fas fa-money-bill-wave"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- Section des graphiques pour les tâches -->
         <div class="row mb-5">
@@ -105,6 +149,48 @@ include('header_superviseur_dashboard.php');
             </div>
         </div>
     </div>
+
+    <!-- Section Classement du Personnel -->
+    <div class="row mb-5 justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h3 class="card-title text-primary text-center mb-4">Classement du Personnel</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col">Photo</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col" class="text-center">Temps Travaillé (heures)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $rank = 1;
+                                foreach($employees as $employee) {
+                                    echo '<tr>';
+                                    echo '<th scope="row" class="text-center">' . $rank . '</th>';
+                                    echo '<td><img src="https://stock.fidest.ci/app/&_gestion/photo/' . $employee['photo_personnel_tasks'] . '" alt="Photo de l\'employé" class="rounded-circle img-fluid" width="60"></td>';
+                                    echo '<td>' . strtoupper($employee['nom_personnel_tasks']) . '</td>';
+                                    echo '<td class="text-center"><span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> ' . round($employee['totalWorkedTime'] / 3600, 2) . ' heures</span></td>';
+                                    echo '<td>
+                                            <a href="profil_personnel_tasks.php?id='.$employee["id_personnel_tasks"].'" class="btn btn-info btn-sm">Voir Détails</a>
+                                          </td>';
+                                    echo '</tr>';
+                                    $rank++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- <script src="js/superviseur_script.js"></script> -->

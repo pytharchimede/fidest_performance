@@ -1,0 +1,239 @@
+body {
+    background-color: #f1f3f5;
+    /* Fond gris très clair */
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    /* Largeur maximale de la container */
+    margin-top: 30px;
+    /* Espacement en haut */
+}
+
+.profile-card {
+    background-color: #ffffff;
+    /* Fond blanc pour la carte */
+    border-radius: 20px;
+    /* Coins arrondis */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Ombre douce */
+    padding: 30px;
+    /* Espacement interne */
+    transition: transform 0.3s;
+    /* Effet de survol */
+    margin-bottom: 30px;
+    /* Espacement en bas */
+    text-align: center;
+    /* Centrer le texte de la carte */
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    /* Légère élévation au survol */
+}
+
+.profile-image {
+    width: 160px;
+    /* Largeur de l'image */
+    height: 160px;
+    /* Hauteur de l'image */
+    border-radius: 50%;
+    /* Image ronde */
+    border: 6px solid #1d2b57;
+    /* Bordure colorée */
+    object-fit: cover;
+    /* Ajustement de l'image */
+    margin-bottom: 20px;
+    /* Espacement en bas */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Effet de survol pour l'image */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    /* Ombre autour de l'image */
+}
+
+.profile-image:hover {
+    transform: scale(1.1);
+    /* Agrandissement de l'image au survol */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Ombre plus forte au survol */
+}
+
+.profile-header {
+    color: #1d2b57;
+    /* Couleur personnalisée */
+    font-weight: bold;
+    font-size: 26px;
+    /* Taille du texte */
+    margin: 15px 0;
+    /* Espacement en haut et en bas */
+}
+
+.jauge {
+    margin: 0 auto;
+    /* Centrer les jauges */
+    text-align: center;
+    /* Centrer le texte */
+    margin-bottom: 30px;
+    /* Espacement en bas */
+}
+
+.btn-edit {
+    background-color: #fabd02;
+    /* Couleur personnalisée pour le bouton */
+    color: #1d2b57;
+    /* Couleur du texte */
+    border: none;
+    /* Suppression de la bordure */
+    border-radius: 8px;
+    /* Coins arrondis */
+    padding: 12px 24px;
+    /* Espacement interne du bouton */
+    font-size: 18px;
+    /* Taille du texte du bouton */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Effet de transition */
+    margin-top: 20px;
+    /* Espacement en haut */
+}
+
+.btn-edit:hover {
+    background-color: #1d2b57;
+    /* Couleur au survol */
+    color: #fabd02;
+    /* Couleur du texte au survol */
+    transform: scale(1.05);
+    /* Agrandissement au survol */
+}
+
+.stats-card {
+    background-color: #ffffff;
+    /* Fond blanc */
+    border-radius: 10px;
+    /* Coins arrondis */
+    padding: 20px;
+    /* Espacement interne */
+    margin-top: 30px;
+    /* Espacement en haut */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    /* Ombre douce */
+    text-align: center;
+    /* Centrer le texte des cartes statistiques */
+}
+
+.fa-icon {
+    color: #ffffff;
+    /* Couleur des icônes */
+    margin-right: 10px;
+    /* Espacement à droite */
+    font-size: 1.2em;
+    /* Taille des icônes */
+}
+
+.badge-custom {
+    background-color: #1d2b57;
+    /* Badge couleur personnalisée */
+    color: #fff;
+    /* Couleur du texte du badge */
+    padding: 5px 10px;
+    /* Espacement interne du badge */
+    border-radius: 15px;
+    /* Coins arrondis */
+}
+
+.knob {
+    margin: 0 auto;
+    /* Centrer les jauges */
+    border: 3px solid #1d2b57;
+    /* Bordure des jauges */
+    border-radius: 10px;
+    /* Coins arrondis des jauges */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Ombre douce pour les jauges */
+}
+
+.type_contrat_area {
+    margin: 20px;
+}
+
+.total-tasks-duration {
+    background-color: #f8f9fa;
+    /* Couleur de fond douce */
+    padding: 15px;
+    border-radius: 8px;
+    /* Bordures arrondies */
+    margin-top: 20px;
+    /* Espace au-dessus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre légère pour un effet 3D */
+}
+
+.total-tasks-duration p {
+    font-size: 16px;
+    margin: 8px 0;
+    /* Espacement vertical des paragraphes */
+}
+
+.total-tasks-duration strong {
+    color: #1d2b57;
+    /* Couleur de texte bleu foncé */
+}
+
+
+/* Pour rendre le texte plus attractif */
+
+.total-tasks-duration span {
+    font-weight: bold;
+    color: #ffc107;
+    /* Couleur accent jaune pour les nombres */
+}
+
+.btn-print {
+    background-color: #1d2b57;
+    /* Couleur bleu foncé */
+    color: white;
+    /* Couleur du texte blanche */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    /* Coins légèrement arrondis */
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    /* Retirer la décoration de lien */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre pour un effet léger */
+    transition: transform 0.3s ease;
+    /* Effet de zoom */
+}
+
+.btn-print i {
+    margin-right: 8px;
+    /* Espace entre l'icône et le texte */
+    font-size: 18px;
+}
+
+.btn-print:hover {
+    transform: scale(1.05);
+    /* Effet de zoom au survol */
+}
+
+.btn-print:active {
+    transform: scale(0.98);
+    /* Réduction de l'échelle lors du clic */
+}
+
+
+/* Personnaliser l'icône du bouton hamburger */
+
+.navbar-toggler {
+    border: none;
+    /* Supprimer la bordure */
+}
+
+.navbar-toggler-icon {
+    background-color: #1d2b57;
+    /* Couleur de l'icône du hamburger */
+}
