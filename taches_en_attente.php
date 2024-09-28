@@ -88,88 +88,144 @@ include('header_taches_en_attente.php');
       </a>
       <?php } ?>
     </h2>
-    <ul class="list-group">
 
-      <?php if($nbTaches > 0): ?>
-        <?php foreach ($taches as $tache): ?>
-          <?php
-            // Vérification si la tâche est expirée
-            $now = date('Y-m-d');
-            $isExpired = strtotime($tache['deadline']) < strtotime($now);
-          ?>
+    <div class="container mt-4">
+        <form id="filter-form" class="border p-4 rounded shadow">
+            <h4 class="mb-3">Filtrer les Tâches</h4>
+            
+            <div class="form-row align-items-end">
+                <div class="form-group col-md-6">
+                    <label for="date_debut">Date de Début:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" id="date_debut" name="date_debut" class="form-control" value="<?php echo gmdate('Y-m-'.'01'); ?>" required>
+                    </div>
+                </div>
 
-          <li class="list-group-item <?= $isExpired ? 'expired-task' : ''; ?>">
-            <div class="task-header">
-              <?php if ($isExpired): ?>
-                <i class="fas fa-exclamation-circle expired-icon"></i>
-              <?php endif; ?>
-              <h5><?= htmlspecialchars($tache['task_code']); ?></h5>
-              &nbsp;&nbsp;&nbsp;
-              <?php if (!empty($tache['images'])): ?>
-                <a href="view_task_images.php?taskId=<?= htmlspecialchars($tache['id']); ?>" class="task-icon" title="Visualiser les images">
-                  <i class="fas fa-paperclip"></i><span>Pièces jointes</span>
-                </a>
-              <?php endif; ?>
+                <div class="form-group col-md-6">
+                    <label for="date_fin">Date de Fin:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" id="date_fin" name="date_fin" class="form-control" value="<?php echo gmdate('Y-m-d'); ?>" required>
+                    </div>
+                </div>
             </div>
-            <!-- Alerte pour les demandes de report -->
-            <?php if ($tache['report_demande'] == 1 ): ?>
-              <div class="alert alert-info alert-dismissible fade show alert-clignotante" role="alert" id="alert-expired">
-                <i class="fas fa-exclamation-triangle mr-2"></i>
-                <strong>Alerte !</strong> Vous avez emis une demande de report pour cette tâches.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <?php endif; ?>
-            <div class="task-details">
-              <?php if($_SESSION['role']=='superviseur'){ ?>
-              <p><?= 'Exécutant : '.htmlspecialchars($taskObj->getTasksResponsable($tache['id'])['nom_personnel_tasks']) ?></p>
-              <?php }else{ ?>
-              <p><?= $taskObj->getTasksAssignateur($tache['id'])['nom_personnel_tasks'] != '' ? 'Assignateur : '.htmlspecialchars($taskObj->getTasksAssignateur($tache['id'])['nom_personnel_tasks']) : 'Aucun assignateur défini' ?></p>
-              <?php } ?>
-              <p>Description : <?= htmlspecialchars($tache['description']); ?></p>
-              <p>Date limite : <?= htmlspecialchars($tache['deadline']); ?></p>
-              <p>Durée : <?= htmlspecialchars($tache['duree']); ?></p>
-            </div>
-            <div class="task-actions">
-              <form method="post" action="request/update_task_status.php" class="d-inline">
-                <input type="hidden" name="task_code" value="<?= htmlspecialchars($tache['task_code']); ?>">
-                <button type="submit" name="action" value="complete" class="btn btn-complete"><i class="fas fa-check"></i> Terminer</button>
-              </form>
 
-              <?php if ($_SESSION['role'] == 'superviseur') { ?>
-              <form method="post" action="request/update_task_status.php" class="d-inline">
-                <input type="hidden" name="task_code" value="<?= htmlspecialchars($tache['task_code']); ?>">
-                <button type="submit" name="action" value="cancel" class="btn btn-cancel"><i class="fas fa-ban"></i> Annuler</button>
-              </form>
-              <?php } ?>
+            <button type="submit" class="btn btn-primary mr-2">
+                <i class="fas fa-filter"></i> Filtrer
+            </button>
+            
+            <a id="exportBtn" style="margin:4px;" href="request/export_tasks_list.php?date_debut=<?= htmlspecialchars($date_debut); ?>&date_fin=<?= htmlspecialchars($date_fin); ?>" class="btn btn-primary">
+              <i class="fas fa-file-pdf"></i> Exporter en PDF
+            </a>
+        </form>
+    </div>
 
-              <?php if($tache['report_demande']!=1){ ?>
-              <form method="get" action="report_task.php" class="d-inline">
-                <input type="hidden" name="task_id" value="<?= htmlspecialchars($tache['id']); ?>">
-                <button type="submit" class="btn btn-reject">
-                  <i class="fas fa-times"></i> Reporter
-                </button>
-              </form>
-              <?php } ?>
+    <div class="container mt-3">
+      <div id="results-container">
+      </div>
+      <div id="loading" style="display:none;">
+          <div class="loading-spinner"></div>
+          <div>Chargement...</div>
+      </div>
 
-            </div>
-          </li>
-
-        <?php endforeach; ?>
-      <?php else: ?>
-        <div class="no-tasks">
-          <div class="smiley">😊</div>
-          <h3>Aucune tâche en attente trouvée</h3>
-        </div>
-      <?php endif; ?>
-
-    </ul>
+    </div>
   </div>
 
   <!-- Intégration de Bootstrap JS et dépendances -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+
+
+      $('#filter-form').on('submit', function(e) {
+          e.preventDefault(); // Empêcher le rechargement de la page
+
+          const date_debut = $('#date_debut').val();
+          const date_fin = $('#date_fin').val();
+
+          $.ajax({
+              url: 'ajax/get_tasks.php',
+              type: 'GET',
+              data: {
+                  date_debut: date_debut,
+                  date_fin: date_fin
+              },
+              beforeSend: function() {
+                  $('#loading').show(); // Affiche l'indicateur de chargement
+              },
+              success: function(response) {
+                  $('#results-container').html(response);
+              },
+              complete: function() {
+                  $('#loading').hide(); // Cache l'indicateur de chargement après la requête
+              },
+              error: function() {
+                  $('#results-container').html('<p>Une erreur est survenue.</p>');
+              }
+          });
+      });
+
+
+      const date_debut = $('#date_debut').val();
+          const date_fin = $('#date_fin').val();
+
+          $.ajax({
+              url: 'ajax/get_tasks.php',
+              type: 'GET',
+              data: {
+                  date_debut: date_debut,
+                  date_fin: date_fin
+              },
+              beforeSend: function() {
+                  $('#loading').show(); // Affiche l'indicateur de chargement
+              },
+              success: function(response) {
+                  $('#results-container').html(response);
+              },
+              complete: function() {
+                  $('#loading').hide(); // Cache l'indicateur de chargement après la requête
+              },
+              error: function() {
+                  $('#results-container').html('<p>Une erreur est survenue.</p>');
+              }
+          });
+
+
+    // Fonction pour mettre à jour le lien d'exportation
+    function updateExportLink(date_debut, date_fin) {
+            let url = 'request/export_tasks_list.php';
+
+            // Ajouter les paramètres de date à l'URL
+            if (date_debut) {
+                url += `?date_debut=${encodeURIComponent(date_debut)}`;
+            }
+            if (date_fin) {
+                url += `&date_fin=${encodeURIComponent(date_fin)}`;
+            }
+
+            // Mettre à jour l'attribut href du lien
+            $('#exportBtn').attr('href', url);
+        }
+
+        // Initialiser l'exportation avec les dates existantes
+        const initialDateDebut = $('#date_debut').val();
+        const initialDateFin = $('#date_fin').val();
+        updateExportLink(initialDateDebut, initialDateFin);
+
+
+  });
+
+
+  
+  </script>
+
 </body>
 </html>

@@ -109,3 +109,54 @@
     font-size: 24px;
     color: #6c757d;
 }
+
+#loading {
+    display: flex;
+    /* Utilisation de Flexbox pour le centrage */
+    flex-direction: column;
+    /* Orientation verticale */
+    align-items: center;
+    /* Centre horizontalement */
+    justify-content: center;
+    /* Centre verticalement */
+    height: 100vh;
+    /* Remplit toute la hauteur de la vue */
+    position: fixed;
+    /* Reste en position fixe */
+    top: 0;
+    /* Aligné en haut */
+    left: 0;
+    /* Aligné à gauche */
+    right: 0;
+    /* Aligné à droite */
+    bottom: 0;
+    /* Aligné en bas */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fond semi-transparent */
+    z-index: 1000;
+    /* Assure que l'indicateur est au-dessus des autres éléments */
+}
+
+.loading-spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    /* Couleur de l'arrière-plan */
+    border-left-color: #007bff;
+    /* Couleur de la barre de chargement */
+    border-radius: 50%;
+    /* Rendre le bord arrondi */
+    width: 50px;
+    /* Largeur du spinner */
+    height: 50px;
+    /* Hauteur du spinner */
+    animation: spin 1s linear infinite;
+    /* Animation de rotation */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -144,8 +144,28 @@ class Task {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['total_seconds'] : 0;
     }
-    
 
-    
+    // Méthode pour récupérer les tâches par plage de dates
+    public function getTasksByDateRange($date_debut, $date_fin) {
+        // Assurez-vous que les dates sont formatées correctement pour votre requête SQL
+        $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE created_at BETWEEN :date_debut AND :date_fin");
+        $stmt->execute(['date_debut' => $date_debut, 'date_fin' => $date_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Méthode pour récupérer les tâches par matricule et plage de dates
+    public function getTasksByEnAttenteMatriculeAndDateRange($matricule, $date_debut, $date_fin) {
+        $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE statut = 'En Attente' AND assigned_to = :matricule AND created_at BETWEEN :date_debut AND :date_fin");
+        $stmt->execute(['matricule' => $matricule, 'date_debut' => $date_debut, 'date_fin' => $date_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Méthode pour récupérer les tâches par matricule et plage de dates
+    public function getTasksByMatriculeAndDateRange($matricule, $date_debut, $date_fin) {
+        $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE assigned_to = :matricule AND created_at BETWEEN :date_debut AND :date_fin");
+        $stmt->execute(['matricule' => $matricule, 'date_debut' => $date_debut, 'date_fin' => $date_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+      
 }
 ?>
