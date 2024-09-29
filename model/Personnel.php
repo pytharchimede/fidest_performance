@@ -225,6 +225,13 @@ class Personnel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Lister tous les membres du personnel
+    public function listerPersonnelSaufDirecteurs() {
+        $sql = "SELECT * FROM personnel_tasks WHERE is_directeur!=1";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Obtenir les détails d'un membre du personnel
     public function obtenirPersonnelParId($id) {
         $sql = "SELECT * FROM personnel_tasks WHERE id_personnel_tasks = ?";

@@ -75,13 +75,18 @@ if ($score >= 80) {
 }
 
 // Récupérer et trier les personnels
-$allPersonnel = $personnelObj->getAllPersonnelWithScores();
-usort($allPersonnel, function($a, $b) {
-    return $b['score'] <=> $a['score'];
+$allPersonnel = $personnelObj->getAllPersonnelWithTotalWorkedTimeAndRanking();
+
+// Trier les employés en fonction du temps de travail (du plus grand au plus petit)
+usort($allPersonnel, function ($a, $b) {
+  return $b['totalWorkedTime'] <=> $a['totalWorkedTime'];
 });
 
 // Trouver le classement du personnel connecté
 $ranking = array_search($personnelId, array_column($allPersonnel, 'id_personnel_tasks')) + 1;
+
+//Effectif de l'entreprise
+$effectif = count($personnelObj->listerPersonnelSaufDirecteurs());
 
 
 // Temps total des tâches en attente

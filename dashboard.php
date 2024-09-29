@@ -172,7 +172,9 @@ include('header_dashboard.php');
               </div>
             </div>
             <h5 class="card-title text-secondary">Classement</h5>
-            <p class="card-text display-4">#<?=$ranking?></p>
+            <p class="card-text display-4">
+                #<?=$ranking?> <span class="ranking-effectif">/ <?=$effectif?></span>
+            </p>
           </div>
         </div>
       </div>
