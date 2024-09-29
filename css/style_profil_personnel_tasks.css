@@ -263,13 +263,6 @@ body {
     }
 }
 
-.profile-image {
-    width: 100%;
-    /* Assurez-vous que l'image est responsive */
-    height: auto;
-    /* Garde les proportions */
-}
-
 .profile-header {
     font-size: 1.5rem;
     /* Ajustez la taille de police sur PC */
