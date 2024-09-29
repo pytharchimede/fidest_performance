@@ -1,0 +1,4 @@
+[29-Sep-2024 09:37:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method PDF::GetPageHeight() in /home/fidestci/public_html/performance/request/export_tasks_list.php:135
+Stack trace:
+#0 {main}
+  thrown in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 135

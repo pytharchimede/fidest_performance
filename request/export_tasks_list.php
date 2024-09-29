@@ -107,38 +107,64 @@ $pdf->Ln();
 
 // Données des tâches
 $pdf->SetFont('Arial', '', 12);
+
+// Marges de bas de page
+$footerHeight = 30; // Hauteur estimée pour éviter le chevauchement du tableau avec le pied de page
+
+// Données des tâches
+$pdf->SetFont('Arial', '', 12);
+
 foreach ($taches as $tache) {
     // Description de la tâche
     $description = mb_convert_encoding($tache['description'], 'UTF-8', 'auto');
 
     // Largeurs des cellules
     $descCellWidth = 70;
-    $lineHeight = 6;  // Diminuer la hauteur pour réduire l'espacement vertical
+    $lineHeight = 6; // Hauteur des lignes pour l'affichage
+    $cellHeight = 6; // Hauteur par défaut des cellules sans MultiCell
 
     // Calcul du nombre de lignes nécessaires pour la description
-    $pdf->SetXY($pdf->GetX(), $pdf->GetY());
     $descriptionWidth = $pdf->GetStringWidth($description);
     $nb_lignes_desc = ceil($descriptionWidth / $descCellWidth);
-    $cellHeight = $nb_lignes_desc * $lineHeight;
+    $cellHeightDescription = $nb_lignes_desc * $lineHeight; // Hauteur ajustée pour la description
 
-    // Affichage des colonnes avec des hauteurs dynamiques
-    $pdf->Cell(30, $cellHeight, utf8_decode($tache['task_code']), 1, 0);
+    // Définir la hauteur maximale de la ligne (basée sur la description ou la cellule la plus grande)
+    $maxCellHeight = max($cellHeightDescription, $cellHeight);
 
-    // Sauvegarder la position actuelle
+    // Obtenir la hauteur de la page
+    $pageHeight = $pdf->h; // Utiliser $pdf->h pour obtenir la hauteur de la page dans FPDF
+
+    // Vérifier si un saut de page est nécessaire avant d'ajouter une nouvelle ligne
+    if ($pdf->GetY() + $maxCellHeight > $pageHeight - $footerHeight) {
+        $pdf->AddPage();
+    }
+
+    // Affichage des colonnes avec la hauteur dynamique
+
+    // Code de la tâche
+    $pdf->Cell(30, $maxCellHeight, utf8_decode($tache['task_code']), 1, 0);
+
+    // Sauvegarder la position actuelle pour la description
     $x = $pdf->GetX();
     $y = $pdf->GetY();
 
-    // Affichage de la description avec `MultiCell`, alignée à gauche
-    $pdf->MultiCell($descCellWidth, $lineHeight, utf8_decode($description), 1, 'L'); // 'L' pour aligner à gauche
+    // Description de la tâche avec MultiCell
+    $pdf->MultiCell($descCellWidth, $lineHeight, utf8_decode($description), 1, 'L');
 
-    // Replacer le curseur pour la prochaine cellule
+    // Repositionner pour continuer sur la même ligne
     $pdf->SetXY($x + $descCellWidth, $y);
 
-    // Affichage des autres cellules avec la même hauteur
-    $pdf->Cell(45, $cellHeight, utf8_decode($tache['deadline']), 1, 0);
-    $pdf->Cell(25, $cellHeight, utf8_decode($tache['duree']), 1, 0);
-    $pdf->Cell(25, $cellHeight, $tache['report_decide'] == 1 ? utf8_decode('Reporté') : 'En Attente', 1, 1);
+    // Deadline
+    $pdf->Cell(45, $maxCellHeight, utf8_decode($tache['deadline']), 1, 0);
+
+    // Durée
+    $pdf->Cell(25, $maxCellHeight, utf8_decode($tache['duree']), 1, 0);
+
+    // Statut de report
+    $pdf->Cell(25, $maxCellHeight, $tache['report_decide'] == 1 ? utf8_decode('Reporté') : utf8_decode('En Attente'), 1, 1);
 }
+
+
 
 // Sortie du PDF
 $pdf->Output();
