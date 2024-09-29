@@ -166,6 +166,16 @@ class Task {
         $stmt->execute(['matricule' => $matricule, 'date_debut' => $date_debut, 'date_fin' => $date_fin]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    //Pour les taches terminees
+    
+    // Méthode pour récupérer les tâches par matricule et plage de dates
+    public function getTasksByTermineMatriculeAndDateRange($matricule, $date_debut, $date_fin) {
+        $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE statut = 'Termine' AND assigned_to = :matricule AND created_at BETWEEN :date_debut AND :date_fin");
+        $stmt->execute(['matricule' => $matricule, 'date_debut' => $date_debut, 'date_fin' => $date_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
       
 }
 ?>

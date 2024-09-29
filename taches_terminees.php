@@ -6,24 +6,19 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-include('header_taches_en_attente.php');
+include('header_taches_terminees.php'); // Header spécifique aux tâches terminées
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tâches en Attente</title>
+  <title>Tâches Terminées</title>
   <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/style_taches_en_attente.css" rel="stylesheet">
-
-  <!-- Animation de clignotement pour les tâches expirées -->
-  <style>
-
-  </style>
+  <link href="css/style_taches_terminees.css" rel="stylesheet">
 </head>
 <body>
 
@@ -45,10 +40,7 @@ include('header_taches_en_attente.php');
           <a class="nav-link" href="pointage_personnel.php">Pointage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="taches_en_attente.php">Tâches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="demandes_report.php">Demandes de report</a>
+          <a class="nav-link" href="taches_terminees.php">Tâches Terminées</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Déconnexion</a>
@@ -58,13 +50,7 @@ include('header_taches_en_attente.php');
   </nav>
 
   <div class="container mt-5">
-    <h2 class="mb-4">Tâches en Attente &nbsp;&nbsp;
-      <?php if($_SESSION['role']=='superviseur'){ ?>
-      <a href="ajouter_tache.php" class="btn btn-info align-right">
-        <i class="fas fa-plus"></i> Ajouter une tâche
-      </a>
-      <?php } ?>
-    </h2>
+    <h2 class="mb-4">Tâches Terminées</h2>
 
     <div class="container mt-4">
         <form id="filter-form" class="border p-4 rounded shadow">
@@ -96,7 +82,7 @@ include('header_taches_en_attente.php');
                 <i class="fas fa-filter"></i> Filtrer
             </button>
             
-            <a id="exportBtn" style="margin:4px;" href="request/export_tasks_list.php?date_debut=<?= htmlspecialchars($date_debut); ?>&date_fin=<?= htmlspecialchars($date_fin); ?>" class="btn btn-primary">
+            <a id="exportBtn" style="margin:4px;" href="request/export_tasks_terminees_list.php?date_debut=<?= htmlspecialchars($date_debut); ?>&date_fin=<?= htmlspecialchars($date_fin); ?>&status=Termine" class="btn btn-primary">
               <i class="fas fa-file-pdf"></i> Exporter en PDF
             </a>
         </form>
@@ -109,7 +95,6 @@ include('header_taches_en_attente.php');
           <div class="loading-spinner"></div>
           <div>Chargement...</div>
       </div>
-
     </div>
   </div>
 
@@ -118,11 +103,6 @@ include('header_taches_en_attente.php');
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="js/script_taches_en_attente.js"></script>
-
-  <script>
-
-  </script>
-
+  <script src="js/script_taches_terminees.js"></script>
 </body>
 </html>

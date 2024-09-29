@@ -117,8 +117,8 @@ include('header_dashboard.php');
               </li>
               <li class="list-group-item effectuees">
                 <i class="fas fa-check-circle icon-effectuees"></i>
-                <h5 class="card-title text-secondary">Effectuées: 
-                  <span class="badge badge-success"><?php echo $nbTachesOk; ?></span></h5>
+                <a href="taches_terminees.php">Effectuées: 
+                  <span class="badge badge-success"><?php echo $nbTachesOk; ?></span></a>
               </li>
               <li class="list-group-item rejetees">
                 <i class="fas fa-times-circle icon-rejetees"></i>
