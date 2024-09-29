@@ -259,7 +259,7 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
                 //alert('Tâche ajoutée avec succès !');
                 // Réinitialisez le formulaire ou effectuez d'autres actions
                 console.log('Réponse serveur:', response);
-                $(location).attr('href', 'index.php');
+                $(location).attr('href', 'taches_en_attente.php');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('Erreur lors de l\'insertion de la tâche :', textStatus, errorThrown);

@@ -80,11 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         // Ajout de la traçabilité
-        /*
+        
         $tracabilite = new TracabilitePerformance($pdo); // Instancier la classe Tracabilite
         $libelle = "Ajout d'une nouvelle tâche : $taskCode, assignée à $assignedTo";
         $tracabilite->enregistrerAction($libelle); // Enregistrer l'action de traçabilité
-        */
+        
        // echo $stmt;
 
                  //Envoi SMS Personnel
@@ -120,7 +120,7 @@ $clientSecret = 'xOXZ4QTDf7bLfGk3';
 
         //echo 'Tâche ajoutée avec succès !'; //tel_personnel_tasks
  
-        header('Location: ../taches_en_attente.php');
+       // header('Location: ../taches_en_attente.php');
 
 
     } catch (Exception $e) {
