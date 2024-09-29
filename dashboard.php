@@ -84,6 +84,12 @@ include('header_dashboard.php');
       <audio id="alert-sound" src="audio/alerte.mp3" preload="auto"></audio>
     <?php endif; ?>
 
+    <!-- Ajout du bouton pour ouvrir le modal -->
+    <div class="text-center mb-4">
+        <button class="btn btn-primary" id="demandeButton" data-toggle="modal" data-target="#demandeModal">
+            <i class="fas fa-plus-circle mr-2"></i> Faire une demande
+        </button>
+    </div>
 
     <!-- Section Profil avec photo, nom et poste -->
     <div class="profile-section mb-4 p-3 bg-white rounded shadow-sm d-flex align-items-center">
@@ -94,6 +100,7 @@ include('header_dashboard.php');
         <h5 class="text-primary"><?php echo strtoupper($_SESSION['nom_personnel_tasks']); ?></h5>
         <p class="text-muted">Membre du personnel</p>
       </div>
+    
     </div>
 
     <div class="row">
@@ -179,6 +186,45 @@ include('header_dashboard.php');
         </div>
       </div>
     </div>
+
+    <!-- Popup Modal -->
+    <div class="modal fade" id="demandeModal" tabindex="-1" role="dialog" aria-labelledby="demandeModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="demandeModalLabel">Faire une Demande</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                  <i class="fas fa-user-slash mr-2"></i> Demande de Permission d'Absence
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                  <i class="fas fa-hand-holding-usd mr-2"></i> Demande de Prêt
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                  <i class="fas fa-money-bill-alt mr-2"></i> Demande d'Avance
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                  <i class="fas fa-plane mr-2"></i> Demande de Congés
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div>
 

@@ -62,3 +62,72 @@
     color: #6c757d;
     /* Couleur plus claire (similaire à text-muted) */
 }
+
+.modal-header {
+    background-color: #1d2b57;
+    /* Couleur bleue */
+    color: white;
+    /* Texte blanc */
+}
+
+.list-group-item {
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+    /* Légère couleur de fond au survol */
+}
+
+
+/* Style pour le bouton de demande */
+
+.btn-primary {
+    background-color: #1d2b57;
+    border-color: #1d2b57;
+}
+
+.btn-primary:hover {
+    background-color: #fabd02;
+    border-color: #fabd02;
+}
+
+
+/* Style pour les éléments de la liste dans le modal */
+
+.modal-body .list-group-item {
+    transition: background-color 0.3s;
+}
+
+.modal-body .list-group-item:hover {
+    background-color: #f1f1f1;
+    /* Couleur de survol */
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.list-group-item a:hover {
+    color: #1d2b57;
+    /* Couleur du texte survolé */
+}
+
+#demandeButton {
+    border-radius: 30px;
+    /* Arrondir les bords */
+    padding: 10px 20px;
+    /* Espacement intérieur */
+    font-size: 16px;
+    /* Taille de la police */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Transition pour le changement de couleur */
+}
+
+#demandeButton:hover {
+    background-color: #0d6efd;
+    /* Couleur au survol */
+    transform: scale(1.05);
+    /* Effet d'agrandissement */
+}
