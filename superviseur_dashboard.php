@@ -180,6 +180,7 @@ include('header_superviseur_dashboard.php');
                                     echo '<td class="text-center"><span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> ' . round($employee['totalWorkedTime'] / 3600, 2) . ' heures</span></td>';
                                     echo '<td>
                                             <a href="profil_personnel_tasks.php?id='.$employee["id_personnel_tasks"].'" class="btn btn-info btn-sm">Voir Détails</a>
+                                            <a href="print_badge.php?id='.$employee["id_personnel_tasks"].'" class="btn btn-info btn-sm">Imprimer Badge</a>
                                           </td>';
                                     echo '</tr>';
                                     $rank++;
