@@ -8,6 +8,7 @@ require_once 'model/Helper.php';
 
 // Récupérer les informations de salaire pour un personnel spécifique
 $personnelId = $_SESSION['id_personnel_tasks']; // Remplacer par l'ID du personnel connecté
+$monId = $personnelId;
 $personnelObj = new Personnel();
 $salaireInfo = $personnelObj->getSalaireByPersonnelId($personnelId);
 $avanceInfo = $personnelObj->getAvanceByPersonnelId($personnelId);

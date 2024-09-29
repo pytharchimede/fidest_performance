@@ -182,10 +182,18 @@ include('header_dashboard.php');
 
   </div>
 
+      <?php if($_SESSION['role']=='superviseur'){ ?>
       <!-- Bouton flottant vers l'espace superviseur -->
       <a href="superviseur_dashboard.php" class="btn-float" title="Espace Superviseur">
         <i class="fas fa-user-tie"></i> Espace Superviseur
       </a>
+      <?php }else{ ?>
+      <!-- Bouton flottant vers la fiche d'évaluation du personnel connecté -->
+      <a href="https://fidest.ci/performance/profil_personnel_tasks.php?id=<?=$monId?>" class="btn-float" title="Ma fiche d'évaluation">
+        <i class="fas fa-file-pdf"></i> Ma fiche d'évaluation
+      </a>
+      <?php } ?>
+
 
   <!-- Alerte gênante pour tâches expirées -->
   <script>
