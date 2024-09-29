@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statut = 'En Attente';
         $duree = $_POST['duree'];
         $matricule_assignateur = $_POST['matricule_assignateur'];
+        $projet = $_POST['projet'];
+
 
         // Convertir la durée en secondes
         $dureeExploded = explode(':', $duree); // Séparer les heures, minutes et secondes
@@ -66,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insérer les données dans la base de données
-        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur, dureeEnSecondes) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur, :dureeEnSecondes)');
+        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur, dureeEnSecondes) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur, :dureeEnSecondes, :projet)');
         $stmt->execute([
             ':taskCode' => $taskCode,
             ':description' => $taskDescription,
@@ -76,7 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':statut' => $statut,
             ':duree' => $duree,
             ':matricule_assignateur' => $matricule_assignateur,
-            ':dureeEnSecondes' => $dureeEnSecondes
+            ':dureeEnSecondes' => $dureeEnSecondes,
+            ':projet' => $projet
         ]);
 
         // Ajout de la traçabilité

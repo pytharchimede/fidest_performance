@@ -8,10 +8,10 @@ class Task {
         $this->conn = Database::getConnection();
     }
 
-    public function create($task_code, $description, $assigned_to, $deadline, $statut, $duree, $matricule_assignateur) {
-        $query = "INSERT INTO tasks (task_code, description, assigned_to, deadline, statut, duree, matricule_assignateur) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public function create($task_code, $description, $assigned_to, $deadline, $statut, $duree, $matricule_assignateur, $projet) {
+        $query = "INSERT INTO tasks (task_code, description, assigned_to, deadline, statut, duree, matricule_assignateur, projet) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$task_code, $description, $assigned_to, $deadline, $statut, $duree, $matricule_assignateur]);
+        return $stmt->execute([$task_code, $description, $assigned_to, $deadline, $statut, $duree, $matricule_assignateur, $projet]);
     }
 
     public function getTasksByStatus($statut) {

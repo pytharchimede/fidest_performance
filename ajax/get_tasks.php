@@ -63,7 +63,10 @@ $nbTaches = count($taches);
                         </button>
                     </div>
                 <?php endif; ?>
+
                 <div class="task-details">
+                    <p>Projet : <?= $$tache['projet'] ? htmlspecialchars($tache['projet']) : 'Activités courantes'; ?></p>
+
                     <?php if ($_SESSION['role'] == 'superviseur'): ?>
                         <p><?= 'Exécutant : ' . htmlspecialchars($taskObj->getTasksResponsable($tache['id'])['nom_personnel_tasks']) ?></p>
                     <?php else: ?>

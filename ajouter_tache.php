@@ -82,7 +82,11 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
         <input type="text" class="form-control" id="taskCode" name="taskCode" value="FID/TSK/<?php echo $nbTaches+1; ?>" readonly required>
       </div>
       <div class="form-group">
-        <label for="matricule_assignateur">Ordonneur</label>
+        <label for="projet">Projet</label>
+        <input type="text" class="form-control" id="projet" name="projet"  required>
+      </div>
+      <div class="form-group">
+        <label for="matricule_assignateur">Assignateur</label>
         <select class="form-control select2" id="matricule_assignateur" name="matricule_assignateur" required>
             <option value="">Sélectionner le personnel</option>
             <?php foreach ($personnelList as $personnel) : ?>
