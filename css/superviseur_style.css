@@ -185,3 +185,63 @@ body {
     border-radius: 1rem;
     display: inline-block;
 }
+
+
+/* Superviseur_style.css POUR PC*/
+
+
+/* Styles pour le tableau de bord du superviseur */
+
+.dashboard-title {
+    font-size: 2.5rem;
+    /* Plus grand sur PC */
+}
+
+
+/* Réduire la taille des cartes sur mobile */
+
+.card {
+    margin-bottom: 1rem;
+}
+
+
+/* Amélioration de l'affichage des cartes sur PC */
+
+@media (min-width: 992px) {
+    /* écrans larges */
+    .card {
+        margin-bottom: 2rem;
+        /* Plus d'espace entre les cartes */
+        transition: transform 0.3s;
+        /* Animation pour survol */
+    }
+    .card:hover {
+        transform: scale(1.02);
+        /* Légère animation au survol */
+    }
+    /* Styles spécifiques pour le tableau */
+    .table {
+        font-size: 1.1rem;
+        /* Taille de police plus grande */
+    }
+    .employee-photo {
+        width: 240px;
+        /* Plus grand sur PC */
+        height: auto;
+        /* Garder la proportion */
+    }
+    /* Pour le graphique */
+    canvas {
+        max-height: 400px;
+        /* Ajuster la taille du graphique */
+    }
+}
+
+.payment-icon img {
+    height: 60px;
+    /* Fixer la hauteur */
+    width: 60px;
+    /* Fixer la largeur pour uniformiser */
+    object-fit: contain;
+    /* Garder le ratio d'aspect */
+}

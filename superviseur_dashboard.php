@@ -93,16 +93,16 @@ include('header_superviseur_dashboard.php');
                         <!-- Icônes de paiement -->
                         <div class="payment-icons d-flex justify-content-center mb-4">
                             <a href="#" class="payment-icon mx-2">
-                                <img src="https://elephantech.ci/wp-content/uploads/2022/09/orange-money-logo.jpg" alt="Orange Money" class="img-fluid rounded" width="60">
+                                <img src="https://elephantech.ci/wp-content/uploads/2022/09/orange-money-logo.jpg" alt="Orange Money" class="img-fluid rounded">
                             </a>
                             <a href="#" class="payment-icon mx-2">
-                                <img src="https://yop.l-frii.com/wp-content/uploads/2024/01/WAVE-recrute-pour-ce-poste-10-Janvier-2024.jpg" alt="Wave" class="img-fluid rounded" width="60">
+                                <img src="https://yop.l-frii.com/wp-content/uploads/2024/01/WAVE-recrute-pour-ce-poste-10-Janvier-2024.jpg" alt="Wave" class="img-fluid rounded">
                             </a>
                             <a href="#" class="payment-icon mx-2">
-                                <img src="https://warehouse.canal-overseas.com/content/0001/07/ed21f02f1a158b1f43e5e57e640ec727f30ec0d1.png" alt="MTN Money" class="img-fluid rounded" width="60">
+                                <img src="https://warehouse.canal-overseas.com/content/0001/07/ed21f02f1a158b1f43e5e57e640ec727f30ec0d1.png" alt="MTN Money" class="img-fluid rounded">
                             </a>
                             <a href="#" class="payment-icon mx-2">
-                                <img src="https://pbs.twimg.com/profile_images/1567825623841755137/D4eG9XT6_400x400.png" alt="Djamo" class="img-fluid rounded" width="60">
+                                <img src="https://pbs.twimg.com/profile_images/1567825623841755137/D4eG9XT6_400x400.png" alt="Djamo" class="img-fluid rounded">
                             </a>
                         </div>
 
@@ -119,7 +119,7 @@ include('header_superviseur_dashboard.php');
 
         <!-- Section des graphiques pour les tâches -->
         <div class="row mb-5">
-            <div class="col-12 col-lg-6 mb-4">
+            <div class="col-12 col-md-6 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Répartition des Tâches</h5>
@@ -127,19 +127,7 @@ include('header_superviseur_dashboard.php');
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Durée Moyenne des Tâches</h5>
-                        <canvas id="durationChart"></canvas> <!-- Graphique en barre -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section des présences -->
-        <div class="row mb-5">
-            <div class="col-12 col-lg-6 mb-4">
+            <div class="col-12 col-md-6 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Présences & Absences</h5>
@@ -148,11 +136,23 @@ include('header_superviseur_dashboard.php');
                 </div>
             </div>
         </div>
+
+        <!-- Section des présences -->
+        <div class="row mb-5 justify-content-center">
+            <div class="col-12 col-md-10 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Durée Moyenne des Tâches</h5>
+                        <canvas id="durationChart"></canvas> <!-- Graphique en barre -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Section Classement du Personnel -->
     <div class="row mb-5 justify-content-center">
-        <div class="col-12 col-lg-10">
+        <div class="col-12 col-md-10">
             <div class="card shadow-lg p-4">
                 <div class="card-body">
                     <h3 class="card-title text-primary text-center mb-4">Classement du Personnel</h3>
@@ -161,6 +161,7 @@ include('header_superviseur_dashboard.php');
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col" class="text-center">#</th>
+                                    <th scope="col" class="text-center">N° Mle</th>
                                     <th scope="col">Photo</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col" class="text-center">Temps Travaillé (heures)</th>
@@ -173,6 +174,7 @@ include('header_superviseur_dashboard.php');
                                 foreach($employees as $employee) {
                                     echo '<tr>';
                                     echo '<th scope="row" class="text-center">' . $rank . '</th>';
+                                    echo '<th scope="row" class="text-center">' . strtoupper($employee['matricule_personnel_tasks']) . '</th>';
                                     echo '<td><img src="https://stock.fidest.ci/app/&_gestion/photo/' . $employee['photo_personnel_tasks'] . '" alt="Photo de l\'employé" class="rounded-circle img-fluid" width="60"></td>';
                                     echo '<td>' . strtoupper($employee['nom_personnel_tasks']) . '</td>';
                                     echo '<td class="text-center"><span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> ' . round($employee['totalWorkedTime'] / 3600, 2) . ' heures</span></td>';
