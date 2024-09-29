@@ -237,3 +237,40 @@ body {
     background-color: #1d2b57;
     /* Couleur de l'icône du hamburger */
 }
+
+@media (min-width: 768px) {
+    .profile-card {
+        max-width: 600px;
+        /* Limite la largeur de la carte de profil sur PC */
+        margin: auto;
+        /* Centre la carte sur PC */
+        padding: 20px;
+        /* Ajoute un peu de rembourrage */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .stats-card {
+        margin-top: 20px;
+        /* Espace entre les cartes */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .jauge {
+        display: inline-block;
+        /* Affiche les jauges sur la même ligne */
+        margin: 10px;
+        /* Espace entre les jauges */
+    }
+}
+
+.profile-image {
+    width: 100%;
+    /* Assurez-vous que l'image est responsive */
+    height: auto;
+    /* Garde les proportions */
+}
+
+.profile-header {
+    font-size: 1.5rem;
+    /* Ajustez la taille de police sur PC */
+}

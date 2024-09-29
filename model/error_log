@@ -1,0 +1,7 @@
+[29-Sep-2024 11:40:03 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'fidestci_stock_db.personnel_tasks' doesn't exist in /home/fidestci/public_html/performance/model/PersonnelSync.php:34
+Stack trace:
+#0 /home/fidestci/public_html/performance/model/PersonnelSync.php(34): PDOStatement->execute(Array)
+#1 /home/fidestci/public_html/performance/model/PersonnelSync.php(147): PersonnelSync->synchronizeData()
+#2 /home/fidestci/public_html/performance/model/PersonnelSync.php(153): PersonnelSync->run()
+#3 {main}
+  thrown in /home/fidestci/public_html/performance/model/PersonnelSync.php on line 34
