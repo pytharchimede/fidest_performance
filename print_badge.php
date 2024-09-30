@@ -1,6 +1,7 @@
 <?php
 require_once 'model/Personnel.php';
 require_once 'model/Helper.php';
+require_once 'request/phpqrcode/qrlib.php'; 
 
 $personnelObj = new Personnel();
 $helperObj = new Helper();
@@ -13,6 +14,11 @@ if (isset($_GET['id'])) {
     $tasksData = $personnelObj->getTasksDataById($employeeDetails['matricule_personnel_tasks']);
 
     $date_entree = $helperObj->dateEnFrancaisSansHeure($employeeDetails['date_recrutement']);
+
+    // Génération du QR code
+    $qrCodeData ="https://fidest.ci/performance/profil_personnel_tasks.php?id='.$employeeId.'";
+    $qrCodeFilePath = 'request/qrcode/' . $employeeId . '_qrcode.png'; // Chemin où vous souhaitez enregistrer le QR code
+    QRcode::png($qrCodeData, $qrCodeFilePath, QR_ECLEVEL_L, 4);
 }
 ?>
 <!DOCTYPE html>
@@ -28,13 +34,21 @@ if (isset($_GET['id'])) {
     <div class="badge-container">
         <div class="badge-card">
             <img src="https://fidest.ci/logi/img/logo_connex.png" alt="Logo Entreprise" class="company-logo">
-            <div class="profile-info">
+        <div class="profile-info">
+            <div class="employee-photo-container">
                 <img src="https://stock.fidest.ci/app/&_gestion/photo/<?= $employeeDetails['photo_personnel_tasks'] ?>" alt="Photo Employé" class="employee-photo">
+                <img src="request/qrcode/<?= $employeeId ?>_qrcode.png" alt="QR Code" class="employee-qrcode">
+            </div>
+            <div class="info">
+                <h2 class="document-name">CARTE PROFESSIONNELLE</h2>
                 <h2 class="employee-name"><?= strtoupper($employeeDetails['nom_personnel_tasks']) ?></h2>
-                <p class="employee-id">Matricule: <?= $employeeDetails['matricule_personnel_tasks'] ?></p>
+                <p class="employee-profession">Profession: <em>Exemple de Profession</em></p>
+                <p class="employee-id">Matricule: <?= strtoupper($employeeDetails['matricule_personnel_tasks']) ?></p>
                 <p class="employee-contact"><strong>Téléphone:</strong> <?= $employeeDetails['tel_personnel_tasks'] ?></p>
                 <p class="employee-email"><strong>Email:</strong> <?= $employeeDetails['email_personnel_tasks'] ?></p>
             </div>
+        </div>
+    
         </div>
         <button class="btn btn-print" onclick="window.print();">
             <i class="fas fa-print"></i> Imprimer le badge

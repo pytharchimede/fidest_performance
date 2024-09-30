@@ -16,9 +16,11 @@ body {
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 500px;
     padding: 20px;
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    /* Alignement à gauche */
     position: relative;
 }
 
@@ -27,38 +29,67 @@ body {
     height: auto;
     position: absolute;
     top: 10px;
-    left: 50%;
+    left: 18%;
     transform: translateX(-50%);
-    background-color: #ffffff;
 }
 
 .profile-info {
-    margin-top: 60px;
+    display: flex;
+    width: 100%;
 }
 
 .employee-photo {
     width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 6px solid #1d2b57;
+    /* Ajustement de la taille de la photo */
+    height: auto;
+    /* Ajustement de la taille de la photo */
+    /* border-radius: 50%; */
+    border: 4px solid #1d2b57;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.document-name {
+    background-color: #1d2b57;
+    /* Fond bleu */
+    color: #ffffff;
+    /* Couleur du texte */
+    font-size: 22px;
+    margin: 0;
+    /* Suppression des marges pour un bon alignement */
+    text-align: center;
+    padding: 10px;
+    /* Espacement autour du texte */
+    border-radius: 8px;
+    /* Arrondi pour le fond */
 }
 
 .employee-name {
-    font-size: 22px;
+    font-size: 24px;
     color: #1d2b57;
     margin: 10px 0;
+}
+
+.employee-profession {
+    font-size: 18px;
+    color: #888;
+    margin: 5px 0;
 }
 
 .employee-id,
 .employee-contact,
 .employee-email,
-.employee-entry-date,
-.employee-contract {
-    font-size: 14px;
+.employee-entry-date {
+    font-size: 16px;
     color: #555555;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    /* Alignement à gauche */
 }
 
 .btn-print {
@@ -75,4 +106,18 @@ body {
 .btn-print:hover {
     background-color: #fabd02;
     color: #1d2b57;
+}
+
+.employee-photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.employee-qrcode {
+    width: 50px;
+    /* Ajustement de la taille du QR code */
+    height: auto;
+    margin-top: 5px;
 }
