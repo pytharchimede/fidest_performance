@@ -1,3 +1,6 @@
+<?php
+   $nom_form = $_GET['nom_form'];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -89,7 +92,6 @@
             background-color: #fabd02;
             color: #1d2b57;
         }
-
     </style>
 </head>
 <body>
@@ -108,6 +110,11 @@
             <i class="fas fa-arrow-left"></i> Retour
         </a>
     </div>
-
+    <script>
+        setTimeout(function() {
+            window.location.href = 'demande_<?php echo $_GET['nom_form']; ?>.php';
+        }, 10000); 
+    </script>
 </body>
 </html>
+

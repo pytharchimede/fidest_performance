@@ -200,22 +200,22 @@ include('header_dashboard.php');
           <div class="modal-body">
             <ul class="list-group">
               <li class="list-group-item">
-                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                <a href="formulaire_introuvable.php?nom_form=permission_absence" class="d-flex align-items-center">
                   <i class="fas fa-user-slash mr-2"></i> Demande de Permission d'Absence
                 </a>
               </li>
               <li class="list-group-item">
-                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                <a href="formulaire_introuvable.php?nom_form=pret" class="d-flex align-items-center">
                   <i class="fas fa-hand-holding-usd mr-2"></i> Demande de Prêt
                 </a>
               </li>
               <li class="list-group-item">
-                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                <a href="formulaire_introuvable.php?nom_form=avance" class="d-flex align-items-center">
                   <i class="fas fa-money-bill-alt mr-2"></i> Demande d'Avance
                 </a>
               </li>
               <li class="list-group-item">
-                <a href="formulaire_introuvable.php" class="d-flex align-items-center">
+                <a href="formulaire_introuvable.php?nom_form=conge" class="d-flex align-items-center">
                   <i class="fas fa-plane mr-2"></i> Demande de Congés
                 </a>
               </li>
