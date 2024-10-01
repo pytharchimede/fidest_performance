@@ -1,10 +1,12 @@
 <?php
 require_once 'model/Personnel.php';
 require_once 'model/Helper.php';
+require_once 'model/Fonction.php';
 require_once 'request/phpqrcode/qrlib.php'; 
 
 $personnelObj = new Personnel();
 $helperObj = new Helper();
+$fonctionObj = new Fonction();
 
 if (isset($_GET['id'])) {
     $employeeId = $_GET['id'];
@@ -15,10 +17,13 @@ if (isset($_GET['id'])) {
 
     $date_entree = $helperObj->dateEnFrancaisSansHeure($employeeDetails['date_recrutement']);
 
+
     // Génération du QR code
     $qrCodeData ="https://fidest.ci/performance/profil_personnel_tasks.php?id='.$employeeId.'";
     $qrCodeFilePath = 'request/qrcode/' . $employeeId . '_qrcode.png'; // Chemin où vous souhaitez enregistrer le QR code
     QRcode::png($qrCodeData, $qrCodeFilePath, QR_ECLEVEL_L, 4);
+
+    $fonction = $fonctionObj->obtenirFonctionParId($employeeDetails['fonction_id']);
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +47,7 @@ if (isset($_GET['id'])) {
             <div class="info">
                 <h2 class="document-name">CARTE PROFESSIONNELLE</h2>
                 <h2 class="employee-name"><?= strtoupper($employeeDetails['nom_personnel_tasks']) ?></h2>
-                <p class="employee-profession">Profession: <em>Exemple de Profession</em></p>
+                <p class="employee-profession"><em><?=$fonction['lib_fonction_tasks']?></em></p>
                 <p class="employee-id">Matricule: <?= strtoupper($employeeDetails['matricule_personnel_tasks']) ?></p>
                 <p class="employee-contact"><strong>Téléphone:</strong> <?= $employeeDetails['tel_personnel_tasks'] ?></p>
                 <p class="employee-email"><strong>Email:</strong> <?= $employeeDetails['email_personnel_tasks'] ?></p>

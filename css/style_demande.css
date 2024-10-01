@@ -1,0 +1,208 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.main-container {
+    top: 30px;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    padding: 20px;
+}
+
+h1.main-title {
+    font-size: 24px;
+    color: #1d2b57;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    color: #1d2b57;
+    margin-bottom: 20px;
+}
+
+.main-title-container {
+    background-color: #1d2b57;
+    padding: 2px;
+    border-radius: 15px;
+}
+
+.main-title-container h1 {
+    color: #fff;
+    padding: 2px;
+    border-radius: 50px;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f9fafc;
+    transition: all 0.3s ease;
+}
+
+input[readonly],
+textarea[readonly] {
+    background-color: #eef2f7;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #1d2b57;
+    box-shadow: 0 0 8px rgba(29, 43, 87, 0.2);
+}
+
+.form-group i {
+    position: absolute;
+    top: 40px;
+    left: 12px;
+    font-size: 18px;
+    color: #1d2b57;
+}
+
+.submit-btn,
+.back-btn {
+    width: 100%;
+    background-color: #1d2b57;
+    color: #fff;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover,
+.back-btn:hover {
+    background-color: #fabd02;
+    color: #1d2b57;
+}
+
+.submit-btn:active,
+.back-btn:active {
+    transform: scale(0.98);
+}
+
+.back-btn {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.icon {
+    position: relative;
+    font-size: 28px;
+}
+
+input,
+select,
+textarea {
+    width: 80%;
+    padding: 12px;
+    padding-left: 45px;
+    /* Augmenter l'espace pour les icônes */
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f9fafc;
+    transition: all 0.3s ease;
+}
+
+.form-group i {
+    position: absolute;
+    top: 42px;
+    /* Ajuster la position verticale */
+    left: 12px;
+    /* Ajuster la position horizontale */
+    font-size: 18px;
+    color: #1d2b57;
+}
+
+
+/* Appliquer le rouge au montant de recouvrement */
+
+.red-input {
+    border-color: red;
+    color: red;
+}
+
+
+/* Conteneur pour la bulle d'information */
+
+.montant-recouvrement-container {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    background-color: #f44336;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+
+/* Afficher la bulle lorsque l'utilisateur survole le champ */
+
+.montant-recouvrement-container:hover .tooltip {
+    display: block;
+}
+
+
+/* Animation douce pour la bulle */
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #f44336 transparent transparent;
+}
