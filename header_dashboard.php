@@ -37,10 +37,10 @@ if ($role == 'superviseur') {
   $tachesAnnulees = $taskObj->getTasksByStatus('Annulee');
 } else {
   */
-  $tachesEnAttente = $taskObj->getTasksByMatriculeAndStatus($matricule, 'En Attente');
-  $tachesOk = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Termine');
-  $tachesRefusees = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Refusee');
-  $tachesAnnulees = $taskObj->getTasksByMatriculeAndStatus($matricule, 'Annulee');
+  $tachesEnAttente = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'En Attente');
+  $tachesOk = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Termine');
+  $tachesRefusees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Refusee');
+  $tachesAnnulees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Annulee');
 /*}*/
 
 $nbTachesEnAttente = count($tachesEnAttente);
@@ -55,7 +55,6 @@ $nbTachesTotal = count($taskObj->getTasksByMatricule($matricule));
 
 //Nombre de taches expirées
 $nbTachesExpired = count($taskObj->getTaskExpiredByMatricule($matricule));
-
 
 // Créer une instance de Helper
 $helper = new Helper();
@@ -89,19 +88,18 @@ $ranking = array_search($personnelId, array_column($allPersonnel, 'id_personnel_
 //Effectif de l'entreprise
 $effectif = count($personnelObj->listerPersonnelSaufDirecteurs());
 
-
 // Temps total des tâches en attente
-$totalTimeEnAttenteSec = $taskObj->getTotalTimeByStatus($matricule, 'En Attente');
+$totalTimeEnAttenteSec = $taskObj->getThisMonthTotalTimeByStatus($matricule, 'En Attente');
 $totalTimeEnAttenteHrs = floor($totalTimeEnAttenteSec / 3600);
 $totalTimeEnAttenteMin = floor(($totalTimeEnAttenteSec % 3600) / 60);
 
 // Temps total des tâches effectuées
-$totalTimeEffectueesSec = $taskObj->getTotalTimeByStatus($matricule, 'Termine');
+$totalTimeEffectueesSec = $taskObj->getThisMonthTotalTimeByStatus($matricule, 'Termine');
 $totalTimeEffectueesHrs = floor($totalTimeEffectueesSec / 3600);
 $totalTimeEffectueesMin = floor(($totalTimeEffectueesSec % 3600) / 60);
 
 // Temps total des tâches rejetées
-$totalTimeRejeteesSec = $taskObj->getTotalTimeByStatus($matricule, 'Refusee');
+$totalTimeRejeteesSec = $taskObj->getThisMonthTotalTimeByStatus($matricule, 'Refusee');
 $totalTimeRejeteesHrs = floor($totalTimeRejeteesSec / 3600);
 $totalTimeRejeteesMin = floor(($totalTimeRejeteesSec % 3600) / 60);
 
@@ -110,6 +108,5 @@ $totalTimeTotalSec = $totalTimeEnAttenteSec + $totalTimeEffectueesSec + $totalTi
 $totalTimeRestantSec = $totalTimeTotalSec - $totalTimeEffectueesSec;
 $totalTimeRestantHrs = floor($totalTimeRestantSec / 3600);
 $totalTimeRestantMin = floor(($totalTimeRestantSec % 3600) / 60);
-
 
 ?>

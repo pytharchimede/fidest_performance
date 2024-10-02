@@ -262,7 +262,7 @@ const ctx3 = document.getElementById('attendanceChart').getContext('2d');
 const attendanceChart = new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: ['Présents', 'Retards', 'Absents'],
+        labels: ['Présences', 'Retards', 'Absences'],
         datasets: [{
             label: 'Nombre',
             data: [attendanceData.presence+attendanceData.retard, attendanceData.retard, attendanceData.absence],

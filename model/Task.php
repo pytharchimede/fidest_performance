@@ -21,10 +21,35 @@ class Task {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getThisMonthTasksByStatus($statut) {
+        // Obtenir la date du premier jour du mois en cours
+        $firstDayOfMonth = date('Y-m-01');
+    
+        // Requête SQL modifiée pour inclure la condition de date
+        $query = "SELECT * FROM tasks WHERE statut = ? AND created_at >= ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$statut, $firstDayOfMonth]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
     public function getAllTasks() {
         $query = "SELECT * FROM tasks ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllThisMonthTasks() {
+        // Obtenir la date du premier jour du mois en cours
+        $firstDayOfMonth = date('Y-m-01');
+    
+        // Requête SQL modifiée pour inclure la condition de date
+        $query = "SELECT * FROM tasks WHERE created_at >= ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$firstDayOfMonth]);
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -34,6 +59,20 @@ class Task {
         $stmt->execute([$matricule, $statut]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getThisMonthTasksByMatriculeAndStatus($matricule, $statut) {
+        // Requête SQL pour obtenir les tâches du mois en cours
+        $query = "SELECT * FROM tasks 
+                  WHERE assigned_to = ? 
+                  AND statut = ? 
+                  AND MONTH(created_at) = MONTH(CURRENT_DATE) 
+                  AND YEAR(created_at) = YEAR(CURRENT_DATE)";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$matricule, $statut]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     public function getTasksByMatricule($matricule) {
         $query = "SELECT * FROM tasks WHERE assigned_to = ?";
@@ -145,6 +184,23 @@ class Task {
         return $result ? $result['total_seconds'] : 0;
     }
 
+    public function getThisMonthTotalTimeByStatus($matricule, $status) {
+        $query = "SELECT SUM(TIME_TO_SEC(duree)) AS total_seconds 
+                  FROM tasks 
+                  WHERE assigned_to = :matricule 
+                  AND statut = :status
+                  AND MONTH(created_at) = MONTH(CURRENT_DATE) 
+                  AND YEAR(created_at) = YEAR(CURRENT_DATE)";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':matricule', $matricule);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['total_seconds'] : 0;
+    }
+    
     // Méthode pour récupérer les tâches par plage de dates
     public function getTasksByDateRange($date_debut, $date_fin) {
         // Assurez-vous que les dates sont formatées correctement pour votre requête SQL

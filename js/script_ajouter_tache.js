@@ -90,29 +90,4 @@ $(document).ready(function() {
         });
     }
 
-    // Form Submission
-    $('form').on('submit', function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(this);
-
-        console.log('FormData:', formData);
-
-        $.ajax({
-            url: 'request/insert_task.php',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                //alert('Tâche ajoutée avec succès !');
-                // Réinitialisez le formulaire ou effectuez d'autres actions
-                console.log('Réponse serveur:', response);
-                $(location).attr('href', 'index.php');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Erreur lors de l\'insertion de la tâche :', textStatus, errorThrown);
-            }
-        });
-    });
 });

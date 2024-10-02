@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insérer les données dans la base de données
-        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur, dureeEnSecondes) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur, :dureeEnSecondes, :projet)');
+        $stmt = $pdo->prepare('INSERT INTO tasks (task_code, description, assigned_to, deadline, images, statut, duree, matricule_assignateur, dureeEnSecondes, projet) VALUES (:taskCode, :description, :assignedTo, :deadline, :images, :statut, :duree, :matricule_assignateur, :dureeEnSecondes, :projet)');
         $stmt->execute([
             ':taskCode' => $taskCode,
             ':description' => $taskDescription,

@@ -199,11 +199,6 @@ class Personnel{
             return true;
         }
         
-        
-    
-    
-    
-
     // Modifier les informations d'un membre du personnel
     public function modifierPersonnel($id, $matricule, $nom, $sexe, $dateNais, $tel, $email, $photo, $dateRecrutement, $serviceId, $fonctionId, $statutPersSoignant, $securAjout, $valide, $siteId, $situationMatrimoniale, $nomPere, $telPere, $numCni, $nbreEnfant, $numCnps, $nomMere, $telMere, $nomUrgence, $telUrgence) {
         $sql = "UPDATE personnel_tasks SET matricule_personnel_tasks = ?, nom_personnel_tasks = ?, sexe_personnel_tasks = ?, date_nais_personnel_tasks = ?, tel_personnel_tasks = ?, email_personnel_tasks = ?, photo_personnel_tasks = ?, date_recrutement = ?, service_id = ?, fonction_id = ?, statut_pers_soignant_code = ?, secur_ajout = ?, valide = ?, site_id = ?, situation_matrimoniale = ?, nom_pere = ?, tel_pere = ?, num_cni = ?, nbre_enfant = ?, num_cnps = ?, nom_mere = ?, tel_mere = ?, nom_personne_urgence = ?, tel_personne_urgence = ? WHERE id_personnel_tasks = ?";
@@ -294,6 +289,24 @@ class Personnel{
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getThisMonthPresenceByPersonnelId($personnelId) {
+        // Obtenir le premier jour du mois en cours
+        $firstDayOfMonth = date('Y-m-01');
+    
+        $query = "SELECT jours_travailles
+                  FROM personnel_tasks 
+                  WHERE id_personnel_tasks = :personnelId 
+                  AND date >= :firstDayOfMonth"; // Assurez-vous d'avoir un champ 'date' dans votre table
+                  
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':personnelId', $personnelId, PDO::PARAM_INT);
+        $stmt->bindParam(':firstDayOfMonth', $firstDayOfMonth); // Lier le premier jour du mois
+        $stmt->execute();
+    
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+     
 
         /**
      * Vérifie si un personnel a déjà pointé pour une date donnée.
@@ -458,13 +471,33 @@ class Personnel{
     
         return $personnels;
     }
+
+    public function getAllThisMonthPersonnelWithTotalWorkedTimeAndRanking() {
+        $query = "SELECT * FROM personnel_tasks WHERE is_directeur=0";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $personnels = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
+        foreach ($personnels as &$personnel) {
+            // Récupérer les tâches du personnel par matricule pour le mois en cours
+            $tasks = (new Task())->getThisMonthTasksByMatricule($personnel['matricule_personnel_tasks']);
+            
+            $totalWorkedTime = 0; // Initialiser le temps total travaillé en secondes
     
+            // Calculer le temps total travaillé en secondes pour les tâches terminées
+            foreach ($tasks as $task) {
+                if ($task['statut'] === 'Termine') {
+                    $totalWorkedTime += (int)$task['dureeEnSecondes'];
+                }
+            }
     
+            // Ajouter le temps total travaillé dans les résultats
+            $personnel['totalWorkedTime'] = $totalWorkedTime;
+            $personnel['totalWorkedTimeInHours'] = round($totalWorkedTime / 3600, 2); // Conversion en heures
+        }
     
-    
-    
-    
+        return $personnels;
+    }
 
     public function getPointagesEntreDates($dateDebut, $dateFin) {
         $query = "SELECT id_personnel, nom_personnel, date_pointage, statut, heure_pointage FROM pointages WHERE date_pointage BETWEEN :dateDebut AND :dateFin";
@@ -472,7 +505,7 @@ class Personnel{
         $stmt->execute(['dateDebut' => $dateDebut, 'dateFin' => $dateFin]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-  
+
     // Méthode pour récupérer les données de présence, retard et absence
     public function getAttendanceData() {
         // Heure limite pour être à l'heure
@@ -502,6 +535,46 @@ class Personnel{
             }
         }
 
+        // Retourner les données sous forme de tableau
+        return [
+            'presence' => $presence,
+            'retard' => $retard,
+            'absence' => $absence
+        ];
+    }
+
+    public function getThisMonthAttendanceData() {
+        // Heure limite pour être à l'heure
+        $heureLimite = '08:30:00';
+    
+        // Obtenir le premier jour du mois en cours
+        $firstDayOfMonth = date('Y-m-01');
+    
+        // Requête SQL pour récupérer les données de pointage pour le mois en cours
+        $sql = "SELECT present, heure_pointage FROM pointage_personnel WHERE date_pointage >= ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$firstDayOfMonth]);
+    
+        $presence = 0;
+        $retard = 0;
+        $absence = 0;
+    
+        if ($stmt) {
+            foreach ($stmt as $row) {
+                if ($row['present'] == 1) {
+                    // Vérifier si le personnel est en retard
+                    if ($row['heure_pointage'] > $heureLimite) {
+                        $retard++;
+                    } else {
+                        $presence++;
+                    }
+                } else {
+                    // Personnel absent
+                    $absence++;
+                }
+            }
+        }
+    
         // Retourner les données sous forme de tableau
         return [
             'presence' => $presence,
@@ -549,7 +622,6 @@ class Personnel{
         return $data;
     }
 
-
     // Méthode pour obtenir les données de tâches d'un employé par ID
     public function getTasksDataById($matricule) {
         // Récupérer les tâches assignées à l'employé par son matricule
@@ -580,7 +652,5 @@ class Personnel{
 
         return $data;
     }
-
-
 
 }

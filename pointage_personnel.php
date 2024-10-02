@@ -11,6 +11,10 @@ if($_SESSION['acces_rh']!=1){
 }
 
 include('header_pointage_personnel.php');
+
+date_default_timezone_set('Africa/Abidjan'); // Définit le fuseau horaire
+
+$heure_actuelle = date('H:i'); // Obtenir l'heure actuelle au format HH:MM
 ?>
 
 <!DOCTYPE html>
@@ -95,8 +99,8 @@ include('header_pointage_personnel.php');
                 <strong><?= $nom_personnel; ?></strong>
             </div>
             <div>
-                <button class="pointer-btn point-btn-present <?php echo $pointageEffectue ? 'd-none' : ''; ?>" onclick="enregistrerPointage(this)" data-action="present">
-                    Présent
+                <button class="pointer-btn point-btn-present <?php echo ($heure_actuelle > '08:30') ? "point-btn-retard" : "point-btn-present"; ?>  <?php echo $pointageEffectue ? 'd-none' : ''; ?>" onclick="enregistrerPointage(this)" data-action="present">
+                    <?php echo ($heure_actuelle > '08:30') ? "Retard" : "Présent"; ?>
                 </button>
                 <button class="pointer-btn point-btn-absent <?php echo $pointageEffectue ? 'd-none' : ''; ?>" onclick="enregistrerPointage(this)" data-action="absent">
                     Absent

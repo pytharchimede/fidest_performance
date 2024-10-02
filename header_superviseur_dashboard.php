@@ -8,10 +8,10 @@ $taskObj = new Task();
 $personnelObj = new Personnel();
 
 
-$tachesEnAttente = $taskObj->getTasksByStatus('En Attente');
-$tachesOk = $taskObj->getTasksByStatus('Termine');
-$tachesRefusees = $taskObj->getTasksByStatus('Refusee');
-$tachesAnnulees = $taskObj->getTasksByStatus('Annulee');
+$tachesEnAttente = $taskObj->getThisMonthTasksByStatus('En Attente');
+$tachesOk = $taskObj->getThisMonthTasksByStatus('Termine');
+$tachesRefusees = $taskObj->getThisMonthTasksByStatus('Refusee');
+$tachesAnnulees = $taskObj->getThisMonthTasksByStatus('Annulee');
 
 
 $nbTachesEnAttente = count($tachesEnAttente);
@@ -32,7 +32,7 @@ if ($nbTachesTotal > 0) {
     $percentTachesAnnulees = round(($nbTachesAnnulees / $nbTachesTotal) * 100, 2);
 }
 
-$allTasks = $taskObj->getAllTasks();
+$allTasks = $taskObj->getAllThisMonthTasks();
 
 // Préparation des labels (noms des tâches) et des données (durées en heures)
 $taskNames = [];
@@ -47,7 +47,7 @@ foreach ($allTasks as $task) {
     $taskDurationsInHours[] = round($dureeEnHeures, 2); // Arrondi au centième près
 }
 
-$attendanceData = $personnelObj->getAttendanceData();
+$attendanceData = $personnelObj->getThisMonthAttendanceData();
 
 
 //Trouver l'employé #1
@@ -55,7 +55,7 @@ $attendanceData = $personnelObj->getAttendanceData();
 // Trouver l'employé ayant le plus grand temps de travail
 
 // Récupérer tous les personnels avec leur temps total travaillé
-$allPersonnel = $personnelObj->getAllPersonnelWithTotalWorkedTimeAndRanking();
+$allPersonnel = $personnelObj->getAllThisMonthPersonnelWithTotalWorkedTimeAndRanking();
 
 // Préparation de la variable $employees pour utilisation dans le tableau de classement
 $employees = $allPersonnel;
