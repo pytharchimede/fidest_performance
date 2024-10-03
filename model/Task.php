@@ -14,6 +14,13 @@ class Task {
         return $stmt->execute([$task_code, $description, $assigned_to, $deadline, $statut, $duree, $matricule_assignateur, $projet]);
     }
 
+    public function update($description, $assigned_to, $deadline, $duree, $matricule_assignateur, $projet, $id) {
+        $query = "UPDATE tasks SET description = ?, assigned_to = ?, deadline = ?, duree = ?, matricule_assignateur = ?, projet = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([$description, $assigned_to, $deadline, $duree, $matricule_assignateur, $projet, $id]);
+    }
+   
+
     public function getTasksByStatus($statut) {
         $query = "SELECT * FROM tasks WHERE statut = ?";
         $stmt = $this->conn->prepare($query);

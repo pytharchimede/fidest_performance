@@ -47,9 +47,17 @@ include('header_taches_en_attente.php');
         <li class="nav-item">
           <a class="nav-link active" href="taches_en_attente.php">Tâches</a>
         </li>
+        <li class="nav-item"><a class="nav-link" href="demandes_report.php">Demandes de report</a></li>
+        
         <li class="nav-item">
-          <a class="nav-link active" href="demandes_report.php">Demandes de report</a>
-        </li>
+                  <a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a>
+                </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Déconnexion</a>
         </li>
@@ -87,7 +95,7 @@ include('header_taches_en_attente.php');
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
-                        <input type="date" id="date_fin" name="date_fin" class="form-control" value="<?php echo gmdate('Y-m-d'); ?>" required>
+                        <input type="date" id="date_fin" name="date_fin" class="form-control" value="<?php echo gmdate('Y-m-'.'27'); ?>" required>
                     </div>
                 </div>
             </div>

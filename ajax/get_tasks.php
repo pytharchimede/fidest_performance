@@ -97,6 +97,8 @@ $nbTaches = count($taches);
                             </button>
                         </form>
                     <?php endif; ?>
+                        <!-- Bouton Modifier ajouté ici -->
+                    <a style="margin : 5px;" href="modifier_tache.php?id=<?php echo $tache['id']; ?>" class="btn btn-info">Modifier</a>
                 </div>
             </li>
         <?php endforeach; ?>

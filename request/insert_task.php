@@ -38,6 +38,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Calcul de la durée totale en secondes
         $dureeEnSecondes = ($heures * 3600) + ($minutes * 60) + $secondes;
 
+
+           // Vérifier si une tâche similaire existe déjà
+           $stmt = $pdo->prepare('SELECT * FROM tasks WHERE description = :description AND deadline = :deadline');
+           $stmt->execute([
+               ':description' => $taskDescription,
+               ':deadline' => $deadline
+           ]);
+           $existingTask = $stmt->fetch(PDO::FETCH_ASSOC);
+   
+           if ($existingTask) {
+               // Si une tâche avec la même description et deadline existe déjà
+               error_log('Une tâche avec le même libellé et la même date/heure existe déjà.');
+           } else {
+
         $task = new Task();
         $nbTask = count($task->getAllTasks());
         $indice = $nbTask+1;
@@ -125,7 +139,7 @@ $clientSecret = 'xOXZ4QTDf7bLfGk3';
  
        // header('Location: ../taches_en_attente.php');
 
-
+    }
     } catch (Exception $e) {
         error_log('Erreur : ' . $e->getMessage());
         echo 'Erreur : ' . $e->getMessage();

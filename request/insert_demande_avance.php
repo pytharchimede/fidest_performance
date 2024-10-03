@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $montant = isset($_POST['montant']) ? $_POST['montant'] : 0;
     $dateCreat = date('Y-m-d H:i:s'); // Date de création
     $securAjout = $_SESSION['id_personnel_tasks']; // Sécurité d'ajout (id de l'utilisateur)
-    $statut = 'En attente'; // Statut initial
+    $statut = 'En Attente'; // Statut initial
 
     // Initialiser la classe DemandeAvance
     $demandeAvance = new DemandeAvance();

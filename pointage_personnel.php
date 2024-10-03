@@ -55,6 +55,15 @@ $heure_actuelle = date('H:i'); // Obtenir l'heure actuelle au format HH:MM
           <a class="nav-link" href="demandes_report.php">Demandes de report</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="logout.php">Déconnexion</a>
         </li>
       </ul>

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombreJours = isset($_POST['nombre_jours']) ? $_POST['nombre_jours'] : 0;
     $dateCreat = date('Y-m-d H:i:s'); // Date de création
     $securAjout = $_SESSION['id_personnel_tasks']; // Sécurité d'ajout (id de l'utilisateur)
-    $statut = 'En attente'; // Statut initial
+    $statut = 'En Attente'; // Statut initial
 
     // Initialiser la classe DemandeAbsence
     $demandeAbsence = new DemandeAbsence();

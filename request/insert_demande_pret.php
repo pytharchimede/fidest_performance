@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_fin = isset($_POST['date_fin']) ? $_POST['date_fin'] : '';
     $dateCreat = date('Y-m-d H:i:s');
     $securAjout = $_SESSION['id_personnel_tasks'];
-    $statut = 'En attente';
+    $statut = 'En Attente';
 
     // Initialiser la classe DemandePret
     $demandePret = new DemandePret();
