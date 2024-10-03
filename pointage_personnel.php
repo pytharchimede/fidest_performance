@@ -115,7 +115,11 @@ $heure_actuelle = date('H:i'); // Obtenir l'heure actuelle au format HH:MM
                     Absent
                 </button>
                 <span class="status <?php echo $pointageEffectue ? '' : 'd-none'; ?>">
-                    <?php echo $pointageEffectue ? ($pointagesAujourdHui[$id_personnel] == 1 ? 'Présent' : 'Absent') : ''; ?>
+                
+                    <?php
+                    echo $pointageEffectue ? (isset($pointagesAujourdHui[$id_personnel]) && $pointagesAujourdHui[$id_personnel] == 1 ? 'Présent' : 'Absent') : 'Aucun Pointage Effectué';
+                    ?>
+
                 </span>
             </div>
         </li>
