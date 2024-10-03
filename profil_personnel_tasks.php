@@ -9,8 +9,8 @@ if (isset($_GET['id'])) {
     $employeeId = $_GET['id'];
     $employeeDetails = $personnelObj->getPersonnelById($employeeId);
     // Supposons que vous récupérez également les données d'assiduité et de rendement ici.
-    $attendanceData = $personnelObj->getAttendanceDataById($employeeId);
-    $tasksData = $personnelObj->getTasksDataById($employeeDetails['matricule_personnel_tasks']);
+    $attendanceData = $personnelObj->getThisMonthAttendanceDataById($employeeId);
+    $tasksData = $personnelObj->getThisMonthTasksDataById($employeeDetails['matricule_personnel_tasks']);
 
     $date_entree = $helperObj->dateEnFrancaisSansHeure($employeeDetails['date_recrutement']);
 }
@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
         </p>
         <!-- Bouton d'impression -->
         <a href="#" onclick="window.print();" class="btn-print">
-            <i class="fas fa-print"></i> Imprimer
+            <i class="fas fa-print"></i> Imprimer Fiche
         </a>
     </div>
 

@@ -622,6 +622,49 @@ class Personnel{
         return $data;
     }
 
+    public function getThisMonthAttendanceDataById($id) {
+        // Récupérer les données d'assiduité pour le mois en cours
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                COUNT(*) AS total_pointages,
+                SUM(CASE WHEN present = 1 THEN 1 ELSE 0 END) AS total_presences,
+                SUM(CASE WHEN present = 0 THEN 1 ELSE 0 END) AS total_absences,
+                SUM(CASE WHEN present = 1 AND heure_pointage > '08:30:00' THEN 1 ELSE 0 END) AS total_retards
+            FROM pointage_personnel
+            WHERE personnel_tasks_id = ?
+            AND MONTH(date_pointage) = MONTH(CURRENT_DATE)
+            AND YEAR(date_pointage) = YEAR(CURRENT_DATE)
+        ");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Calculer la fréquence de présence, retard et absence
+        if ($data['total_pointages'] > 0) {
+            $data['frequence_presences'] = round(($data['total_presences'] / $data['total_pointages']) * 100, 2);
+            $data['frequence_absences'] = round(($data['total_absences'] / $data['total_pointages']) * 100, 2);
+            $data['frequence_retards'] = round(($data['total_retards'] / $data['total_pointages']) * 100, 2);
+        } else {
+            $data['frequence_presences'] = 0;
+            $data['frequence_absences'] = 0;
+            $data['frequence_retards'] = 0;
+        }
+    
+        // Position dans le classement des présences pour le mois en cours
+        $stmtRanking = $this->pdo->prepare("
+            SELECT COUNT(DISTINCT personnel_tasks_id) AS position 
+            FROM pointage_personnel 
+            WHERE personnel_tasks_id != ? 
+            AND present = 1
+            AND MONTH(date_pointage) = MONTH(CURRENT_DATE)
+            AND YEAR(date_pointage) = YEAR(CURRENT_DATE)
+        ");
+        $stmtRanking->execute([$id]);
+        $rank = $stmtRanking->fetch(PDO::FETCH_ASSOC);
+        $data['position_classement'] = $rank['position'] + 1; // +1 pour l'employé actuel
+    
+        return $data;
+    }
+    
     // Méthode pour obtenir les données de tâches d'un employé par ID
     public function getTasksDataById($matricule) {
         // Récupérer les tâches assignées à l'employé par son matricule
@@ -652,5 +695,38 @@ class Personnel{
 
         return $data;
     }
+
+    public function getThisMonthTasksDataById($matricule) {
+        // Récupérer les tâches assignées à l'employé pour le mois en cours par son matricule
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                COUNT(*) AS total_taches,
+                SUM(CASE WHEN statut = 'Termine' THEN 1 ELSE 0 END) AS taches_executees,
+                SUM(CASE WHEN statut = 'En Attente' THEN 1 ELSE 0 END) AS taches_en_attente,
+                SUM(CASE WHEN statut = 'En Attente' AND deadline < NOW() THEN 1 ELSE 0 END) AS taches_en_retard,
+                SUM(dureeEnSecondes) AS total_heures
+            FROM tasks
+            WHERE assigned_to = ?
+            AND MONTH(created_at) = MONTH(CURRENT_DATE)
+            AND YEAR(created_at) = YEAR(CURRENT_DATE)
+        ");
+        $stmt->execute([$matricule]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Initialiser les taux à 0
+        $data['taux_taches_executees'] = 0;
+        $data['taux_taches_en_attente'] = 0;
+        $data['taux_taches_en_retard'] = 0;
+    
+        // Calculer les taux si le total de tâches est supérieur à 0
+        if ($data['total_taches'] > 0) {
+            $data['taux_taches_executees'] = round(($data['taches_executees'] / $data['total_taches']) * 100, 2);
+            $data['taux_taches_en_attente'] = round(($data['taches_en_attente'] / $data['total_taches']) * 100, 2);
+            $data['taux_taches_en_retard'] = round(($data['taches_en_retard'] / $data['total_taches']) * 100, 2);
+        }
+    
+        return $data;
+    }
+    
 
 }
