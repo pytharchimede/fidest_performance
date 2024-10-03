@@ -44,4 +44,6 @@ $effectif_pointe_aujourdhui = count($personnelObj->verifierPointageDuJourPourTou
 // Inclure la méthode pour vérifier les pointages existants pour aujourd'hui
 $pointagesAujourdHui = $personnelObj->verifierPointageDuJourPourToutLeMonde(date('Y-m-d'));
 
+// var_dump($pointagesAujourdHui);
+
 ?>

@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Mettre à jour la tâche
         if ($task->update($taskDescription, $assignedTo, $deadline, $duree, $matricule_assignateur, $projet, $id_tache)) {
-            echo 'Tâche mise à jour avec succès !';
+            // echo 'Tâche mise à jour avec succès !';
+            header('Location: ../taches_en_attente.php');
         } else {
             echo 'Erreur lors de la mise à jour de la tâche.';
         }
