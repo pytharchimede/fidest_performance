@@ -51,10 +51,10 @@ $nbTachesAnnulees = count($tachesAnnulees);
 $salaireAcquis = ($salaireMensuel/20)*$joursTravailles-$avanceDeductible;
 
 //Nombre total de taches 
-$nbTachesTotal = count($taskObj->getTasksByMatricule($matricule));
+$nbTachesTotal = count($taskObj->getThisMonthTasksByMatricule($matricule));
 
 //Nombre de taches expirées
-$nbTachesExpired = count($taskObj->getTaskExpiredByMatricule($matricule));
+$nbTachesExpired = count($taskObj->getThisMonthTaskExpiredByMatricule($matricule));
 
 // Créer une instance de Helper
 $helper = new Helper();
@@ -75,7 +75,7 @@ if ($score >= 80) {
 }
 
 // Récupérer et trier les personnels
-$allPersonnel = $personnelObj->getAllPersonnelWithTotalWorkedTimeAndRanking();
+$allPersonnel = $personnelObj->getAllThisMonthPersonnelWithTotalWorkedTimeAndRanking();
 
 // Trier les employés en fonction du temps de travail (du plus grand au plus petit)
 usort($allPersonnel, function ($a, $b) {

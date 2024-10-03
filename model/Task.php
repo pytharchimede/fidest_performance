@@ -141,6 +141,22 @@ class Task {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getThisMonthTaskExpiredByMatricule($matricule) {
+        $query = "
+            SELECT * 
+            FROM tasks 
+            WHERE assigned_to = ? 
+            AND statut = 'En Attente'
+            AND MONTH(deadline) = MONTH(CURRENT_DATE)
+            AND YEAR(deadline) = YEAR(CURRENT_DATE)
+            AND deadline < NOW()
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$matricule]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
     public function getTaskById($id_task){
         $query = "SELECT * FROM tasks WHERE id = ? ";
         $stmt = $this->conn->prepare($query);
