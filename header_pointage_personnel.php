@@ -4,6 +4,8 @@ require_once 'model/Personnel.php';
 $personnelObj = new Personnel();
 $personnels = $personnelObj->listerPersonnel(); // Méthode qui retourne les données du personnel
 
+// $personnelObj->envoyerMailDemandeExplication('amani_ulrich@outlook.fr', 'Ulrich AMANI');
+
 // Traitement du pointage AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_personnel']) && isset($_POST['action'])) {
   $id_personnel = $_POST['id_personnel'];
@@ -18,6 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_personnel']) && is
       if (!$pointageExistant) {
           // Enregistrer la présence (pointage) si elle n'a pas encore été faite aujourd'hui
           $personnelObj->enregistrerPresence($id_personnel, $date_pointage, $heure_pointage, 1);
+
+
+        // Vérifier si le personnel a 3 retards successifs
+        if ($heure_pointage > '08:30:00' && $personnelObj->verifierRetardsSuccessifs($id_personnel)) {
+            // Récupérer les informations du personnel
+            $personnel = $personnelObj->getPersonnelById($id_personnel); // Suppose que vous avez une méthode pour obtenir les informations du personnel
+            $personnelObj->envoyerMailDemandeExplication($personnel['email'], $personnel['nom']);
+        }
+
           echo json_encode(['status' => 'success', 'message' => 'Pointage enregistré', 'id_personnel' => $id_personnel]);
       } else {
           echo json_encode(['status' => 'error', 'message' => 'Pointage déjà effectué pour aujourd\'hui']);

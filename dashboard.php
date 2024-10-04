@@ -237,7 +237,7 @@ include('header_dashboard.php');
 
   </div>
 
-      <?php if($_SESSION['role']=='superviseur'){ ?>
+      <?php if($_SESSION['is_directeur']==1){ ?>
       <!-- Bouton flottant vers l'espace superviseur -->
       <a href="superviseur_dashboard.php" class="btn-float" title="Espace Superviseur">
         <i class="fas fa-user-tie"></i> Espace Superviseur

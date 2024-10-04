@@ -4,6 +4,16 @@ require_once 'Database.php';
 require_once 'Helper.php';
 
 
+//Send mail
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Inclure les fichiers PHPMailer
+require_once __DIR__ . '/../request/phpmailer/src/Exception.php';
+require_once __DIR__ . '/../request/phpmailer/src/PHPMailer.php';
+require_once __DIR__ . '/../request/phpmailer/src/SMTP.php';
+
+
 class Personnel{
     private $pdo;
 
@@ -377,6 +387,71 @@ class Personnel{
         
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+
+    public function verifierRetardsSuccessifsCeMois($personnelId) {
+        $sql = "SELECT COUNT(*) AS nb_retards 
+                FROM pointage_personnel 
+                WHERE personnel_tasks_id = :personnelId 
+                AND heure_pointage > '08:30:00' 
+                AND present = 1 
+                AND MONTH(date_pointage) = MONTH(CURRENT_DATE)
+                AND YEAR(date_pointage) = YEAR(CURRENT_DATE)
+                ORDER BY date_pointage DESC 
+                LIMIT 3"; // On vérifie les trois derniers jours
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':personnelId', $personnelId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['nb_retards'] >= 3; // Retourne true si 3 retards successifs
+    }
+
+    public function envoyerMailDemandeExplication($emailPersonnel, $nomPersonnel) {
+        // Créer une instance de PHPMailer
+        $mail = new PHPMailer(true);
+        
+        try {
+            // Paramètres du serveur SMTP
+            $mail->SMTPDebug = 0; // Définir à 2 pour le débogage détaillé
+            $mail->isSMTP();
+            $mail->Host       = 'mail.fidest.ci'; // Serveur SMTP
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'support@fidest.ci'; // Adresse e-mail SMTP
+            $mail->Password   = '@Succes2019'; // Mot de passe SMTP
+            $mail->SMTPSecure = 'ssl'; // Sécurisation avec SSL
+            $mail->Port       = 465; // Port pour SSL
+    
+            // Définir l'expéditeur
+            $mail->From       = 'support@fidest.ci';
+            $mail->FromName   = 'DRH BANAMUR INDUSTRIES';
+    
+            // Ajouter les destinataires
+            $mail->AddAddress($emailPersonnel, $nomPersonnel);
+            $mail->AddCC("yao@banamur.com", "Constant YAO");
+            $mail->AddCC("yao@fidest.org", "Constant YAO");
+            $mail->AddCC("braud@banamur.com", "Alex BRAUD");
+
+            $mail->AddBCC('amani_ulrich@outlook.fr', 'Ulrich AMANI'); // Ajouter des destinataires en BCC si nécessaire
+            
+            // Contenu de l'e-mail
+            $mail->isHTML(true);
+            $mail->Subject = 'Demande d\'explication pour retards successifs';
+            $mail->Body    = "
+                <p>Bonjour $nomPersonnel,</p>
+                <p>Nous avons constaté trois retards successifs sur vos pointages. Merci de bien vouloir nous fournir une explication concernant ces retards.</p>
+                <p>Cordialement,<br>La Direction</p>
+            ";
+            $mail->AltBody = "Bonjour $nomPersonnel,\n\nNous avons constaté trois retards successifs sur vos pointages. Merci de bien vouloir nous fournir une explication concernant ces retards.\n\nCordialement,\nLa Direction"; // Pour les clients email ne supportant pas HTML
+    
+            // Envoyer l'e-mail
+            $mail->send();
+            error_log("Demande d'explication envoyée avec succès") ;
+        } catch (Exception $e) {
+            echo "Erreur d'envoi du mail : " . $mail->ErrorInfo;
+        }
+    }
+    
     
     
     public function getRoleById($id) {

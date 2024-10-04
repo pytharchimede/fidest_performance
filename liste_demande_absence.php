@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['id_personnel_tasks'])) {
+    header("Location: index.php");
+    exit();
+}
+
+if($_SESSION['acces_rh']!=1){
+  header('Location: acces_refuse.php');
+}
+
 require_once 'model/DemandeAbsence.php';
 
 // Instanciation de la classe DemandeAbsence
