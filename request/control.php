@@ -57,6 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['score'] = $row['score'];
         $_SESSION['role'] = $row['role'];
         $_SESSION['acces_rh'] = $row['acces_rh'];
+        $_SESSION['password_personnel_tasks'] = $row['password_personnel_tasks'];
+
+
+                // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour
+                if (empty($row['email_personnel_tasks']) || empty($row['tel_personnel_tasks']) || empty($row['password_personnel_tasks'])) {
+                    header("Location: ../update_contact_info.php");
+                    exit();
+                }
 
         // Rediriger vers la page protégée
         header("Location: ../dashboard.php");
