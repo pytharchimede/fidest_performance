@@ -6,6 +6,7 @@ require_once '../model/Personnel.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matricule = $_POST['matricule'];
+    $password = $_POST['password']; // Obtenir le mot de passe du formulaire
 
     // Obtenir la connexion PDO
     $pdo = Database::getConnection();
@@ -59,16 +60,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['acces_rh'] = $row['acces_rh'];
         $_SESSION['password_personnel_tasks'] = $row['password_personnel_tasks'];
 
+        // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour
+        if (empty($row['email_personnel_tasks']) || empty($row['tel_personnel_tasks']) || empty($row['password_personnel_tasks'])) {
+            header("Location: ../update_contact_info.php");
+            exit();
+        }
 
-                // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour
-                if (empty($row['email_personnel_tasks']) || empty($row['tel_personnel_tasks']) || empty($row['password_personnel_tasks'])) {
-                    header("Location: ../update_contact_info.php");
-                    exit();
-                }
+        // Activer la demande de mot de passe
+        $_SESSION['demande_password'] = true;  // Nouveau code ajouté
 
-        // Rediriger vers la page protégée
-        header("Location: ../dashboard.php");
-        exit();
+        // Vérification du mot de passe
+        $hashedPassword = hash("sha512", $password); // Hacher le mot de passe fourni
+        if ($hashedPassword === $row['password_personnel_tasks']) {
+            // Connexion réussie
+            // Redirection vers le tableau de bord
+            header("Location: ../dashboard.php");
+            exit();
+        } else {
+            $_SESSION['error_message'] = "Mot de passe incorrect.";
+            header("Location: ../login.php");
+            exit();
+        }
+
     } else {
         // Matricule incorrect, rediriger vers une page d'erreur avec message
         $_SESSION['error_message'] = "Numéro matricule incorrect.";
