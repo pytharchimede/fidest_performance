@@ -17,6 +17,7 @@ require_once 'model/Personnel.php';
 //Récupérer le personnel
 $personnelObj = new Personnel();
 $personnelList = $personnelObj->listerPersonnel();
+$directeurList = $personnelObj->listerPersonnelDirecteur();
 
 
 //Récupérer les tâches en attente 
@@ -98,8 +99,8 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
         <label for="matricule_assignateur">Assignateur</label>
         <select class="form-control select2" id="matricule_assignateur" name="matricule_assignateur" required>
             <option value="">Sélectionner le personnel</option>
-            <?php foreach ($personnelList as $personnel) : ?>
-            <option value="<?php echo $personnel['matricule_personnel_tasks']; ?>"><?php echo strtoupper($personnel['nom_personnel_tasks']); ?></option>
+            <?php foreach ($directeurList as $directeur) : ?>
+            <option value="<?php echo $directeur['matricule_personnel_tasks']; ?>"><?php echo strtoupper($directeur['nom_personnel_tasks']); ?></option>
             <?php endforeach; ?>
         </select>
       </div>
