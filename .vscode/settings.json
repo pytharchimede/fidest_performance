@@ -1,0 +1,46 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MySQL",
+            "name": "FIDEST APP DB",
+            "group": "FIDEST-Connections",
+            "connectString": "mysql://fidestci_ulrich:Succes2019@localhost:3306/fidestci_app_db",
+            "connectionTimeout": 30
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MySQL",
+            "connectString": "mysql://fidestci_ulrich:@Succes2019@localhost:3306/fidestci_app_db",
+            "name": "FIDEST-BANAMUR",
+            "connectionTimeout": 30,
+            "group": "FidestAppConnection"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "password": "@Succes2019",
+            "username": "fidestci_ulrich",
+            "database": "fidestci_app_db",
+            "name": "FIDEST-BANAMUR",
+            "group": "Fidest App",
+            "connectionTimeout": 30
+        }
+    ]
+}
