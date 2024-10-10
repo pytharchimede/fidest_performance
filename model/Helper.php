@@ -1,14 +1,17 @@
 <?php
 require_once 'Database.php';
 
-class Helper {
+class Helper
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = Database::getConnection();
     }
 
-    public function calculerScore($completedDuration, $assignedDuration) {
+    public function calculerScore($completedDuration, $assignedDuration)
+    {
         if ($assignedDuration == 0) {
             return 0; // Éviter division par zéro si aucune tâche n'est assignée
         }
@@ -18,33 +21,30 @@ class Helper {
 
         return round($score, 2); // Arrondi à deux décimales
     }
-    
 
-    public function dateEnFrancais($date_time){
-        // Configurer la locale en français
-        setlocale(LC_TIME, 'fr_FR.UTF-8', 'french'); // Pour Linux
-        // Si vous êtes sur un serveur Windows, utilisez 'french' :
-        // setlocale(LC_TIME, 'french');
-
-        // Convertir la date en timestamp
-        $timestamp = strtotime($date_time);
-
-        // Formater et afficher la date en français
-        return strftime('%A %d %B %Y à %H:%M', $timestamp);
-    }
-
-    public function dateEnFrancaisSansHeure($date_time){
-        // Configurer la locale en français
-        setlocale(LC_TIME, 'fr_FR.UTF-8', 'french'); // Pour Linux
-        // Si vous êtes sur un serveur Windows, utilisez 'french' :
-        // setlocale(LC_TIME, 'french');
+    public function dateEnFrancais($date_time)
+    {
+        // Créer un objet IntlDateFormatter pour formater la date en français
+        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::SHORT);
+        $formatter->setPattern('EEEE d MMMM yyyy à HH:mm');
 
         // Convertir la date en timestamp
         $timestamp = strtotime($date_time);
 
-        // Formater et afficher la date en français
-        return strftime('%A %d %B %Y', $timestamp);
+        // Retourner la date formatée
+        return $formatter->format($timestamp);
     }
 
+    public function dateEnFrancaisSansHeure($date_time)
+    {
+        // Créer un objet IntlDateFormatter pour formater la date sans l'heure
+        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+        $formatter->setPattern('EEEE d MMMM yyyy');
+
+        // Convertir la date en timestamp
+        $timestamp = strtotime($date_time);
+
+        // Retourner la date formatée
+        return $formatter->format($timestamp);
+    }
 }
-?>
