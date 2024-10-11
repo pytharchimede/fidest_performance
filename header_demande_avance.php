@@ -6,10 +6,6 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['acces_rh'] != 1) {
-    header('Location: acces_refuse.php');
-}
-
 require_once 'model/Personnel.php';
 require_once 'model/Helper.php';
 require_once 'model/Fonction.php';

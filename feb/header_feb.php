@@ -2,14 +2,18 @@
 session_start();
 
 if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
-require_once 'model/Personnel.php';
-require_once 'model/Helper.php';
-require_once 'model/Fonction.php';
-require_once 'model/Service.php';
+if ($_SESSION['acces_rh'] != 1) {
+    header('Location: ../acces_refuse.php');
+}
+
+require_once '../model/Personnel.php';
+require_once '../model/Helper.php';
+require_once '../model/Fonction.php';
+require_once '../model/Service.php';
 
 $personnelObj = new Personnel();
 $helperObj = new Helper();
@@ -28,4 +32,6 @@ if (isset($_SESSION['id_personnel_tasks'])) {
     $fonction = $fonctionObj->obtenirFonctionParId($employeeDetails['fonction_id']);
 
     $service = $serviceObj->obtenirServiceParId($employeeDetails['service_id']);
+
+    $allService = $serviceObj->listerServices();
 }

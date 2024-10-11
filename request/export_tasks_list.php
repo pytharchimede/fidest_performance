@@ -1,9 +1,12 @@
 <?php
 session_start();
 require_once '../model/Task.php';
+require_once '../model/Personnel.php';
+
 require_once 'fpdf/fpdf.php';
 
 $taskObj = new Task();
+$personnelObj = new Personnel();
 
 // Vérifier si les dates de début et de fin sont définies
 $date_debut = isset($_GET['date_debut']) ? $_GET['date_debut'] : null;
@@ -33,6 +36,8 @@ if (is_null($date_debut) && is_null($date_fin)) {
     }
 }
 
+$personnelDetails = $personnelObj->getPersonnelById($personnelObj->getPersonnelByMatricule($matricule));
+
 // Vérifier si des tâches ont été récupérées
 if (empty($taches)) {
     die(utf8_decode('Aucune tâche trouvée pour les critères spécifiés.'));
@@ -44,6 +49,7 @@ class PDF extends FPDF
     // Méthode pour l'en-tête
     function Header()
     {
+
         // Logo
         $this->Image('../../img/logo_veritas.jpg', 150, 10, 30);
         // Logo
@@ -53,7 +59,7 @@ class PDF extends FPDF
         $this->Cell(0, 10, utf8_decode('FIDEST'), 0, 1, 'C');
         $this->Ln(5);
         $this->SetFont('Arial', 'I', 12);
-        $this->Cell(0, 10, utf8_decode("Liste des Tâches (En attente d'exécution)"), 0, 1, 'C');
+        $this->Cell(0, 10, utf8_decode("Liste des Tâches de (En attente d'exécution) "), 0, 1, 'C');
         $this->Ln(5);
     }
 
@@ -70,7 +76,7 @@ class PDF extends FPDF
         $this->Cell(0, 3.5, utf8_decode('Au capital de 10 000 000 F CFA - Siège Social : Abidjan, Koumassi, Zone industrielle'), 0, 1, 'C');
         $this->Cell(0, 3.5, utf8_decode("01 BP 1642 Abidjan 01 - Téléphone : (+225) 27-21-36-27-27  - Email : info@fidest.org"), 0, 1, 'C');
         $this->Cell(0, 3.5, utf8_decode('RCCM : CI-ABJ-2017-B-20163 - N° CC : 010274200088'), 0, 1, 'C');
-        
+
         // Numéro de page
         $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
@@ -80,6 +86,8 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AliasNbPages(); // Compteur de pages
 $pdf->AddPage();
+
+
 
 // Ajouter l'intervalle de dates
 $pdf->SetFont('Arial', 'B', 14);
@@ -95,6 +103,12 @@ $pdf->Ln(5); // Saut de ligne pour espacer
 $pdf->SetDrawColor(29, 43, 87); // Couleur de la ligne
 $pdf->Line(10, $pdf->GetY(), 200, $pdf->GetY()); // Ligne horizontale
 $pdf->Ln(5); // Saut de ligne supplémentaire
+
+$pdf->Cell(0, 10, utf8_decode("Personnel : " . strtoupper($personnelDetails['nom_personnel_tasks'])), 0, 1, 'C');
+
+
+$pdf->Ln(5); // Saut de ligne supplémentaire
+
 
 // En-têtes de colonne
 $pdf->SetFont('Arial', 'B', 12);
@@ -169,4 +183,3 @@ foreach ($taches as $tache) {
 // Sortie du PDF
 $pdf->Output();
 exit;
-?>
