@@ -8,6 +8,10 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
+if ($_SESSION['acces_rh'] != 1) {
+    header('Location: acces_refuse.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     var_dump($_POST); // Ajoutez ceci pour vérifier les données envoyées
