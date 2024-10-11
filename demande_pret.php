@@ -1,6 +1,7 @@
 <?php include('header_demande_pret.php'); ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <link href="css/style_demande.css" rel="stylesheet" />
 </head>
+
 <body>
 
     <div class="main-container">
@@ -32,7 +34,7 @@
                 <div class="form-group">
                     <label for="nom">NOM ET PRENOM(S)</label>
                     <i class="fas fa-user icon"></i>
-                    <input type="text" id="nom" name="nom" value="<?=strtoupper($employeeDetails['nom_personnel_tasks'])?>" readonly required>
+                    <input type="text" id="nom" name="nom" value="<?= strtoupper($employeeDetails['nom_personnel_tasks']) ?>" readonly required>
                 </div>
 
                 <div class="form-group">
@@ -76,18 +78,19 @@
 
     <script>
         $(document).ready(function() {
+
             // Fonction pour calculer la date de début de recouvrement (le 5 du mois suivant)
             function calculerDateDebutRecouvrement() {
                 let today = new Date();
                 let moisSuivant = today.getMonth() + 1;
                 let annee = today.getFullYear();
 
-                if (moisSuivant > 11) {  // Si mois est décembre
+                if (moisSuivant > 11) { // Si mois est décembre
                     moisSuivant = 0;
                     annee++;
                 }
 
-                return new Date(annee, moisSuivant, 5);  // Le 5 du mois suivant
+                return new Date(annee, moisSuivant, 5); // Le 5 du mois suivant
             }
 
             // Fonction pour calculer le nombre de mensualités
@@ -135,4 +138,5 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </body>
+
 </html>
