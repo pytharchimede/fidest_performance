@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
@@ -51,7 +51,11 @@
                         <option value="RH">RH</option>
                         <option value="Finance">Finance</option>
                     </select>
+                    <small class="form-text text-muted">
+                        <i class="fas fa-info-circle"></i> Veuillez sélectionner le département bénéficiaire, pas nécessairement le votre.
+                    </small>
                 </div>
+                
 
             </div>
 
@@ -123,6 +127,7 @@
                     </div>
                     <div id="preview-container"></div> <!-- Zone d'aperçu des fichiers -->
                 </div>
+                
             </div>
 
             <!-- Navigation entre étapes -->
@@ -141,7 +146,7 @@
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script>
 $(document).ready(function () {
     const fileDropzone = document.getElementById("file-dropzone");
@@ -200,7 +205,7 @@ $(document).ready(function () {
             if (file.type.startsWith("image/")) {
                 reader.readAsDataURL(file);
             } else {
-                image.src = "default-file-icon.png"; // Image par défaut pour les fichiers non image
+                image.src = "img/default-file-icon.png"; // Image par défaut pour les fichiers non image
             }
 
             // Simuler une jauge de chargement (ici on fait une animation pour exemple)
@@ -214,6 +219,40 @@ $(document).ready(function () {
             }, 200); // Vitesse de l'animation
         }
     }
+
+
+    function uploadFile(file) {
+    const reader = new FileReader();
+    const previewItem = document.createElement("div");
+    previewItem.classList.add("preview-item");
+
+    // Ajouter le nom du fichier au preview
+    const fileNameElement = document.createElement("div");
+    fileNameElement.classList.add("file-name");
+    fileNameElement.textContent = file.name; // Afficher le nom du fichier
+
+    if (file.type.startsWith("image/")) {
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            previewItem.innerHTML = `
+                <img src="${e.target.result}" alt="${file.name}">
+                <div class="progress-bar"></div>
+            `;
+            previewItem.appendChild(fileNameElement); // Ajout du nom du fichier
+        };
+    } else {
+        previewItem.innerHTML = `
+            <div>${file.name}</div>
+            <div class="progress-bar"></div>
+        `;
+        previewItem.appendChild(fileNameElement); // Ajout du nom du fichier pour les fichiers non-image
+    }
+
+    previewContainer.appendChild(previewItem);
+    simulateUpload(file, previewItem.querySelector(".progress-bar"));
+}
+
+
 });
 
     </script>

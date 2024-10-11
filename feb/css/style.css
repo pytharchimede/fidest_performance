@@ -74,6 +74,12 @@ h1 i {
     margin-right: 10px;
 }
 
+.step {
+    max-width: 100%; /* S'assurer que le conteneur occupe toute la largeur disponible */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 /* Titre de chaque section */
 .step h1 {
     font-size: 28px; /* Augmenter la taille des titres de section */
@@ -360,3 +366,102 @@ textarea {
     color: #495057;
 }
 
+.form-text {
+    font-size: 14px;
+    color: #ff9800; /* Orange */
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.form-text i {
+    margin-right: 5px;
+    color: #ff9800; /* Orange */
+}
+
+.select2-container--default .select2-selection--single {
+    height: 45px; /* Ajuste la hauteur du champ select */
+    padding: 8px;
+    border-radius: 8px;
+    border-color: #ced4da;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 28px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 45px;
+}
+
+#file-dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#file-dropzone:hover {
+    background-color: #e9ecef;
+}
+
+#file-dropzone i {
+    font-size: 48px;
+    color: #007bff;
+}
+
+#file-dropzone p {
+    font-size: 16px;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+.hidden-input {
+    display: none;
+}
+
+#preview-container .preview-item {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#preview-container .preview-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+#preview-container .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background-color: #28a745;
+    transition: width 0.4s ease;
+}
+
+#preview-container .progress-text {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+.file-name {
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
