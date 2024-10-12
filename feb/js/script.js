@@ -93,11 +93,11 @@ $(document).ready(function () {
       </div>
       <div class="form-group" id="fournisseur-details-${besoinCount}">
         <label for="nomFournisseur-${besoinCount}"><i class="fas fa-building"></i> Nom / Dénomination fournisseur</label>
-        <input type="text" id="nomFournisseur-${besoinCount}" name="nomFournisseur[]" placeholder="Nom du fournisseur" required>
+        <input type="text" id="nomFournisseur-${besoinCount}" name="nomFournisseur[]" placeholder="Nom du fournisseur">
         <label for="prixUnitaire"><i class="fas fa-franc-sign"></i> Prix unitaire (en FCFA)</label>
-        <input type="number" id="prixUnitaire-${besoinCount}" name="prixUnitaire[]" placeholder="Prix unitaire" required>
+        <input type="number" id="prixUnitaire-${besoinCount}" name="prixUnitaire[]" placeholder="Prix unitaire">
         <label for="telephone"><i class="fas fa-phone"></i> Téléphone</label>
-        <input type="tel" id="telephone-${besoinCount}" name="telephone[]" placeholder="Numéro de téléphone" required>
+        <input type="tel" id="telephone-${besoinCount}" name="telephone[]" placeholder="Numéro de téléphone">
       </div>
       <button type="button" class="remove-btn" onclick="removeBesoin(this)"><i class="fas fa-trash-alt"></i> Supprimer</button>
     `;

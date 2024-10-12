@@ -29,7 +29,7 @@
             <div class="step-indicator"><i class="fas fa-check"></i></div>
         </div>
 
-        <form id="besoinForm" class="form">
+        <form id="besoinForm" class="form" enctype="multipart/form-data">
 
             <!-- Étape 1 : Identification -->
             <div class="step">
@@ -255,6 +255,32 @@
                 previewContainer.appendChild(previewItem);
                 simulateUpload(file, previewItem.querySelector(".progress-bar"));
             }
+
+            $('#besoinForm').on('submit', function(e) {
+                e.preventDefault(); // Empêche le rechargement de la page
+
+                var formData = new FormData(this); // Récupère toutes les données du formulaire y compris les fichiers
+
+                $.ajax({
+                    url: '../request/insert_expression_besoin.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false, // Important pour ne pas définir le type de contenu
+                    processData: false, // Ne traite pas les données de la manière classique
+                    success: function(response) {
+                        // Gestion de la réponse du serveur
+                        console.log('Votre demande a été soumise avec succès.');
+                        console.log(response); // Pour déboguer
+                        $(location).attr('href', '../success_create_feb.php');
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Gestion des erreurs
+                        console.log('Une erreur est survenue lors de la soumission de votre demande.');
+                        console.error(xhr, status, error);
+                    }
+                });
+            });
 
 
         });
