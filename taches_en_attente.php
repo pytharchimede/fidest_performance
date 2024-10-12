@@ -20,7 +20,6 @@ include('header_taches_en_attente.php');
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style_taches_en_attente.css" rel="stylesheet">
-
   <!-- Animation de clignotement pour les tâches expirées -->
   <style>
 
