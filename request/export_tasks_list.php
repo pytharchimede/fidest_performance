@@ -36,7 +36,7 @@ if (is_null($date_debut) && is_null($date_fin)) {
     }
 }
 
-$personnelDetails = $personnelObj->getPersonnelById($personnelObj->getPersonnelByMatricule($matricule));
+$personnelDetails = $personnelObj->getPersonnelByMatricule($matricule);
 
 // Vérifier si des tâches ont été récupérées
 if (empty($taches)) {

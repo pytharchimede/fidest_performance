@@ -1,0 +1,85 @@
+[11-Oct-2024 11:12:00 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:14:12 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:18:59 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:19:52 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:21:06 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:21:07 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:21:57 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 11:58:19 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 12:02:22 UTC] Une tâche avec le même libellé et la même date/heure existe déjà.
+[11-Oct-2024 12:06:34 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 12:12:38 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 12:17:01 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 13:26:14 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 13:29:14 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 13:52:43 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 13:55:16 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:21:49 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:32:37 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:33:42 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 14:37:31 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 14:48:24 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 14:48:24 UTC] PHP Notice:  Undefined variable: personnelDetails in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 61
+[11-Oct-2024 14:48:24 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 61
+[11-Oct-2024 14:48:24 UTC] PHP Notice:  Undefined variable: personnelDetails in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 61
+[11-Oct-2024 14:48:24 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 61
+[11-Oct-2024 14:48:29 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:49:56 UTC] PHP Warning:  Illegal string offset 'nom_personnel_tasks' in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 94
+[11-Oct-2024 14:51:13 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 14:52:51 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:53:21 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 14:53:48 UTC] PHP Warning:  Illegal string offset 'nom_personnel_tasks' in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 94
+[11-Oct-2024 14:57:29 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:04:01 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:04:01 UTC] PHP Warning:  Illegal string offset 'nom_personnel_tasks' in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 107
+[11-Oct-2024 15:04:22 UTC] PHP Warning:  Illegal string offset 'matricule_personnel_tasks' in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 107
+[11-Oct-2024 15:06:38 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:07:00 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:07:42 UTC] PHP Notice:  Undefined variable: matricule in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 39
+[11-Oct-2024 15:07:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 107
+[11-Oct-2024 15:08:24 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:10:01 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:14:14 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:14:24 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:23:36 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:25:46 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:25:52 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:28:42 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:29:00 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:29:00 UTC] PHP Notice:  Undefined variable: matricule in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 39
+[11-Oct-2024 15:29:00 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 107
+[11-Oct-2024 15:36:50 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:37:40 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:45:10 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 15:49:22 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 15:55:05 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 16:09:38 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[11-Oct-2024 16:09:38 UTC] PHP Notice:  Undefined index: role in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 31
+[11-Oct-2024 16:09:38 UTC] PHP Notice:  Undefined index: matricule_personnel_tasks in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 34
+[11-Oct-2024 16:09:52 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 16:33:49 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 17:14:49 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[11-Oct-2024 17:19:00 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[12-Oct-2024 05:07:13 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; FPDF has a deprecated constructor in /home/fidestci/public_html/performance/request/fpdf/fpdf.php on line 16
+[12-Oct-2024 05:07:13 UTC] PHP Notice:  Undefined index: role in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 31
+[12-Oct-2024 05:07:13 UTC] PHP Notice:  Undefined index: matricule_personnel_tasks in /home/fidestci/public_html/performance/request/export_tasks_list.php on line 34
+[12-Oct-2024 08:33:44 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[12-Oct-2024 10:01:06 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[12-Oct-2024 12:42:29 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[12-Oct-2024 14:42:19 UTC] PHP Notice:  Undefined index: password in /home/fidestci/public_html/performance/request/control.php on line 9
+[12-Oct-2024 14:45:12 UTC] PHP Fatal error:  Uncaught Error: Class 'ExpressionBesoinFiles' not found in /home/fidestci/public_html/performance/request/insert_expression_besoin.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fidestci/public_html/performance/request/insert_expression_besoin.php on line 14
+[12-Oct-2024 14:45:27 UTC] PHP Fatal error:  Uncaught Error: Class 'ExpressionBesoinFiles' not found in /home/fidestci/public_html/performance/request/insert_expression_besoin.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fidestci/public_html/performance/request/insert_expression_besoin.php on line 14
+[12-Oct-2024 14:45:42 UTC] PHP Fatal error:  Uncaught Error: Class 'ExpressionBesoinFiles' not found in /home/fidestci/public_html/performance/request/insert_expression_besoin.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fidestci/public_html/performance/request/insert_expression_besoin.php on line 14
+[12-Oct-2024 14:45:56 UTC] PHP Fatal error:  Uncaught Error: Class 'ExpressionBesoinFiles' not found in /home/fidestci/public_html/performance/request/insert_expression_besoin.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fidestci/public_html/performance/request/insert_expression_besoin.php on line 14

@@ -11,7 +11,7 @@ $pdo = Database::getConnection(); // Méthode getConnection à définir dans Dat
 // Instanciation des classes
 $fiche = new FicheExpressionBesoin($pdo);
 $besoin = new BesoinExpression($pdo);
-$files = new ExpressionBesoinFiles($pdo);
+$files = new BesoinExpressionFiles($pdo);
 
 // Récupération des données du formulaire
 $nom = $_POST['nom'];

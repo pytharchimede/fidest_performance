@@ -25,4 +25,18 @@ class BesoinExpression
         $stmt->bindParam(':telephone', $telephone);
         $stmt->execute();
     }
+
+    public function getBesoinsByFicheId($expressionBesoinId)
+    {
+        $sql = "SELECT * FROM besoin_expression WHERE expression_besoin_id = :expression_besoin_id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':expression_besoin_id', $expressionBesoinId);
+        $stmt->execute();
+
+        // On récupère tous les besoins sous forme de tableau associatif
+        $besoins = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $besoins; // Retourne la liste des besoins
+    }
 }

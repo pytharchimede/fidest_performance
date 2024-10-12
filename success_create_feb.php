@@ -1,6 +1,6 @@
 <?php
 // Message de succès
-$success_message = 'Mise à jour réussie !';
+$success_message = 'Soumission réussie !';
 ?>
 
 <!DOCTYPE html>
