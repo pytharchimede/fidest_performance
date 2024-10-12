@@ -26,7 +26,7 @@ $personnelObj = new Personnel();
 $ficheExpression = new FicheExpressionBesoin($pdo);
 
 // Récupérer toutes les fiches d'expression de besoin
-$fiches = $ficheExpression->listerFiches();
+$fiches = $ficheExpression->listerFichesEnAttente();
 ?>
 
 <!DOCTYPE html>

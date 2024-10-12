@@ -77,7 +77,7 @@ $isAccepterDisabled = false;
         <hr>
 
         <a href="export_excel_devis.php?id=<?= $ficheId ?>" class="btn btn-success btn-lg" style="width: 50%; margin-bottom: 20px;">
-            <i class="fas fa-file-excel"></i> Consulter le Devis
+            <i class="fas fa-file-excel"></i> Extraire le Devis
         </a>
 
         <div class="table-responsive">
@@ -118,11 +118,19 @@ $isAccepterDisabled = false;
                                 <?= $prixTotal ? number_format($prixTotal, 2) : '<span class="text-danger"><i class="fa fa-exclamation-triangle"></i> A définir</span>' ?>
                             </td>
                             <td>
-                                <button class="btn btn-warning <?= ($besoin['quantite'] <= 0 || $besoin['prix_unitaire'] <= 0) ? 'blink' : '' ?>"
+                                <button class="btn btn-warning blink"
                                     title="Veuillez définir la quantité ou le prix unitaire."
-                                    onclick="openEditPopup(<?= $besoin['id'] ?>, '<?= htmlspecialchars($besoin['objet']) ?>', <?= $besoin['quantite'] ?>, <?= $besoin['prix_unitaire'] ?>)">
+                                    onclick="openEditPopup(
+        <?= $besoin['id'] ?? '' ?>, 
+        '<?= $besoin['objet'] ?? '' ?>', 
+        <?= $besoin['quantite'] ?? 0 ?>, 
+        <?= $besoin['prix_unitaire'] ?? 0 ?>, 
+        '<?= $besoin['nom_fournisseur'] ?? '' ?>', 
+        '<?= $besoin['telephone'] ?? '' ?>'
+    )">
                                     <i class="fa fa-edit"></i>
                                 </button>
+
                             </td>
 
 
@@ -158,8 +166,8 @@ $isAccepterDisabled = false;
 
         <div class="mt-4">
             <a href="liste_feb.php" class="btn-custom"><i class="fas fa-arrow-left"></i> Retour</a>
-            <a href="refuser_feb.php?id=<?= $ficheId ?>" class="btn-custom" style="background-color: #dc3545;">Refuser</a>
-            <a href="accepter_feb.php?id=<?= $ficheId ?>" class="btn-custom <?= $isAccepterDisabled ? 'disabled' : '' ?>" style="background-color: <?= $isAccepterDisabled ? '#6c757d' : '#28a745' ?>;" title="<?= $isAccepterDisabled ? 'Un ou plusieurs besoins n\'ont pas de prix défini.' : '' ?>">
+            <a href="request/refuser_feb.php?id=<?= $ficheId ?>" class="btn-custom" style="background-color: #dc3545;">Refuser</a>
+            <a href="request/accepter_feb.php?id=<?= $ficheId ?>" class="btn-custom <?= $isAccepterDisabled ? 'disabled' : '' ?>" style="background-color: <?= $isAccepterDisabled ? '#6c757d' : '#28a745' ?>;" title="<?= $isAccepterDisabled ? 'Un ou plusieurs besoins n\'ont pas de prix défini.' : '' ?>">
                 Accepter
                 <?php if ($isAccepterDisabled): ?>
                     <span class="tooltip" style="margin-left: 5px;">(Besoins sans prix)</span>
@@ -206,9 +214,10 @@ $isAccepterDisabled = false;
 
 
     <!-- Bouton d'impression flottant -->
-    <button id="printButton" class="btn btn-primary" onclick="window.print();" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <button id="printButton" class="btn btn-primary" onclick="window.location.href='request/export_details_besoin.php?id=<?= $ficheId ?>';" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
         <i class="fas fa-print"></i> Imprimer
     </button>
+
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/function_detail_besoin.js"></script>

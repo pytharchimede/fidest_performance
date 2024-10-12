@@ -54,6 +54,32 @@ class FicheExpressionBesoin
         }
     }
 
+    // Méthode pour lister toutes les fiches
+    public function listerFichesEnAttente()
+    {
+        try {
+            // Préparation de la requête SQL pour récupérer toutes les fiches
+            $sql = "SELECT * FROM fiche_expression_besoin WHERE statut = '' ORDER BY date DESC";
+            $stmt = $this->pdo->prepare($sql);
+
+            // Exécution de la requête
+            $stmt->execute();
+
+            // Récupération des résultats sous forme de tableau associatif
+            $fiches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Vérification si des fiches sont trouvées
+            if ($fiches) {
+                return $fiches;
+            } else {
+                return [];  // Retourne un tableau vide si aucune fiche n'est trouvée
+            }
+        } catch (Exception $e) {
+            // Gestion des erreurs
+            return 'Erreur : ' . $e->getMessage();
+        }
+    }
+
     // Méthode pour obtenir une fiche par son ID
     public function obtenirFicheParId($id)
     {
@@ -75,6 +101,40 @@ class FicheExpressionBesoin
             } else {
                 return null; // Retourne null si aucune fiche n'est trouvée
             }
+        } catch (Exception $e) {
+            // Gestion des erreurs
+            return 'Erreur : ' . $e->getMessage();
+        }
+    }
+
+    // Méthode pour accepter une fiche d'expression de besoin
+    public function accepterFicheExpressionBesoin($id)
+    {
+        try {
+            // Préparation de la requête SQL pour mettre à jour le statut à "Accepte"
+            $sql = "UPDATE fiche_expression_besoin SET statut = 'Accepte' WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            return $stmt->execute(); // Renvoie true si l'exécution est réussie
+        } catch (Exception $e) {
+            // Gestion des erreurs
+            return 'Erreur : ' . $e->getMessage();
+        }
+    }
+
+    // Méthode pour refuser une fiche d'expression de besoin
+    public function refuserFicheExpressionBesoin($id)
+    {
+        try {
+            // Préparation de la requête SQL pour mettre à jour le statut à "Refuse"
+            $sql = "UPDATE fiche_expression_besoin SET statut = 'Refuse' WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            return $stmt->execute(); // Renvoie true si l'exécution est réussie
         } catch (Exception $e) {
             // Gestion des erreurs
             return 'Erreur : ' . $e->getMessage();
