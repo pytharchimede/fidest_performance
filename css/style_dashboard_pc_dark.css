@@ -215,3 +215,8 @@ hr {
     display: block; /* Pour centrer l'icône */
     margin: 0 auto; /* Centre l'icône horizontalement */
 }
+
+.navbar.scrolled {
+    background-color: #0056b3;
+    /* Couleur de fond quand on fait défiler la page */
+}
