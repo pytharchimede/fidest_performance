@@ -19,9 +19,32 @@ include('header_dashboard.php');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style_dashboard.css" rel="stylesheet">
-    <link href="css/style_dashboard_pc_light.css" rel="stylesheet">
-    <link href="css/style_dashboard_pc_dark.css" rel="stylesheet">
+    <!-- <link href="css/style_dashboard_pc_light.css" rel="stylesheet">
+    <link href="css/style_dashboard_pc_dark.css" rel="stylesheet"> -->
+    <style>
+        #modeToggle {
+            margin-left: 10px;
+            /* Espace entre le bouton et le reste de la barre de navigation */
+            border: none;
+            /* Supprime la bordure du bouton */
+            background-color: transparent;
+            /* Rendre le fond transparent */
+            color: #007bff;
+            /* Couleur des icônes */
+            transition: color 0.3s;
+            /* Transition pour un effet au survol */
+        }
 
+        #modeToggle:hover {
+            color: #0056b3;
+            /* Couleur au survol */
+        }
+
+        .service-name {
+            font-size: xx-small;
+            color: #0F0F0F00;
+        }
+    </style>
 
 </head>
 
@@ -29,8 +52,9 @@ include('header_dashboard.php');
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i> <!-- Icône hamburger -->
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="dashboard.php">Accueil</a></li>
@@ -43,8 +67,12 @@ include('header_dashboard.php');
                 <li class="nav-item"><a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
             </ul>
+            <button id="modeToggle" class="btn btn-light navbar-toggler" type="button" aria-label="Toggle mode">
+                <i class="fas fa-adjust"></i>
+            </button>
         </div>
     </nav>
+
 
     <div class="container-fluid mt-5">
         <?php if ($nbTachesExpired > 0): ?>
@@ -69,11 +97,12 @@ include('header_dashboard.php');
 
         <div class="row profile-section mb-4 d-flex align-items-center justify-content-between">
             <img src="<?php echo htmlspecialchars($_SESSION['photo_personnel_tasks'] ? 'https://stock.fidest.ci/app/&_gestion/photo/' . htmlspecialchars($_SESSION['photo_personnel_tasks']) : 'https://via.placeholder.com/80'); ?>" alt="Photo de profil">
-            <div class="col-md-6 profile-info">
+            <div class="col-md-6 col-xs-12 profile-info">
                 <h5 class="text-primary"><?php echo strtoupper($_SESSION['nom_personnel_tasks']); ?></h5>
-                <p class="text-muted">Membre du personnel</p>
+                <p class="text-muted"><?= $fonction_personnel['lib_fonction_tasks'] ? $fonction_personnel['lib_fonction_tasks'] : 'Membre du personnel' ?></p>
+                <p class="text-muted service-name">SERVICE <?= $service_personnel['lib_service_tasks'] ? strtoupper($service_personnel['lib_service_tasks']) : 'FIDEST/BANAMUR' ?></p>
             </div>
-            <div class="col-md-6 score-section">
+            <div class="col-md-6 col-xs-12 score-section">
                 <h5 class="card-title text-secondary">Score</h5>
                 <p class="card-text <?= $scoreClass ?> display-4"><?= number_format(floatval($score), 2) ?>%</p>
                 <div class="progress">
@@ -129,21 +158,21 @@ include('header_dashboard.php');
                         <h5 class="card-title text-primary fw-bold">Temps Total des Tâches</h5>
                         <hr class="my-3">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-12">
                                 <div class="statistic-box bg-warning text-white rounded p-3">
                                     <i class="fas fa-hourglass-half fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">En Attente</h6>
                                     <p class="fs-4"><?= $totalTimeEnAttenteHrs ?>h <?= $totalTimeEnAttenteMin ?>m</p>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-12">
                                 <div class="statistic-box bg-success text-white rounded p-3">
                                     <i class="fas fa-check-circle fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">Effectuées</h6>
                                     <p class="fs-4"><?= $totalTimeEffectueesHrs ?>h <?= $totalTimeEffectueesMin ?>m</p>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-12">
                                 <div class="statistic-box bg-danger text-white rounded p-3">
                                     <i class="fas fa-times-circle fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">Rejetées</h6>
@@ -155,7 +184,7 @@ include('header_dashboard.php');
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-12 mb-4">
+            <div class="col-lg-4 col-md-12 col-xs-12 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center text-primary fw-bold">Notifications</h5>
@@ -257,7 +286,29 @@ include('header_dashboard.php');
                 scrollTop: 0
             }, "slow");
         });
+
+        // Vérifie le mode actuel et l'applique
+        const currentTheme = localStorage.getItem('theme') || 'light'; // 'light' par défaut
+        document.body.classList.toggle('dark', currentTheme === 'dark');
+
+        // Charge la feuille de style appropriée
+        function loadTheme(theme) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = theme === 'dark' ? 'css/style_dashboard_pc_dark.css' : 'css/style_dashboard_pc_light.css';
+            document.head.appendChild(link);
+        }
+
+        loadTheme(currentTheme);
+
+        // Gestion de l'événement de clic sur le bouton
+        document.getElementById('modeToggle').addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme); // Enregistre le thème dans localStorage
+            location.reload(); // Recharge la page pour appliquer le nouveau thème
+        });
     </script>
+
 
 </body>
 

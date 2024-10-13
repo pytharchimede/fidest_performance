@@ -110,7 +110,7 @@ include('header_dashboard.php');
 
       <div class="profile-info ml-3">
         <h5 class="text-primary"><?php echo strtoupper($_SESSION['nom_personnel_tasks']); ?></h5>
-        <p class="text-muted">Membre du personnel</p>
+        <p class="text-muted"><?= $fonction_personnel['lib_fonction_tasks'] ?></p>
       </div>
 
     </div>

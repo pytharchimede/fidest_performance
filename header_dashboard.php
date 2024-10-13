@@ -4,6 +4,12 @@
 require_once 'model/Task.php';
 require_once 'model/Personnel.php';
 require_once 'model/Helper.php';
+require_once 'model/Helper.php';
+require_once 'model/Fonction.php';
+require_once 'model/Service.php';
+
+
+
 
 
 // Récupérer les informations de salaire pour un personnel spécifique
@@ -28,6 +34,11 @@ $role = $personnelObj->getRoleById($personnelId);
 // var_dump($role);
 
 $matricule = $_SESSION['matricule_personnel_tasks'];
+
+$fonctionObj = new Fonction();
+$serviceObj = new Service();
+
+
 
 /*
 if ($role == 'superviseur') {
@@ -110,3 +121,7 @@ $totalTimeRestantHrs = floor($totalTimeRestantSec / 3600);
 $totalTimeRestantMin = floor(($totalTimeRestantSec % 3600) / 60);
 
 $currentDay = date('j');
+
+
+$fonction_personnel = $fonctionObj->obtenirFonctionParId($_SESSION['fonction_id']);
+$service_personnel = $serviceObj->obtenirServiceParId($_SESSION['service_id']);
