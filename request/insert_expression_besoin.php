@@ -5,6 +5,11 @@ require_once '../model/FicheExpressionBesoin.php';
 require_once '../model/BesoinExpression.php';
 require_once '../model/BesoinExpressionFiles.php';
 
+if (!isset($_SESSION['id_personnel_tasks'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 // Connexion à la base de données
 $pdo = Database::getConnection(); // Méthode getConnection à définir dans Database.php
 

@@ -4,11 +4,7 @@ require_once '../model/Database.php';
 require_once '../model/Personnel.php';
 include('fpdf186/fpdf.php');
 
-if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: ../index.php");    exit();
-}
-
-if($_SESSION['acces_rh']!=1){
+if ($_SESSION['acces_rh'] != 1) {
     header('Location: ../acces_refuse.php');
 }
 
@@ -50,7 +46,7 @@ class PDF extends FPDF
         $this->Image('../../img/logo_veritas.jpg', 172, 265, 30);
 
         // Numéro de page
-        $this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0, 'C');
+        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 }
 
@@ -95,7 +91,6 @@ try {
         $pdf->Ln();
         $counter++;
     }
-    
 } catch (PDOException $e) {
     $pdf->SetFont('Arial', 'I', 12);
     $pdf->Cell(0, 10, mb_convert_encoding('Erreur de connexion à la base de données: ' . $e->getMessage(), 'ISO-8859-1', 'UTF-8'), 0, 1, 'C');
@@ -103,4 +98,3 @@ try {
 
 // Sauvegarder le PDF sur le serveur ou l'envoyer directement au navigateur
 $pdf->Output('I', 'Liste_Presence_' . date('d_m_Y') . '.pdf');
-?>

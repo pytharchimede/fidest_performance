@@ -9,8 +9,8 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['acces_pret'] != 1) {
-    header('Location: ../acces_refuse.php');
+if ($_SESSION['acces_avance'] != 1) {
+    header('Location: acces_refuse.php');
 }
 
 // Connexion à la base de données
@@ -22,8 +22,8 @@ $matricule = $_GET['matricule'] ?? null;
 $dateDebut = $_GET['date_debut'] ?? null;
 $dateFin = $_GET['date_fin'] ?? null;
 
-// Préparer la requête pour récupérer toutes les demandes selon les critères
-$query = "SELECT * FROM demande_pret WHERE 1=1"; // '1=1' pour faciliter l'ajout de conditions
+// Préparer la requête pour récupérer toutes les demandes d'avance selon les critères
+$query = "SELECT * FROM demande_avance_salaire WHERE 1=1"; // '1=1' pour faciliter l'ajout de conditions
 
 if ($statut) {
     $query .= " AND statut = :statut";
@@ -72,7 +72,7 @@ class PDF extends FPDF
         $this->Image('../img/logo_fidest.jpg', 10, 10, 40);
         $this->Ln(35);
         $this->SetFont('Arial', 'BU', 22);
-        $this->Cell(0, 10, mb_convert_encoding('LISTE DES DEMANDES DE PRET', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C');
+        $this->Cell(0, 10, mb_convert_encoding('LISTE DES DEMANDES D\'AVANCE', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C');
         $this->Ln(10);
     }
 
@@ -90,20 +90,19 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
-// Informations sur les demandes
+// Informations sur les demandes d'avance
 $pdf->SetFont('Arial', 'B', 14);
-$pdf->Cell(0, 10, mb_convert_encoding('Informations des Demandes', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C');
+$pdf->Cell(0, 10, mb_convert_encoding('Informations des Demandes d\'Avance', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C');
 $pdf->SetFont('Arial', '', 12);
 $pdf->Ln(10);
 
 // Entête du tableau
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(25, 10, mb_convert_encoding('Matricule', 'ISO-8859-1', 'UTF-8'), 1);
-$pdf->Cell(100, 10, mb_convert_encoding('Désignation du prêt', 'ISO-8859-1', 'UTF-8'), 1);
+$pdf->Cell(100, 10, mb_convert_encoding('Motif de l\'avance', 'ISO-8859-1', 'UTF-8'), 1);
 $pdf->Cell(40, 10, mb_convert_encoding('Montant demandé', 'ISO-8859-1', 'UTF-8'), 1);
 $pdf->Cell(30, 10, mb_convert_encoding('Date création', 'ISO-8859-1', 'UTF-8'), 1);
 $pdf->Ln();
-
 
 // Réinitialiser la police à normale
 $pdf->SetFont('Arial', '', 12);
@@ -111,17 +110,17 @@ $pdf->SetFont('Arial', '', 12);
 // Variables pour calculer le total
 $totalMontant = 0;
 
-// Affichage des détails des demandes
+// Affichage des détails des demandes d'avance
 foreach ($demandeList as $demandeDetails) {
     $pdf->Cell(25, 10, $demandeDetails['matricule'], 1);
-    $pdf->Cell(100, 10, mb_convert_encoding($demandeDetails['designation_pret'], 'ISO-8859-1', 'UTF-8'), 1);
-    $montantDemande = number_format($demandeDetails['montant_demande'], 0, ',', ' ') . ' FCFA';
+    $pdf->Cell(100, 10, mb_convert_encoding($demandeDetails['motif'], 'ISO-8859-1', 'UTF-8'), 1);
+    $montantDemande = number_format($demandeDetails['montant'], 0, ',', ' ') . ' FCFA';
     $pdf->Cell(40, 10, $montantDemande, 1);
     $pdf->Cell(30, 10, date("d/m/Y", strtotime($demandeDetails['date_creat'])), 1);
     $pdf->Ln();
 
     // Ajouter au total
-    $totalMontant += $demandeDetails['montant_demande'];
+    $totalMontant += $demandeDetails['montant'];
 }
 
 // Affichage des totaux
@@ -132,7 +131,7 @@ $pdf->Cell(30, 10, '', 1); // Cell vide pour compléter le tableau
 $pdf->Ln();
 
 // Sauvegarder ou afficher le PDF
-$pdf->Output('I', 'Liste_Demandes_Pret_' . date('d_m_Y') . '.pdf');
+$pdf->Output('I', 'Liste_Demandes_Avance_' . date('d_m_Y') . '.pdf');
 
 // Fermer la connexion à la base de données
 unset($pdo);

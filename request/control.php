@@ -2,7 +2,7 @@
 session_start();
 // Inclure la connexion à la base de données
 require_once '../model/Database.php';
-require_once '../model/Personnel.php'; 
+require_once '../model/Personnel.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matricule = $_POST['matricule'];
@@ -60,6 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['acces_rh'] = $row['acces_rh'];
         $_SESSION['password_personnel_tasks'] = $row['password_personnel_tasks'];
         $_SESSION['is_directeur'] = $row['is_directeur'];
+        $_SESSION['valid_besoin'] = $row['valid_besoin'];
+        $_SESSION['acces_pret'] = $row['acces_pret'];
+        $_SESSION['acces_avance'] = $row['acces_avance'];
+        $_SESSION['acces_absence'] = $row['acces_absence'];
+
 
         // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour
         if (empty($row['email_personnel_tasks']) || empty($row['tel_personnel_tasks']) || empty($row['password_personnel_tasks'])) {
@@ -82,7 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../login.php");
             exit();
         }
-
     } else {
         // Matricule incorrect, rediriger vers une page d'erreur avec message
         $_SESSION['error_message'] = "Numéro matricule incorrect.";
@@ -90,4 +94,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>

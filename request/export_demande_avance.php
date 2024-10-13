@@ -9,8 +9,8 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['acces_rh'] != 1) {
-    header('Location: acces_refuse.php');
+if ($_SESSION['acces_avance'] != 1) {
+    header('Location: ../acces_refuse.php');
 }
 
 // Connexion à la base de données

@@ -293,25 +293,32 @@ include('header_dashboard.php');
                         <h5 class="card-title text-primary fw-bold">Temps Total des Tâches</h5>
                         <hr class="my-3">
                         <div class="row">
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-xs-12">
                                 <div class="statistic-box bg-warning text-white rounded p-3">
                                     <i class="fas fa-hourglass-half fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">En Attente</h6>
                                     <p class="fs-4"><?= $totalTimeEnAttenteHrs ?>h <?= $totalTimeEnAttenteMin ?>m</p>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-xs-12">
                                 <div class="statistic-box bg-success text-white rounded p-3">
                                     <i class="fas fa-check-circle fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">Effectuées</h6>
                                     <p class="fs-4"><?= $totalTimeEffectueesHrs ?>h <?= $totalTimeEffectueesMin ?>m</p>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-xs-12">
                                 <div class="statistic-box bg-danger text-white rounded p-3">
                                     <i class="fas fa-times-circle fa-2x mb-2"></i>
                                     <h6 class="fw-time-type">Rejetées</h6>
                                     <p class="fs-4"><?= $totalTimeRejeteesHrs ?>h <?= $totalTimeRejeteesMin ?>m</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                <div class="statistic-box bg-info text-white rounded p-3">
+                                    <i class="fas fa-plus fa-2x mb-2"></i>
+                                    <h6 class="fw-time-type">Voir plus</h6>
+                                    <p class="fs-4">&nbsp;</p>
                                 </div>
                             </div>
                         </div>

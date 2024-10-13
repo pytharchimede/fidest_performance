@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['acces_pret'] != 1) {
+if ($_SESSION['acces_avance'] != 1) {
     header('Location: ../acces_refuse.php');
 }
 
@@ -21,8 +21,8 @@ $matricule = $_GET['matricule'] ?? null;
 $dateDebut = $_GET['date_debut'] ?? null;
 $dateFin = $_GET['date_fin'] ?? null;
 
-// Préparer la requête pour récupérer toutes les demandes selon les critères
-$query = "SELECT * FROM demande_pret WHERE 1=1"; // '1=1' pour faciliter l'ajout de conditions
+// Préparer la requête pour récupérer toutes les demandes d'avance selon les critères
+$query = "SELECT * FROM demande_avance_salaire WHERE 1=1"; // '1=1' pour faciliter l'ajout de conditions
 
 if ($statut) {
     $query .= " AND statut = :statut";
@@ -64,24 +64,28 @@ if (empty($demandeList)) {
 
 // Créer le fichier Excel
 header('Content-Type: application/vnd.ms-excel; charset=UTF-8');
-header('Content-Disposition: attachment; filename="Liste_Demandes_Pret_' . date('d_m_Y') . '.xls"');
+header('Content-Disposition: attachment; filename="Liste_Demandes_Avance_' . date('d_m_Y') . '.xls"');
 header('Cache-Control: max-age=0');
 
 // Écrire les en-têtes du tableau
 echo "<table border='1'>";
 echo "<tr>
         <th>" . mb_convert_encoding('Matricule', 'ISO-8859-1', 'UTF-8') . "</th>
-        <th>" . mb_convert_encoding('Désignation du prêt', 'ISO-8859-1', 'UTF-8') . "</th>
+        <th>" . mb_convert_encoding('Fonction', 'ISO-8859-1', 'UTF-8') . "</th>
+        <th>" . mb_convert_encoding('Service', 'ISO-8859-1', 'UTF-8') . "</th>
         <th>" . mb_convert_encoding('Montant demandé', 'ISO-8859-1', 'UTF-8') . "</th>
+        <th>" . mb_convert_encoding('Motif', 'ISO-8859-1', 'UTF-8') . "</th>
         <th>" . mb_convert_encoding('Date création', 'ISO-8859-1', 'UTF-8') . "</th>
       </tr>";
 
-// Affichage des détails des demandes
+// Affichage des détails des demandes d'avance
 foreach ($demandeList as $demandeDetails) {
     echo "<tr>
             <td>" . mb_convert_encoding($demandeDetails['matricule'], 'ISO-8859-1', 'UTF-8') . "</td>
-            <td>" . mb_convert_encoding($demandeDetails['designation_pret'], 'ISO-8859-1', 'UTF-8') . "</td>
-            <td>" . number_format($demandeDetails['montant_demande'], 0, ',', ' ') . ' FCFA' . "</td>
+            <td>" . mb_convert_encoding($demandeDetails['fonction'], 'ISO-8859-1', 'UTF-8') . "</td>
+            <td>" . mb_convert_encoding($demandeDetails['service'], 'ISO-8859-1', 'UTF-8') . "</td>
+            <td>" . number_format($demandeDetails['montant'], 0, ',', ' ') . ' FCFA' . "</td>
+            <td>" . mb_convert_encoding($demandeDetails['motif'], 'ISO-8859-1', 'UTF-8') . "</td>
             <td>" . date("d/m/Y", strtotime($demandeDetails['date_creat'])) . "</td>
           </tr>";
 }
