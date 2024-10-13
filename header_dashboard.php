@@ -37,10 +37,10 @@ if ($role == 'superviseur') {
   $tachesAnnulees = $taskObj->getTasksByStatus('Annulee');
 } else {
   */
-  $tachesEnAttente = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'En Attente');
-  $tachesOk = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Termine');
-  $tachesRefusees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Refusee');
-  $tachesAnnulees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Annulee');
+$tachesEnAttente = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'En Attente');
+$tachesOk = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Termine');
+$tachesRefusees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Refusee');
+$tachesAnnulees = $taskObj->getThisMonthTasksByMatriculeAndStatus($matricule, 'Annulee');
 /*}*/
 
 $nbTachesEnAttente = count($tachesEnAttente);
@@ -48,7 +48,7 @@ $nbTachesOk = count($tachesOk);
 $nbTachesRefusees = count($tachesRefusees);
 $nbTachesAnnulees = count($tachesAnnulees);
 
-$salaireAcquis = ($salaireMensuel/20)*$joursTravailles-$avanceDeductible;
+$salaireAcquis = ($salaireMensuel / 20) * $joursTravailles - $avanceDeductible;
 
 //Nombre total de taches 
 $nbTachesTotal = count($taskObj->getThisMonthTasksByMatricule($matricule));
@@ -109,4 +109,4 @@ $totalTimeRestantSec = $totalTimeTotalSec - $totalTimeEffectueesSec;
 $totalTimeRestantHrs = floor($totalTimeRestantSec / 3600);
 $totalTimeRestantMin = floor(($totalTimeRestantSec % 3600) / 60);
 
-?>
+$currentDay = date(format: 'j');

@@ -284,10 +284,17 @@ include('header_dashboard.php');
                 <i class="fas fa-hand-holding-usd icon-custom"></i> Demande de Prêt
               </a>
             </li>
+            <!-- Demande d'Avance (désactivée avant le 15 du mois) -->
             <li class="list-group-item btn-custom">
-              <a href="formulaire_introuvable.php?nom_form=avance" class="d-flex align-items-center btn-link-custom">
-                <i class="fas fa-money-bill-alt icon-custom"></i> Demande d'Avance
-              </a>
+              <?php if ($currentDay >= 15): ?>
+                <a href="formulaire_introuvable.php?nom_form=avance" class="d-flex align-items-center btn-link-custom">
+                  <i class="fas fa-money-bill-alt icon-custom"></i> Demande d'Avance
+                </a>
+              <?php else: ?>
+                <a href="javascript:void();" class="d-flex align-items-center text-muted btn-link-disabled" title="Disponible à partir du 15">
+                  <i class="fas fa-money-bill-alt icon-custom"></i> Demande d'Avance (disponible après le 15)
+                </a>
+              <?php endif; ?>
             </li>
             <li class="list-group-item btn-custom">
               <a href="feb/index.php" class="d-flex align-items-center btn-link-custom">

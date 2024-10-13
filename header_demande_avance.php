@@ -29,3 +29,10 @@ if (isset($_SESSION['id_personnel_tasks'])) {
 
     $service = $serviceObj->obtenirServiceParId($employeeDetails['service_id']);
 }
+
+
+$currentDay = date(format: 'j');
+
+if ($currentDay < 15) {
+    header('Location: acces_refuse.php');
+}
