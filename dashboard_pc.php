@@ -44,11 +44,53 @@ include('header_dashboard.php');
             font-size: xx-small;
             color: #0F0F0F00;
         }
+
+        .mode-toggle-container {
+            display: flex;
+            align-items: center;
+            /* Aligne l'icône et le texte */
+            margin-left: 20px;
+            /* Espace entre le menu et le bouton */
+        }
+
+        .btn {
+            border-radius: 20px;
+            /* Arrondit les bords du bouton */
+            padding: 10px 15px;
+            /* Ajuste le rembourrage pour un aspect plus subtil */
+            transition: background-color 0.3s ease;
+            /* Ajoute une transition douce */
+        }
+
+        .btn-light {
+            background-color: #ffffff;
+            /* Couleur de fond du bouton */
+            color: #007bff;
+            /* Couleur du texte */
+            border: 1px solid #007bff;
+            /* Bordure bleue */
+        }
+
+        .btn-light:hover {
+            background-color: #f8f9fa;
+            /* Couleur au survol */
+        }
+
+        .btn-light i {
+            font-size: 1.2rem;
+            /* Taille de l'icône */
+        }
+
+        span {
+            font-size: 0.9rem;
+            /* Taille de police du texte */
+        }
     </style>
 
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,15 +103,18 @@ include('header_dashboard.php');
                 <li class="nav-item"><a class="nav-link" href="liste_personnel.php">Personnel</a></li>
                 <li class="nav-item"><a class="nav-link" href="pointage_personnel.php">Pointage</a></li>
                 <li class="nav-item"><a class="nav-link" href="taches_en_attente.php">Tâches</a></li>
-                <li class="nav-item"><a class="nav-link" href="demandes_report.php">Demandes de report</a></li>
-                <li class="nav-item"><a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a></li>
-                <li class="nav-item"><a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a></li>
-                <li class="nav-item"><a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a></li>
+                <li class="nav-item"><a class="nav-link" href="demandes_report.php">Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="liste_demande_avance.php">Avances</a></li>
+                <li class="nav-item"><a class="nav-link" href="liste_demande_pret.php">Prêt</a></li>
+                <li class="nav-item"><a class="nav-link" href="liste_demande_absence.php">Absence</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
             </ul>
-            <button id="modeToggle" class="btn btn-light navbar-toggler" type="button" aria-label="Toggle mode">
-                <i class="fas fa-adjust"></i>
-            </button>
+            <div class="mode-toggle-container">
+                <button id="modeToggle" class="btn btn-light" type="button" aria-label="Toggle mode">
+                    <i class="fas fa-adjust"></i>
+                    <span class="ml-2">Changer de mode</span> <!-- Légende pour le bouton -->
+                </button>
+            </div>
         </div>
     </nav>
 
