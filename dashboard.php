@@ -119,13 +119,18 @@ include('header_dashboard.php');
     <div class="row">
       <!-- Section pour le temps de travail -->
       <div class="col-lg-6 col-md-12 mb-4">
-        <div class="card bg-white shadow-sm">
+        <div class="card bg-light shadow-lg border-0 rounded-lg">
           <div class="card-body">
-            <h5 class="card-title text-secondary">Demandes en attente</h5>
-            <ul class="list-group">
-              <a href="liste_feb.php">
-                <li class="list-group-item">
-                  <i class="fas fa-bulhorn"></i>Fiches d'expression de besoins
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="card-title text-dark fw-bold">Demandes en attente</h5>
+              <span class="badge bg-warning text-dark">2 Nouvelles</span>
+            </div>
+            <ul class="list-group list-group-flush">
+              <a href="liste_feb.php" class="text-decoration-none">
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-bullhorn text-warning me-3"></i>
+                  <span class="fw-semibold">Fiches d'expression de besoins</span>
+                  <span class="badge bg-danger ms-auto">5</span>
                 </li>
               </a>
             </ul>
@@ -133,6 +138,7 @@ include('header_dashboard.php');
         </div>
       </div>
     </div>
+
 
 
     <div class="row">
