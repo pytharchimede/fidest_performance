@@ -71,32 +71,8 @@ $demandes = $demandeAbsence->lireDemandesAbsences();
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <a class="navbar-brand text-primary" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="dashboard.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link active" href="liste_personnel.php">Personnel</a></li>
-                <li class="nav-item"><a class="nav-link" href="pointage_personnel.php">Pointage</a></li>
-                <li class="nav-item"><a class="nav-link" href="taches_en_attente.php">Tâches</a></li>
-                <li class="nav-item"><a class="nav-link" href="demandes_report.php">Demandes de report</a></li>
+    <?php include 'menu.php'; ?>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container mt-5">
         <div class="row">

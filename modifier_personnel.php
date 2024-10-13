@@ -1,12 +1,12 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: index.php");
-    exit();
+  header("Location: index.php");
+  exit();
 }
 
-if($_SESSION['acces_rh']!=1){
+if ($_SESSION['acces_rh'] != 1) {
   header('Location: acces_refuse.php');
 }
 
@@ -15,102 +15,68 @@ require_once 'model/Personnel.php';
 $personnelObj = new Personnel();
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = intval($_GET['id']);
-    $personnel = $personnelObj->getPersonnelById($id); // Assurez-vous que cette méthode existe et retourne les données du personnel
+  $id = intval($_GET['id']);
+  $personnel = $personnelObj->getPersonnelById($id); // Assurez-vous que cette méthode existe et retourne les données du personnel
 
-    //var_dump($personnel);
+  //var_dump($personnel);
 } else {
-    header("Location: personnel.php"); // Rediriger si aucun ID n'est fourni
-    exit();
+  header("Location: personnel.php"); // Rediriger si aucun ID n'est fourni
+  exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Personnel</title>
-    <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier Personnel</title>
+  <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- Menu mobile-friendly -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-            <a class="navbar-brand text-primary" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
+  <?php include 'menu.php'; ?>
 
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="dashboard.php">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_personnel.php">Personnel</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pointage_personnel.php">Pointage</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="taches_en_attente.php">Tâches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="demandes_report.php">Demandes de report</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Déconnexion</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
   <div class="container mt-5">
     <div class="container mt-5">
-        <h2>Modifier les informations de la personne</h2>
-        <form id="form-modifier-personnel" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= htmlspecialchars($personnel['id_personnel_tasks']); ?>">
+      <h2>Modifier les informations de la personne</h2>
+      <form id="form-modifier-personnel" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($personnel['id_personnel_tasks']); ?>">
 
-            <label>Matricule:</label>
-            <input type="text" name="matricule" required class="form-control" value="<?= htmlspecialchars($personnel['matricule_personnel_tasks']); ?>"><br>
-            
-            <label>Nom et Prénom(s):</label>
-            <input type="text" name="nom" required class="form-control" value="<?= htmlspecialchars($personnel['nom_personnel_tasks']); ?>"><br>
-            
-            <label>Sexe (1 pour Homme, 2 pour Femme):</label>
-            <input type="text" name="sexe" required class="form-control" value="<?= htmlspecialchars($personnel['sexe_personnel_tasks']); ?>"><br>
-                        
-            <label>Téléphone:</label>
-            <input type="text" name="telephone" class="form-control" required pattern="^0[0-9]{9}$" minlength="10" maxlength="10" title="Le numéro doit comporter exactement 10 chiffres et commencer par 0" value="<?= htmlspecialchars($personnel['tel_personnel_tasks']); ?>"><br>
+        <label>Matricule:</label>
+        <input type="text" name="matricule" required class="form-control" value="<?= htmlspecialchars($personnel['matricule_personnel_tasks']); ?>"><br>
 
-            <label>Email:</label>
-            <input type="email" name="email" required class="form-control" value="<?= htmlspecialchars($personnel['email_personnel_tasks']); ?>"><br>
+        <label>Nom et Prénom(s):</label>
+        <input type="text" name="nom" required class="form-control" value="<?= htmlspecialchars($personnel['nom_personnel_tasks']); ?>"><br>
 
-            <label>Salaire mensuel (en XOF):</label>
-            <input type="number" name="salaire" required class="form-control" value="<?= htmlspecialchars($personnel['salaire_mensuel_personnel_tasks']); ?>"><br>
-                        
-            <input type="submit" value="Modifier" class="btn btn-primary">
-        </form>
+        <label>Sexe (1 pour Homme, 2 pour Femme):</label>
+        <input type="text" name="sexe" required class="form-control" value="<?= htmlspecialchars($personnel['sexe_personnel_tasks']); ?>"><br>
+
+        <label>Téléphone:</label>
+        <input type="text" name="telephone" class="form-control" required pattern="^0[0-9]{9}$" minlength="10" maxlength="10" title="Le numéro doit comporter exactement 10 chiffres et commencer par 0" value="<?= htmlspecialchars($personnel['tel_personnel_tasks']); ?>"><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required class="form-control" value="<?= htmlspecialchars($personnel['email_personnel_tasks']); ?>"><br>
+
+        <label>Salaire mensuel (en XOF):</label>
+        <input type="number" name="salaire" required class="form-control" value="<?= htmlspecialchars($personnel['salaire_mensuel_personnel_tasks']); ?>"><br>
+
+        <input type="submit" value="Modifier" class="btn btn-primary">
+      </form>
     </div>
 
-    </div>
+  </div>
 
-    <!-- Intégration de jQuery et du fichier function_personnel.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/function_personnel.js"></script>
+  <!-- Intégration de jQuery et du fichier function_personnel.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/function_personnel.js"></script>
 </body>
+
 </html>

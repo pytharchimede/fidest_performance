@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: index.php");
-    exit();
+  header("Location: index.php");
+  exit();
 }
 
 include('header_demandes_report.php'); // Inclure le header
@@ -17,6 +17,7 @@ $helperObj = new Helper();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,46 +35,23 @@ $helperObj = new Helper();
       padding: 15px;
       margin-bottom: 10px;
     }
+
     .report-actions button {
       margin-right: 5px;
     }
+
     .report-alert {
       color: #ff0000;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
 
   <!-- Menu mobile-friendly -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <a class="navbar-brand text-primary" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="dashboard.php">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_personnel.php">Personnel</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pointage_personnel.php">Pointage</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="taches_en_attente.php">Tâches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="demandes_report.php">Demandes de report</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Déconnexion</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <?php include 'menu.php'; ?>
+
 
   <div class="container mt-5">
     <h2 class="mb-4">Demandes de Report</h2>
@@ -89,10 +67,10 @@ $helperObj = new Helper();
               <p><strong>Date limite actuelle :</strong> <?= htmlspecialchars($helperObj->dateEnFrancais($report['deadline'])); ?></p>
               <p><strong>Date de report proposée :</strong> <?= htmlspecialchars($helperObj->dateEnFrancais($report['date_report_propose'])); ?></p>
             </div>
-    
+
             <div class="report-actions mt-3 row">
               <div class="col-12 col-md-4 mb-2">
-                <form method="post" action="request/refuser_report.php?task_id=<?=$report['id']?>">
+                <form method="post" action="request/refuser_report.php?task_id=<?= $report['id'] ?>">
                   <input type="hidden" name="task_id" value="<?= htmlspecialchars($report['id']); ?>">
                   <button type="submit" name="action" value="refuse" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Refuser</button>
                 </form>
@@ -121,4 +99,5 @@ $helperObj = new Helper();
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

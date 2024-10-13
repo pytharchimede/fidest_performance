@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION['id_personnel_tasks'])) {
@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if($_SESSION['role'] != 'superviseur') {
+if ($_SESSION['role'] != 'superviseur') {
     header('Location: acces_refuse.php');
     exit();
 }
@@ -48,6 +48,7 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +56,12 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
+    <?php include 'menu.php'; ?>
+
+
     <div class="container mt-5">
         <h2 class="mb-4">Modifier la Tâche</h2>
         <form action="request/update_task.php" method="post" enctype="multipart/form-data">
@@ -118,4 +124,5 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
         </form>
     </div>
 </body>
+
 </html>
