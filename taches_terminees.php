@@ -83,6 +83,7 @@ include('header_taches_terminees.php'); // Header spécifique aux tâches termin
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/script_taches_terminees.js"></script>
+  <script src="js/style_script.js"></script>
 </body>
 
 </html>

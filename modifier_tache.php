@@ -123,6 +123,7 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
             <button type="submit" class="btn btn-primary">Modifier la Tâche</button>
         </form>
     </div>
+    <script src="js/style_script.js"></script>
 </body>
 
 </html>

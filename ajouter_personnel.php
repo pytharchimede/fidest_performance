@@ -70,6 +70,7 @@ if ($_SESSION['acces_rh'] != 1) {
   <!-- Intégration de jQuery et du fichier function_personnel.js -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="js/function_personnel.js"></script>
+  <script src="js/style_script.js"></script>
 </body>
 
 </html>

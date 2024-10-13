@@ -5,6 +5,7 @@ $success_message = 'Mise à jour réussie !';
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,12 +33,14 @@ $success_message = 'Mise à jour réussie !';
 
         .success-icon {
             font-size: 50px;
-            color: #fabd02; /* Couleur orange pour succès */
+            color: #fabd02;
+            /* Couleur orange pour succès */
             margin-bottom: 20px;
         }
 
         .success-msg {
-            color: #1d2b57; /* Bleu pour le texte */
+            color: #1d2b57;
+            /* Bleu pour le texte */
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -56,11 +59,13 @@ $success_message = 'Mise à jour réussie !';
 
         .countdown span {
             font-weight: bold;
-            color: #fabd02; /* Couleur orange */
+            color: #fabd02;
+            /* Couleur orange */
         }
     </style>
     <script>
         let countdown = 5;
+
         function updateCountdown() {
             document.getElementById('countdown').innerText = countdown;
             if (countdown <= 0) {
@@ -71,20 +76,23 @@ $success_message = 'Mise à jour réussie !';
         setInterval(updateCountdown, 1000);
     </script>
 </head>
+
 <body>
 
-<div class="success-container">
-    <div class="success-icon">
-        &#x2714; <!-- Icône de succès -->
+    <div class="success-container">
+        <div class="success-icon">
+            &#x2714; <!-- Icône de succès -->
+        </div>
+        <div class="success-msg"><?= htmlspecialchars($success_message); ?></div>
+        <div class="sub-msg">
+            Vos informations de contact ont été mises à jour avec succès.
+        </div>
+        <div class="countdown">
+            Vous serez redirigé vers votre tableau de bord dans <span id="countdown">5</span> secondes.
+        </div>
     </div>
-    <div class="success-msg"><?= htmlspecialchars($success_message); ?></div>
-    <div class="sub-msg">
-        Vos informations de contact ont été mises à jour avec succès.
-    </div>
-    <div class="countdown">
-        Vous serez redirigé vers votre tableau de bord dans <span id="countdown">5</span> secondes.
-    </div>
-</div>
 
+    <script src="js/style_script.js"></script>
 </body>
+
 </html>

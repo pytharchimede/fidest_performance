@@ -255,6 +255,7 @@ $halfDay = (clone $now)->add(new DateInterval('PT4H')); // On considère ici une
     });
   </script>
 
+  <script src="js/style_script.js"></script>
 </body>
 
 </html>

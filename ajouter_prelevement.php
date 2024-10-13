@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if($_SESSION['acces_rh']!=1){
+if ($_SESSION['acces_rh'] != 1) {
     header('Location: ../acces_refuse.php');
 }
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Préparation et exécution de la requête SQL
         $sql = "INSERT INTO prelevements (personnel_id, type_prelevement, montant_total, montant_recurrent, nombre_prelevements_restants, montant)
                 VALUES (:personnel_id, :type_prelevement, :montant_total, :montant_recurrent, :nombre_prelevements_restants, :montant)";
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':personnel_id' => $personnel_id,
@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $success_message = "Prélèvement enregistré avec succès !";
         $redirection_url = '../liste_personnel.php';
         $delay = 5;
-
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erreur lors de l'enregistrement : " . $e->getMessage();
         header("Location: ../liste_personnel.php");
@@ -53,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
     <script>
         let countdown = <?= $delay; ?>;
+
         function updateCountdown() {
             document.getElementById('countdown').innerText = countdown;
             if (countdown <= 0) {
@@ -99,12 +100,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setInterval(updateCountdown, 1000);
     </script>
 </head>
+
 <body>
 
-<div class="success-container">
-    <div class="success-msg"><?= htmlspecialchars($success_message); ?></div>
-    <div class="countdown">Vous serez redirigé vers la liste du personnel dans <span id="countdown"><?= $delay; ?></span> secondes.</div>
-</div>
+    <div class="success-container">
+        <div class="success-msg"><?= htmlspecialchars($success_message); ?></div>
+        <div class="countdown">Vous serez redirigé vers la liste du personnel dans <span id="countdown"><?= $delay; ?></span> secondes.</div>
+    </div>
 
+    <script src="js/style_script.js"></script>
 </body>
+
 </html>

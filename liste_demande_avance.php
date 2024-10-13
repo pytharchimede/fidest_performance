@@ -211,6 +211,7 @@ $demandes = $demandeAvance->lireDemandesAvances();
         });
     </script>
 
+    <script src="js/style_script.js"></script>
 </body>
 
 </html>

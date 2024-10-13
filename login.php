@@ -8,6 +8,7 @@ unset($_SESSION['error_message']);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@ unset($_SESSION['error_message']);
             align-items: center;
             height: 100vh;
         }
+
         .login-container {
             background-color: #fff;
             padding: 30px;
@@ -29,6 +31,7 @@ unset($_SESSION['error_message']);
             max-width: 400px;
             width: 100%;
         }
+
         .login-title {
             font-size: 24px;
             color: #1d2b57;
@@ -36,6 +39,7 @@ unset($_SESSION['error_message']);
             margin-bottom: 20px;
             text-align: center;
         }
+
         .login-btn {
             background-color: #1d2b57;
             color: #fff;
@@ -44,15 +48,18 @@ unset($_SESSION['error_message']);
             border-radius: 30px;
             width: 100%;
         }
+
         .login-btn:hover {
             background-color: #fabd02;
             color: #fff;
         }
+
         .error-msg {
             color: #ff3333;
             font-size: 14px;
             margin-top: 10px;
         }
+
         @media (max-width: 768px) {
             .login-container {
                 padding: 20px;
@@ -61,30 +68,33 @@ unset($_SESSION['error_message']);
         }
     </style>
 </head>
+
 <body>
 
-<div class="login-container">
-    <h1 class="login-title">Connexion</h1>
-    <form action="request/control.php" method="post">
-        <div class="form-group">
-            <label for="matricule">Numéro Matricule</label>
-            <input type="text" class="form-control" id="matricule" name="matricule" placeholder="Entrez votre matricule" required>
-        </div>
+    <div class="login-container">
+        <h1 class="login-title">Connexion</h1>
+        <form action="request/control.php" method="post">
+            <div class="form-group">
+                <label for="matricule">Numéro Matricule</label>
+                <input type="text" class="form-control" id="matricule" name="matricule" placeholder="Entrez votre matricule" required>
+            </div>
 
-        <!-- Affichage du champ mot de passe uniquement si la session le demande -->
-        <?php if(isset($_SESSION['demande_password']) && $_SESSION['demande_password']) { ?>
-        <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-        </div>
-        <?php } ?>
+            <!-- Affichage du champ mot de passe uniquement si la session le demande -->
+            <?php if (isset($_SESSION['demande_password']) && $_SESSION['demande_password']) { ?>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                </div>
+            <?php } ?>
 
-        <button type="submit" class="btn login-btn">Se connecter</button>
-        <?php if($error_message) { ?>
-            <div class="error-msg"><?= $error_message; ?></div>
-        <?php } ?>
-    </form>
-</div>
+            <button type="submit" class="btn login-btn">Se connecter</button>
+            <?php if ($error_message) { ?>
+                <div class="error-msg"><?= $error_message; ?></div>
+            <?php } ?>
+        </form>
+    </div>
 
+    <script src="js/style_script.js"></script>
 </body>
+
 </html>

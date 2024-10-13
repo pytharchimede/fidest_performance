@@ -1,8 +1,8 @@
-<?php 
+<?php
 session_start();
 if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: index.php");
-    exit();
+  header("Location: index.php");
+  exit();
 }
 
 // Inclure la classe Task
@@ -10,41 +10,43 @@ require_once 'model/Task.php';
 
 // Récupérer l'ID de la tâche
 if (isset($_GET['taskId'])) {
-    $taskId = intval($_GET['taskId']);
-    
-    // Récupérer les détails de la tâche
-    $taskObj = new Task();
-    $tache = $taskObj->getTaskById($taskId);
-    
-    // Récupérer les images stockées dans la tâche
-    $images = !empty($tache['images']) ? json_decode($tache['images'], true) : [];
-    $code_tache = $tache['task_code'];
-    $nb_images = count($images);
+  $taskId = intval($_GET['taskId']);
+
+  // Récupérer les détails de la tâche
+  $taskObj = new Task();
+  $tache = $taskObj->getTaskById($taskId);
+
+  // Récupérer les images stockées dans la tâche
+  $images = !empty($tache['images']) ? json_decode($tache['images'], true) : [];
+  $code_tache = $tache['task_code'];
+  $nb_images = count($images);
 } else {
-    header("Location: taches_en_attente.php");
-    exit();
+  header("Location: taches_en_attente.php");
+  exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Images de la Tâche N° <?=$code_tache?></title>
+  <title>Images de la Tâche N° <?= $code_tache ?></title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    
-    <!-- Menu mobile-friendly -->
+
+  <!-- Menu mobile-friendly -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <a class="navbar-brand text-primary" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="dashboard.php">Accueil</a>
         </li>
@@ -68,9 +70,9 @@ if (isset($_GET['taskId'])) {
   </nav>
   <div class="container mt-5">
 
-    <h2>Images de la Tâche N° <?=$code_tache?></h2>
+    <h2>Images de la Tâche N° <?= $code_tache ?></h2>
 
-    <h4>Nombre d'images trouvées : <?=$nb_images?></h4>
+    <h4>Nombre d'images trouvées : <?= $nb_images ?></h4>
 
     <?php if (!empty($images)) : ?>
       <div id="carouselTaskImages" class="carousel slide" data-ride="carousel">
@@ -99,5 +101,7 @@ if (isset($_GET['taskId'])) {
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/style_script.js"></script>
 </body>
+
 </html>

@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 $error_message = 'VIOLATION D\'ACCES';
 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,6 +62,7 @@ $error_message = 'VIOLATION D\'ACCES';
     </style>
     <script>
         let countdown = 5;
+
         function updateCountdown() {
             document.getElementById('countdown').innerText = countdown;
             if (countdown <= 0) {
@@ -71,20 +73,23 @@ $error_message = 'VIOLATION D\'ACCES';
         setInterval(updateCountdown, 1000);
     </script>
 </head>
+
 <body>
 
-<div class="error-container">
-    <div class="error-icon">
-        &#9888; <!-- Icône d'avertissement -->
+    <div class="error-container">
+        <div class="error-icon">
+            &#9888; <!-- Icône d'avertissement -->
+        </div>
+        <div class="error-msg"><?= htmlspecialchars($error_message); ?></div>
+        <div class="sub-msg">
+            Vous n'avez pas les autorisations nécessaires pour accéder à cette page.
+        </div>
+        <div class="countdown">
+            Vous serez redirigé dans <span id="countdown">5</span> secondes.
+        </div>
     </div>
-    <div class="error-msg"><?= htmlspecialchars($error_message); ?></div>
-    <div class="sub-msg">
-        Vous n'avez pas les autorisations nécessaires pour accéder à cette page.
-    </div>
-    <div class="countdown">
-        Vous serez redirigé dans <span id="countdown">5</span> secondes.
-    </div>
-</div>
 
+    <script src="js/style_script.js"></script>
 </body>
+
 </html>

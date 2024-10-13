@@ -92,6 +92,7 @@ $success_message = 'Soumission réussie !';
         </div>
     </div>
 
+    <script src="js/style_script.js"></script>
 </body>
 
 </html>

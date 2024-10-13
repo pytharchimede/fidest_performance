@@ -40,6 +40,7 @@ while ($row = $records->fetch()) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,9 +51,11 @@ while ($row = $records->fetch()) {
         body {
             background-color: #f8f9fa;
         }
+
         .container {
             margin-top: 20px;
         }
+
         table {
             border: 1px solid;
             border-collapse: collapse;
@@ -61,23 +64,28 @@ while ($row = $records->fetch()) {
             background-color: #fff;
             border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid;
             padding: 10px;
             text-align: center;
         }
+
         th {
             background-color: #007bff;
             color: white;
             font-weight: 500;
         }
+
         td {
             color: white;
         }
     </style>
 </head>
+
 <body>
     <!-- Menu mobile-friendly -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -110,14 +118,14 @@ while ($row = $records->fetch()) {
                 <?php endforeach; ?>
                 <th>Total Jours Travaillés</th>
             </tr>
-            <?php $i=0; ?>
+            <?php $i = 0; ?>
             <?php foreach ($pointages as $nom => $statuts): $i++; ?>
                 <tr>
                     <td style="color:#000;"><?php echo htmlspecialchars($i); ?></td>
                     <td style="color:#000;"><?php echo htmlspecialchars($nom); ?></td>
-                    <?php 
-                    $totalJoursTravailles = 0; 
-                    foreach (new DatePeriod(new DateTime($dateDebut), new DateInterval('P1D'), new DateTime($dateFin . ' +1 day')) as $date): 
+                    <?php
+                    $totalJoursTravailles = 0;
+                    foreach (new DatePeriod(new DateTime($dateDebut), new DateInterval('P1D'), new DateTime($dateFin . ' +1 day')) as $date):
                         $dateFormat = $date->format("Y-m-d");
                         $statut = isset($statuts[$dateFormat]) ? $statuts[$dateFormat] : 'Absent';
                         $couleur = ($statut === 'Présent') ? '#28a745' : '#dc3545'; // Vert pour présent, rouge pour absent
@@ -132,7 +140,9 @@ while ($row = $records->fetch()) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/style_script.js"></script>
 </body>
+
 </html>
 
 <?php

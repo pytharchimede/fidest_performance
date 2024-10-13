@@ -1,17 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['id_personnel_tasks'])) {
-        header("Location: index.php");
-        exit();
-    }
+if (!isset($_SESSION['id_personnel_tasks'])) {
+  header("Location: index.php");
+  exit();
+}
 
-    include('header_report_task.php');
+include('header_report_task.php');
 
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,12 +20,13 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  
+
   <style>
     .container {
       max-width: 600px;
       margin-top: 50px;
     }
+
     .soft-design {
       background-color: #f9f9f9;
       border: 1px solid #ddd;
@@ -32,15 +34,18 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
+
     .soft-design h3 {
       color: #1d2b57;
     }
+
     .btn-submit {
       background-color: #1d2b57;
       color: #fff;
     }
   </style>
 </head>
+
 <body>
 
   <!-- Menu mobile-friendly -->
@@ -50,7 +55,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="dashboard.php">Accueil</a>
         </li>
@@ -73,35 +78,37 @@
     </div>
   </nav>
 
-    <div class="container">
+  <div class="container">
     <div class="soft-design">
-        <h3>Demande Report Tâche N° <?=$task['task_code']?></h3>
-        <p>Votre deadline actuelle pour cette tâche est <strong><?= htmlspecialchars($dateEnFrancais); ?></strong>.</p>
-        <p>Vous désirez la reporter pour quand ?</p>
-        
-        <form action="request/submit_report_request.php" method="post">
-            <div class="form-group">
-                <input type="hidden" name="task_id" value="<?= $task_id; ?>">
-                
-                <label for="new_deadline">Nouvelle date proposée :</label>
-                <input type="datetime-local" name="date_report_propose" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="motif_report">Motif de la demande de report :</label>
-                <textarea name="motif_report" class="form-control" rows="3" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-submit">
-                <i class="fas fa-paper-plane"></i> Envoyer la Demande
-            </button>
-        </form>
+      <h3>Demande Report Tâche N° <?= $task['task_code'] ?></h3>
+      <p>Votre deadline actuelle pour cette tâche est <strong><?= htmlspecialchars($dateEnFrancais); ?></strong>.</p>
+      <p>Vous désirez la reporter pour quand ?</p>
+
+      <form action="request/submit_report_request.php" method="post">
+        <div class="form-group">
+          <input type="hidden" name="task_id" value="<?= $task_id; ?>">
+
+          <label for="new_deadline">Nouvelle date proposée :</label>
+          <input type="datetime-local" name="date_report_propose" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="motif_report">Motif de la demande de report :</label>
+          <textarea name="motif_report" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-submit">
+          <i class="fas fa-paper-plane"></i> Envoyer la Demande
+        </button>
+      </form>
 
     </div>
-    </div>
+  </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/style_script.js"></script>
 </body>
+
 </html>

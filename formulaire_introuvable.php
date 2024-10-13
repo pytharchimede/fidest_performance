@@ -1,8 +1,9 @@
 <?php
-   $nom_form = $_GET['nom_form'];
+$nom_form = $_GET['nom_form'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,9 +37,12 @@
         }
 
         @keyframes bounce {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -69,6 +73,7 @@
             0% {
                 width: 0;
             }
+
             100% {
                 width: 100%;
             }
@@ -94,6 +99,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -113,8 +119,9 @@
     <script>
         setTimeout(function() {
             window.location.href = 'demande_<?php echo $_GET['nom_form']; ?>.php';
-        }, 10000); 
+        }, 10000);
     </script>
+    <script src="js/style_script.js"></script>
 </body>
-</html>
 
+</html>

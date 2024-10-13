@@ -99,6 +99,7 @@ include('header_taches_en_attente.php');
 
   </script>
 
+  <script src="js/style_script.js"></script>
 </body>
 
 </html>

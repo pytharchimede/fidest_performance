@@ -145,6 +145,7 @@ $heure_actuelle = date('H:i'); // Obtenir l'heure actuelle au format HH:MM
       });
     }
   </script>
+  <script src="js/style_script.js"></script>
 </body>
 
 </html>
