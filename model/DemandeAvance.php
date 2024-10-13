@@ -14,7 +14,7 @@ class DemandeAvance
     public function ajouterDemandeAvance($nom, $matricule, $fonction, $service, $motif, $montant, $date_creat, $statut)
     {
         $sql = "INSERT INTO demande_avance_salaire (nom, matricule, fonction, service, motif, montant, date_creat, statut) 
-                VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$nom, $matricule, $fonction, $service, $motif, $montant, $date_creat, $statut]);
     }

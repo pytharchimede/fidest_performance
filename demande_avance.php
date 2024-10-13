@@ -1,6 +1,7 @@
 <?php include('header_demande_avance.php'); ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <link href="css/style_demande.css" rel="stylesheet" />
 </head>
+
 <body>
 
     <div class="main-container">
-
         <div class="container">
             <div class="main-title-container">
                 <h1 class="main-title">Demande d'avance sur salaire</h1>
@@ -25,25 +26,25 @@
                 <div class="form-group">
                     <label for="nom">NOM ET PRENOM(S)</label>
                     <i class="fas fa-user icon"></i>
-                    <input type="text" id="nom" name="nom" value="<?=strtoupper($employeeDetails['nom_personnel_tasks'])?>" readonly required>
+                    <input type="text" id="nom" name="nom" value="<?= strtoupper($employeeDetails['nom_personnel_tasks']) ?>" readonly required>
                 </div>
 
                 <div class="form-group">
                     <label for="matricule">N° Matricule</label>
                     <i class="fas fa-id-card icon"></i>
-                    <input type="text" id="matricule" name="matricule" value="<?=strtoupper($employeeDetails['matricule_personnel_tasks'])?>" readonly required>
+                    <input type="text" id="matricule" name="matricule" value="<?= strtoupper($employeeDetails['matricule_personnel_tasks']) ?>" readonly required>
                 </div>
 
                 <div class="form-group">
                     <label for="fonction">FONCTION</label>
                     <i class="fas fa-briefcase icon"></i>
-                    <input type="text" id="fonction" name="fonction" value="<?=strtoupper($fonction['lib_fonction_tasks'])?>" readonly required>
+                    <input type="text" id="fonction" name="fonction" value="<?= strtoupper($fonction['lib_fonction_tasks']) ?>" readonly required>
                 </div>
 
                 <div class="form-group">
                     <label for="service">SERVICE</label>
                     <i class="fas fa-building icon"></i>
-                    <input type="text" id="service" name="service" value="<?=strtoupper($service['lib_service_tasks'])?>" readonly required>
+                    <input type="text" id="service" name="service" value="<?= strtoupper($service['lib_service_tasks']) ?>" readonly required>
                 </div>
 
                 <div class="form-group">
@@ -80,9 +81,9 @@
         //         event.preventDefault();
 
         //         var dataString = 'nom='+$('#nom').val()+'&matricule='+$('#matricule').val()+'&fonction='+$('#fonction').val()+'&service='+$('#service').val()+'&motif='+$('#motif').val()+'&montant='+$('#montant').val();
- 
+
         //         console.log(dataString);
-                
+
         //         $.ajax({
         //             url: 'request/insert_demande_avance.php',
         //             type: 'POST',
@@ -102,4 +103,5 @@
     </script>
 
 </body>
+
 </html>

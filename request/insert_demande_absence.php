@@ -38,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dateDepart,
         $dateRetour,
         $nombreJours,
-        $statut
+        $statut,
+        $dateCreat
     );
 
     // Vérifier le résultat de l'insertion
