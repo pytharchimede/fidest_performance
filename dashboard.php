@@ -140,42 +140,6 @@ include('header_dashboard.php');
     </div>
 
 
-
-    <div class="row">
-      <!-- Tâches section -->
-      <div class="col-lg-6 col-md-12 mb-4">
-        <div class="card bg-white shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title text-secondary">Tâches</h5>
-            <ul class="list-group">
-              <li class="list-group-item en-attente">
-                <i class="fas fa-hourglass-half icon-en-attente"></i>
-                <a href="taches_en_attente.php">En Attente:
-                  <span class="badge badge-warning"><?php echo $nbTachesEnAttente; ?></span></a>
-              </li>
-              <li class="list-group-item effectuees">
-                <i class="fas fa-check-circle icon-effectuees"></i>
-                <a href="taches_terminees.php">Effectuées:
-                  <span class="badge badge-success"><?php echo $nbTachesOk; ?></span></a>
-              </li>
-              <li class="list-group-item rejetees">
-                <i class="fas fa-times-circle icon-rejetees"></i>
-                <h5 class="card-title text-secondary">Rejetées:
-                  <span class="badge badge-danger"><?php echo $nbTachesRefusees; ?></span>
-                </h5>
-              </li>
-              <li class="list-group-item annulees">
-                <i class="fas fa-ban icon-annulees"></i>
-                <h5 class="card-title text-secondary">Annulées:
-                  <span class="badge badge-secondary"><?php echo $nbTachesAnnulees; ?></span>
-                </h5>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <!-- Tâches section -->
       <div class="col-lg-6 col-md-12 mb-4">

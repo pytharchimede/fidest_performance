@@ -31,7 +31,7 @@ if (isset($_SESSION['id_personnel_tasks'])) {
 }
 
 
-$currentDay = date(format: 'j');
+$currentDay = date('j');
 
 if ($currentDay < 15) {
     header('Location: acces_refuse.php');

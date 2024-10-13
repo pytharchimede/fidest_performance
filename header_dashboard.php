@@ -109,4 +109,4 @@ $totalTimeRestantSec = $totalTimeTotalSec - $totalTimeEffectueesSec;
 $totalTimeRestantHrs = floor($totalTimeRestantSec / 3600);
 $totalTimeRestantMin = floor(($totalTimeRestantSec % 3600) / 60);
 
-$currentDay = date(format: 'j');
+$currentDay = date('j');
