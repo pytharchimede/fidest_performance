@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demande de permission d'absence</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="plugins/css/all.min.css">
+    <script src="plugins/js/jquery-3.6.0.min.js"></script>
     <!-- Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="plugins/css/select2.min.css" rel="stylesheet" />
     <link href="css/style_demande.css" rel="stylesheet" />
 </head>
 
@@ -75,7 +75,8 @@
     </div>
 
     <!-- Select2 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="plugins/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function() {
             // Calculer la date de retour lors du changement de la date de départ ou du nombre de jours

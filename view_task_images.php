@@ -33,7 +33,7 @@ if (isset($_GET['taskId'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Images de la Tâche N° <?= $code_tache ?></title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -100,7 +100,7 @@ if (isset($_GET['taskId'])) {
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="plugins/js/bootstrap.min.js"></script>
   <script src="js/style_script.js"></script>
 </body>
 

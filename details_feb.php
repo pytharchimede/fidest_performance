@@ -51,8 +51,8 @@ $isAccepterDisabled = false;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la Fiche d'Expression de Besoin</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/css/all.min.css">
     <link rel="stylesheet" href="css/style_detail_besoin.css">
 </head>
 
@@ -222,7 +222,7 @@ $isAccepterDisabled = false;
     </button>
 
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="plugins/js/bootstrap.min.js"></script>
     <script src="js/function_detail_besoin.js"></script>
     <script src="js/style_script.js"></script>
 </body>

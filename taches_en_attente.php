@@ -16,8 +16,8 @@ include('header_taches_en_attente.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tâches en Attente</title>
   <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plugins/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style_taches_en_attente.css" rel="stylesheet">
   <!-- Animation de clignotement pour les tâches expirées -->
@@ -89,10 +89,10 @@ include('header_taches_en_attente.php');
   </div>
 
   <!-- Intégration de Bootstrap JS et dépendances -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="plugins/js/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="plugins/js/bootstrap.min.js"></script>
+  <script src="plugins/js/jquery-3.6.0.min.js"></script>
   <script src="js/script_taches_en_attente.js"></script>
 
   <script>
