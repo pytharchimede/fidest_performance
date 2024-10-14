@@ -163,6 +163,7 @@ $nbPersonnels = count($personnels);
       <a href="ajouter_personnel.php" class="btn btn-info"><i class="fas fa-plus"></i> Ajouter</a>
       <a href="ajouter_personnel.php" class="btn btn-success"><i class="fa fa-file-excel"></i> Salaires</a>
       <a href="view_pointage_web.php" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Pointages</a>
+      <a href="print_all_badge.php" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Badges</a>
     </div>
     <ul class="list-group">
 

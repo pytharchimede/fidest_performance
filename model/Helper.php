@@ -37,6 +37,10 @@ class Helper
 
     public function dateEnFrancaisSansHeure($date_time)
     {
+        if (!$date_time) {
+            return 'Date non définie'; // Retourner un message ou une valeur par défaut si la date est nulle
+        }
+
         // Créer un objet IntlDateFormatter pour formater la date sans l'heure
         $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
         $formatter->setPattern('EEEE d MMMM yyyy');
