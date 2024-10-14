@@ -1,0 +1,53 @@
+.main-container {
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+.main-title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+.logs-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.log-entry {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.log-entry p {
+    margin: 0;
+}
+
+.log-entry .log-date,
+.log-entry .log-heure {
+    color: #555;
+    font-size: 14px;
+}
+
+.log-entry .log-ip {
+    color: #007BFF;
+}
+
+.log-entry .log-agent {
+    color: #FF6347;
+}
+
+.log-entry .log-matricule {
+    font-weight: bold;
+    color: #333;
+}

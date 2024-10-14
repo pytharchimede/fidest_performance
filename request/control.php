@@ -3,10 +3,12 @@ session_start();
 // Inclure la connexion à la base de données
 require_once '../model/Database.php';
 require_once '../model/Personnel.php';
+require_once '../model/TracabilitePerformance.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matricule = $_POST['matricule'];
-    $password = $_POST['password']; // Obtenir le mot de passe du formulaire
+    $password = $_POST['password'] ? $_POST['password'] : ''; // Obtenir le mot de passe du formulaire
 
     // Obtenir la connexion PDO
     $pdo = Database::getConnection();
@@ -79,6 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPassword = hash("sha512", $password); // Hacher le mot de passe fourni
         if ($hashedPassword === $row['password_personnel_tasks']) {
             // Connexion réussie
+
+            // Ajout de la traçabilité
+            $tracabilite = new TracabilitePerformance($pdo); // Instancier la classe Tracabilite
+            $libelle = "Connexion de " . $_SESSION['nom_personnel_tasks'] . " ";
+            $tracabilite->enregistrerAction($libelle); // Enregistrer l'action de traçabilité
+
             // Redirection vers le tableau de bord
             header("Location: ../dashboard.php");
             exit();

@@ -9,7 +9,6 @@
             <li class="nav-item"><a class="nav-link" href="dashboard.php">Accueil</a></li>
             <li class="nav-item"><a class="nav-link" href="liste_personnel.php">Personnel</a></li>
             <li class="nav-item"><a class="nav-link" href="pointage_personnel.php">Pointage</a></li>
-            <li class="nav-item"><a class="nav-link" href="taches_en_attente.php">Tâches</a></li>
             <li class="nav-item"><a class="nav-link" href="demandes_report.php">Report</a></li>
             <li class="nav-item"><a class="nav-link" href="liste_demande_avance.php">Avances</a></li>
             <li class="nav-item"><a class="nav-link" href="liste_demande_pret.php">Prêt</a></li>

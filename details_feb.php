@@ -58,6 +58,9 @@ $isAccepterDisabled = false;
 
 <body>
 
+    <?php include 'menu.php'; ?>
+
+
     <div class="container">
         <h1 class="page-title">Détails de la Fiche d'Expression de Besoin</h1>
 

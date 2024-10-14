@@ -77,6 +77,11 @@ $demandes = $demandePret->lireDemandesPrets();
             font-size: 1.5em;
         }
 
+        .container-fluid {
+            padding-top: 70px;
+            /* Ajustez cette valeur selon la hauteur de votre navbar */
+        }
+
         /**Demandes cards */
     </style>
 </head>
@@ -86,7 +91,7 @@ $demandes = $demandePret->lireDemandesPrets();
     <?php include 'menu.php'; ?>
 
 
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="row mb-4">
             <div class="col-md-12">
                 <form id="searchForm">

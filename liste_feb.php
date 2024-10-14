@@ -94,41 +94,22 @@ $fiches = $ficheExpression->listerFichesEnAttente();
         .nav-link.active {
             font-weight: bold;
         }
+
+
+        .container-fluid {
+            padding-top: 70px;
+            /* Ajustez cette valeur selon la hauteur de votre navbar */
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Menu de Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <a class="navbar-brand text-primary" href="dashboard.php"><i class="fas fa-chart-line"></i> Tableau de Bord</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="dashboard.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="liste_personnel.php">Personnel</a></li>
-                <li class="nav-item"><a class="nav-link" href="pointage_personnel.php">Pointage</a></li>
-                <li class="nav-item"><a class="nav-link" href="taches_en_attente.php">Tâches</a></li>
-                <li class="nav-item"><a class="nav-link" href="demandes_report.php">Demandes de report</a></li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_avance.php">Demandes d'avances</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_pret.php">Demandes de prêt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="liste_demande_absence.php">Demandes d'absence</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include 'menu.php'; ?>
 
     <!-- Page de Liste des Fiches d'Expression de Besoin (FEB) -->
-    <div class="container">
+    <div class="container-fluid mt-5">
         <h1 class="page-title">Liste des Fiches d'Expression de Besoin (FEB)</h1>
 
         <div class="row">
@@ -158,6 +139,8 @@ $fiches = $ficheExpression->listerFichesEnAttente();
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/style_script.js"></script>
 </body>
