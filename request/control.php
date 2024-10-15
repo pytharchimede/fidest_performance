@@ -69,20 +69,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['acces_besoin'] = $row['acces_besoin'];
         $_SESSION['nombre_connection'] = $row['nombre_connection'];
 
+        // Compter le nombre de connections
+        $nbreConnection = intval($row['nombre_connection']);
+        $new_nombre_connection = $nbreConnection + 1; // Incrémentation correcte
 
-        //Compter le nombre de connections
-        $nbreConnection = $row['nombre_connection'];
-        $newNombreConnection = $nbreConnection++;
-
-        //Mettre à jour le nombre de connections
-        $sqlConnection = "UPDATE personnel_tasks SET nombre_connection = :new_nombre_connection";
+        // Mettre à jour le nombre de connections
+        $sqlConnection = "UPDATE personnel_tasks SET nombre_connection = :new_nombre_connection WHERE matricule_personnel_tasks = :matricule";
         $stmtConnection = $pdo->prepare($sqlConnection);
-        $stmtConnection->bindParam(':newNombreConnection', $newNombreConnection, PDO::PARAM_STR);
+
+        // Liez les paramètres
+        $stmtConnection->bindParam(':new_nombre_connection', $new_nombre_connection, PDO::PARAM_INT); // Changer en PDO::PARAM_INT
+        $stmtConnection->bindParam(':matricule', $_SESSION['matricule_personnel_tasks'], PDO::PARAM_STR); // Liez le matricule
+
+        // Exécutez la requête
         $stmtConnection->execute();
-
-
-
-
 
         // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour
         if (empty($row['email_personnel_tasks']) || empty($row['tel_personnel_tasks']) || empty($row['password_personnel_tasks'])) {
