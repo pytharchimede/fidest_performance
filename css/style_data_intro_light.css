@@ -1,0 +1,64 @@
+.introjs-tooltip {
+    border-radius: 12px;
+    background-color: #f0f4f8;
+    /* Une couleur claire pour contraster avec ton design */
+    color: #007BFF;
+    /* Bleu pour le texte selon ton design */
+    font-family: 'Montserrat', sans-serif;
+    /* En cohérence avec ta police préférée */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Une légère ombre pour un effet 'wahou' */
+    border: 2px solid #007BFF;
+    /* Encadré avec la couleur bleue */
+}
+
+.introjs-arrow {
+    border-color: #007BFF;
+    /* Bordure bleue pour la flèche */
+}
+
+.introjs-helperNumberLayer {
+    background-color: #007BFF;
+    /* La couleur du numéro dans la bulle */
+    color: #ffffff;
+    border-radius: 50%;
+    /* Pour un effet arrondi et élégant */
+}
+
+.introjs-button {
+    background-color: #007BFF;
+    /* Bouton bleu */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.introjs-button:hover {
+    background-color: #0056b3;
+    /* Légère variation de bleu au survol */
+}
+
+.introjs-skipbutton {
+    background-color: transparent;
+    color: #007BFF;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.introjs-bullets li {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.introjs-tooltipReferenceLayer {
+    border: 2px dashed #007BFF;
+    /* Encadré des éléments sélectionnés */
+    padding: 10px;
+    border-radius: 8px;
+}

@@ -231,3 +231,98 @@ hr {
     background-color: #f8f9fa;
     /* Couleur de fond quand on fait défiler la page */
 }
+
+
+/*Begin Data intro style*/
+
+
+.introjs-tooltip {
+    border-radius: 12px;
+    background-color: #f0f4f8;
+    /* Une couleur claire pour contraster avec ton design */
+    color: #007BFF;
+    /* Bleu pour le texte selon ton design */
+    font-family: 'Montserrat', sans-serif;
+    /* En cohérence avec ta police préférée */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Une légère ombre pour un effet 'wahou' */
+    border: 2px solid #007BFF;
+    /* Encadré avec la couleur bleue */
+}
+
+.introjs-arrow {
+    border-color: #007BFF;
+    /* Bordure bleue pour la flèche */
+}
+
+.introjs-helperNumberLayer {
+    background-color: #007BFF;
+    /* La couleur du numéro dans la bulle */
+    color: #ffffff;
+    border-radius: 50%;
+    /* Pour un effet arrondi et élégant */
+}
+
+.introjs-button {
+    background-color: #007BFF;
+    /* Bouton bleu */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.introjs-button:hover {
+    background-color: #0056b3;
+    /* Légère variation de bleu au survol */
+}
+
+.introjs-skipbutton {
+    background-color: transparent;
+    color: #007BFF;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.introjs-bullets li {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.introjs-tooltipReferenceLayer {
+    border: 2px dashed #007BFF;
+    /* Encadré des éléments sélectionnés */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+/*Boutton d'aide*/
+#startIntro {
+    background-color: #007BFF; /* Bleu selon ton design */
+    color: white; /* Texte blanc pour un bon contraste */
+    font-family: 'Montserrat', sans-serif; /* Police préférée */
+    font-size: 16px; /* Taille de texte agréable */
+    font-weight: bold; /* Texte en gras pour bien démarquer le bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 8px; /* Coins arrondis pour un effet élégant */
+    padding: 12px 24px; /* Espace intérieur pour un bon rendu */
+    cursor: pointer; /* Curseur en forme de main pour l'interactivité */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet de profondeur */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transitions douces */
+}
+
+#startIntro:hover {
+    background-color: #0056b3; /* Couleur plus foncée au survol */
+    transform: translateY(-2px); /* Légère remontée au survol pour un effet interactif */
+}
+
+#startIntro:active {
+    background-color: #003f7f; /* Couleur encore plus foncée lors du clic */
+    transform: translateY(0); /* Remet à sa position d'origine lors du clic */
+}

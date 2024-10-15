@@ -67,6 +67,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['acces_avance'] = $row['acces_avance'];
         $_SESSION['acces_absence'] = $row['acces_absence'];
         $_SESSION['acces_besoin'] = $row['acces_besoin'];
+        $_SESSION['nombre_connection'] = $row['nombre_connection'];
+
+
+        //Compter le nombre de connections
+        $nbreConnection = $row['nombre_connection'];
+        $newNombreConnection = $nbreConnection++;
+
+        //Mettre à jour le nombre de connections
+        $sqlConnection = "UPDATE personnel_tasks SET nombre_connection = :new_nombre_connection";
+        $stmtConnection = $pdo->prepare($sqlConnection);
+        $stmtConnection->bindParam(':newNombreConnection', $newNombreConnection, PDO::PARAM_STR);
+        $stmtConnection->execute();
+
+
 
 
 

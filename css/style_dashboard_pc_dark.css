@@ -220,3 +220,73 @@ hr {
     background-color: #0056b3;
     /* Couleur de fond quand on fait défiler la page */
 }
+
+
+/*Data intro style */
+
+
+.introjs-tooltip {
+    border-radius: 12px;
+    background-color: #1e1e2f;
+    /* Fond sombre pour s'accorder au thème dark */
+    color: #ffffff;
+    /* Texte blanc pour un contraste fort */
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Ombre plus prononcée pour un effet 'wahou' */
+    border: 2px solid #007BFF;
+    /* Encadré bleu vif pour un accent de couleur */
+}
+
+.introjs-arrow {
+    border-color: #007BFF;
+    /* Bordure bleue pour la flèche */
+}
+
+.introjs-helperNumberLayer {
+    background-color: #007BFF;
+    /* La couleur du numéro dans la bulle */
+    color: #ffffff;
+    border-radius: 50%;
+    /* Pour un effet arrondi et élégant */
+}
+
+.introjs-button {
+    background-color: #007BFF;
+    /* Bouton bleu */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.introjs-button:hover {
+    background-color: #0056b3;
+    /* Variation plus foncée de bleu au survol */
+}
+
+.introjs-skipbutton {
+    background-color: transparent;
+    color: #007BFF;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.introjs-bullets li {
+    background-color: #007BFF;
+    color: #ffffff;
+}
+
+.introjs-tooltipReferenceLayer {
+    border: 2px dashed #007BFF;
+    /* Encadré des éléments sélectionnés */
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(30, 30, 47, 0.8);
+    /* Légère transparence pour un effet stylisé */
+}
