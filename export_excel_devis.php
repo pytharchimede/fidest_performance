@@ -2,8 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['id_personnel_tasks'])) {
-    header("Location: index.php");
-    exit();
+  header("Location: index.php");
+  exit();
 }
 
 require_once 'model/Database.php';
@@ -28,7 +28,7 @@ $description = str_replace(' ', '_', $description); // Remplace les espaces par 
 
 // Créer le fichier Excel
 header('Content-Type: application/vnd.ms-excel; charset=UTF-8');
-header('Content-Disposition: attachment; filename="Devis_' . $description . '_' . $ficheId . '.xls"');
+header('Content-Disposition: attachment; filename="Devis_besoin_' . $ficheId . '.xls"');
 header('Cache-Control: max-age=0');
 
 echo "<table border='1'>";
@@ -44,10 +44,10 @@ $totalGeneral = 0;
 $i = 0;
 
 foreach ($besoins as $besoin) {
-    $prixTotal = $besoin['quantite'] * $besoin['prix_unitaire'];
-    $totalGeneral += $prixTotal;
-    $i++;
-    echo "<tr>
+  $prixTotal = $besoin['quantite'] * $besoin['prix_unitaire'];
+  $totalGeneral += $prixTotal;
+  $i++;
+  echo "<tr>
             <td>" . mb_convert_encoding($i, 'ISO-8859-1', 'UTF-8') . "</td>
             <td>" . mb_convert_encoding(htmlspecialchars($besoin['objet']), 'ISO-8859-1', 'UTF-8') . "</td>
             <td>" . mb_convert_encoding(htmlspecialchars($besoin['quantite']), 'ISO-8859-1', 'UTF-8') . "</td>

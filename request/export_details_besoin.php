@@ -170,7 +170,7 @@ $pdf->Cell(0, 10, mb_convert_encoding('Les chemins ci-dessous sont cliquables po
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetTextColor(0, 0, 255); // Couleur bleu pour les liens
 foreach ($files as $fichier) {
-    $filePath = htmlspecialchars($fichier['file_path']);
+    $filePath = htmlspecialchars('https://fidest.ci/performance/request/' . $fichier['file_path']);
     $pdf->Cell(0, 10, $filePath, 0, 1, 'L', false, $filePath); // Lien cliquable
     $y = $pdf->GetY(); // Obtenir la position Y actuelle
     $pdf->Line($pdf->GetX(), $y - 1, $pdf->GetX() + $pdf->GetStringWidth($filePath), $y - 1); // Dessiner une ligne sous le texte
