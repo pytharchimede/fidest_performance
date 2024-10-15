@@ -18,7 +18,7 @@ include('header_report_task.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demande de Report de Tâche</title>
   <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-  <link href="plugins/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="css/style.css" rel="stylesheet">
 
   <style>

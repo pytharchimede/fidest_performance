@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['valid_besoin'] != 1) {
+if ($_SESSION['acces_besoin'] != 1) {
     header('Location: acces_refuse.php');
 }
 require_once 'model/Database.php';
@@ -37,7 +37,7 @@ $fiches = $ficheExpression->listerFichesEnAttente();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Fiches d'Expression de Besoin (FEB)</title>
     <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="plugins/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             background-color: #f4f6f9;

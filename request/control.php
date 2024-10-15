@@ -66,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['acces_pret'] = $row['acces_pret'];
         $_SESSION['acces_avance'] = $row['acces_avance'];
         $_SESSION['acces_absence'] = $row['acces_absence'];
+        $_SESSION['acces_besoin'] = $row['acces_besoin'];
+
 
 
         // Si l'email, téléphone ou mot de passe ne sont pas définis, rediriger vers la page de mise à jour

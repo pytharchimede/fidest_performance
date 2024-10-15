@@ -24,7 +24,7 @@ $helperObj = new Helper();
   <title>Demandes de Report</title>
   <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
   <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-  <link href="plugins/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="css/style.css" rel="stylesheet">
 
   <style>

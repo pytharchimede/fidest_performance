@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_personnel_tasks'])) {
     exit();
 }
 
-if ($_SESSION['acces_rh'] != 1) {
+if ($_SESSION['acces_besoin'] != 1) {
     header('Location: acces_refuse.php');
 }
 
@@ -52,7 +52,7 @@ $isAccepterDisabled = false;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la Fiche d'Expression de Besoin</title>
     <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="plugins/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style_detail_besoin.css">
 </head>
 
@@ -169,13 +169,15 @@ $isAccepterDisabled = false;
 
         <div class="mt-4">
             <a href="liste_feb.php" class="btn-custom"><i class="fas fa-arrow-left"></i> Retour</a>
-            <a href="request/refuser_feb.php?id=<?= $ficheId ?>" class="btn-custom" style="background-color: #dc3545;">Refuser</a>
-            <a href="request/accepter_feb.php?id=<?= $ficheId ?>" class="btn-custom <?= $isAccepterDisabled ? 'disabled' : '' ?>" style="background-color: <?= $isAccepterDisabled ? '#6c757d' : '#28a745' ?>;" title="<?= $isAccepterDisabled ? 'Un ou plusieurs besoins n\'ont pas de prix défini.' : '' ?>">
-                Accepter
-                <?php if ($isAccepterDisabled): ?>
-                    <span class="tooltip" style="margin-left: 5px;">(Besoins sans prix)</span>
-                <?php endif; ?>
-            </a>
+            <?php if ($_SESSION['valid_besoin'] == 1) { ?>
+                <a href="request/refuser_feb.php?id=<?= $ficheId ?>" class="btn-custom" style="background-color: #dc3545;">Refuser</a>
+                <a href="request/accepter_feb.php?id=<?= $ficheId ?>" class="btn-custom <?= $isAccepterDisabled ? 'disabled' : '' ?>" style="background-color: <?= $isAccepterDisabled ? '#6c757d' : '#28a745' ?>;" title="<?= $isAccepterDisabled ? 'Un ou plusieurs besoins n\'ont pas de prix défini.' : '' ?>">
+                    Accepter
+                    <?php if ($isAccepterDisabled): ?>
+                        <span class="tooltip" style="margin-left: 5px;">(Besoins sans prix)</span>
+                    <?php endif; ?>
+                </a>
+            <?php } ?>
         </div>
 
     </div>

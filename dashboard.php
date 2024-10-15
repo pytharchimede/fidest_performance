@@ -16,7 +16,7 @@ include('header_dashboard.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Salarié</title>
     <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-    <link href="plugins/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style_dashboard.css" rel="stylesheet">
     <link href="plugins/css/montserrat" rel="stylesheet">
@@ -351,7 +351,7 @@ include('header_dashboard.php');
                                     </a>
                                 <?php else: ?>
                                     <a href="javascript:void();" class="d-flex align-items-center text-muted btn-link-disabled" title="Disponible à partir du 15">
-                                        <i class="fas fa-money-bill-alt icon-custom"></i> Demande d'Avance (disponible après le 15)
+                                        <i class="fas fa-money-bill-alt icon-custom"></i> Demande d'Avance (disponible à partir le 15)
                                     </a>
                                 <?php endif; ?>
                             </li>

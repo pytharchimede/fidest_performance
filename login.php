@@ -14,6 +14,8 @@ unset($_SESSION['error_message']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - Personnel</title>
     <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lien vers Font Awesome pour l'icône d'œil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             background-color: #f7f7f7;
@@ -66,6 +68,18 @@ unset($_SESSION['error_message']);
                 max-width: 300px;
             }
         }
+
+        /** Oeil visualisation de mot de passe */
+        .field-icon {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            cursor: pointer;
+        }
+
+        .position-relative {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -81,9 +95,10 @@ unset($_SESSION['error_message']);
 
             <!-- Affichage du champ mot de passe uniquement si la session le demande -->
             <?php if (isset($_SESSION['demande_password']) && $_SESSION['demande_password']) { ?>
-                <div class="form-group">
+                <div class="form-group position-relative">
                     <label for="password">Mot de passe</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
             <?php } ?>
 
@@ -95,6 +110,21 @@ unset($_SESSION['error_message']);
     </div>
 
     <script src="js/style_script.js"></script>
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            let passwordInput = document.querySelector('#password');
+            let icon = this;
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        });
+    </script>
 </body>
 
 </html>

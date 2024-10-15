@@ -17,7 +17,7 @@ include('header_taches_en_attente.php');
   <title>Tâches en Attente</title>
   <!-- Intégration de Bootstrap et FontAwesome pour les icônes -->
   <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
-  <link href="plugins/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style_taches_en_attente.css" rel="stylesheet">
   <!-- Animation de clignotement pour les tâches expirées -->
