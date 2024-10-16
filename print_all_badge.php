@@ -165,7 +165,7 @@ $allEmployees = $personnelObj->listerPersonnel();
                     <div class="info">
                         <h2 class="document-name">CARTE PROFESSIONNELLE</h2>
                         <h2 class="employee-name"><?= strtoupper($employeeDetails['nom_personnel_tasks']) ?></h2>
-                        <p class="employee-profession"><em> <?= is_array($fonction) && isset($fonction['lib_fonction_tasks']) && $fonction['lib_fonction_tasks'] != 0
+                        <p class="employee-profession"><em> <?= is_array($fonction) && isset($fonction['lib_fonction_tasks']) && $fonction['lib_fonction_tasks'] != ''
                                                                 ? $fonction['lib_fonction_tasks']
                                                                 : 'Non Définie' ?></em></p>
                         <p class="employee-id">Matricule: <?= strtoupper($employeeDetails['matricule_personnel_tasks']) ?></p>
