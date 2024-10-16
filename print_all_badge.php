@@ -8,10 +8,7 @@ $personnelObj = new Personnel();
 $helperObj = new Helper();
 $fonctionObj = new Fonction();
 
-
-
 $allEmployees = $personnelObj->listerPersonnel();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,9 +30,7 @@ $allEmployees = $personnelObj->listerPersonnel();
         .badge-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* 2 badges par ligne */
             gap: 20px;
-            /* Espace entre les badges */
             margin-top: 50px;
             padding: 20px;
         }
@@ -46,7 +41,6 @@ $allEmployees = $personnelObj->listerPersonnel();
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 8, 5cm;
             height: 5, 5cm;
-            /* Occupe toute la colonne */
             padding: 20px;
             display: flex;
             align-items: flex-start;
@@ -139,6 +133,12 @@ $allEmployees = $personnelObj->listerPersonnel();
             height: auto;
             margin-top: 5px;
         }
+
+        @media print {
+            .badge-card:nth-child(10n) {
+                page-break-after: always;
+            }
+        }
     </style>
 </head>
 
@@ -150,7 +150,7 @@ $allEmployees = $personnelObj->listerPersonnel();
             $attendanceData = $personnelObj->getAttendanceDataById($employeeId);
             $tasksData = $personnelObj->getTasksDataById($employeeDetails['matricule_personnel_tasks']);
             $date_entree = $helperObj->dateEnFrancaisSansHeure($employeeDetails['date_recrutement']);
-            $qrCodeData = "https://fidest.ci/performance/profil_personnel_tasks.php?id='.$employeeId.'";
+            $qrCodeData = "https://fidest.ci/performance/profil_personnel_tasks.php?id=" . $employeeId;
             $qrCodeFilePath = 'request/qrcode/' . $employeeId . '_qrcode.png';
             QRcode::png($qrCodeData, $qrCodeFilePath, QR_ECLEVEL_L, 4);
             $fonction = $fonctionObj->obtenirFonctionParId($employeeDetails['fonction_id']);
