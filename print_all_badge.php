@@ -149,7 +149,7 @@ $allEmployees = $personnelObj->listerPersonnel();
             $employeeId = $employeeDetails['id_personnel_tasks'];
             $attendanceData = $personnelObj->getAttendanceDataById($employeeId);
             $tasksData = $personnelObj->getTasksDataById($employeeDetails['matricule_personnel_tasks']);
-            $date_entree = $helperObj->dateEnFrancaisSansHeure(date_time: $employeeDetails['date_recrutement']);
+            $date_entree = $helperObj->dateEnFrancaisSansHeure($employeeDetails['date_recrutement']);
             $qrCodeData = "https://fidest.ci/performance/profil_personnel_tasks.php?id='.$employeeId.'";
             $qrCodeFilePath = 'request/qrcode/' . $employeeId . '_qrcode.png';
             QRcode::png($qrCodeData, $qrCodeFilePath, QR_ECLEVEL_L, 4);
