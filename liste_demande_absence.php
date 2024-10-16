@@ -28,153 +28,12 @@ $demandes = $demandeAbsence->lireDemandesAbsences();
     <title>Demandes d'Absence</title>
     <link href="plugins/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #f4f6f9;
-        }
-
-        .card {
-            border: none;
-            margin-bottom: 20px;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .statut-en-attente {
-            background-color: #f9c74f;
-            color: white;
-        }
-
-        .statut-accepte {
-            background-color: #43aa8b;
-            color: white;
-        }
-
-        .statut-refuse {
-            background-color: #f94144;
-            color: white;
-        }
-
-        .btn-export {
-            background-color: #457b9d;
-            color: white;
-        }
-
-        .icon-large {
-            font-size: 24px;
-        }
-
-        .container-fluid {
-            padding-top: 70px;
-            /* Ajustez cette valeur selon la hauteur de votre navbar */
-        }
-
-
-        body {
-            background-color: #ffffff;
-            color: #333333;
-            /* Couleur du texte principal en gris foncé */
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .card {
-            background-color: #f9f9f9;
-            border: 1px solid #dddddd;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            background-color: #f1f1f1;
-            border-bottom: 1px solid #dddddd;
-            font-weight: bold;
-            color: #333333;
-            /* Couleur du texte dans l'en-tête des cartes */
-        }
-
-        .statut-en-attente {
-            background-color: #f9c74f;
-            color: #ffffff;
-            /* Texte en blanc pour contraster avec le fond jaune */
-        }
-
-        .statut-accepte {
-            background-color: #43aa8b;
-            color: #ffffff;
-            /* Texte en blanc pour contraster avec le fond vert */
-        }
-
-        .statut-refuse {
-            background-color: #f94144;
-            color: #ffffff;
-            /* Texte en blanc pour contraster avec le fond rouge */
-        }
-
-        p {
-            color: #333333;
-            /* Couleur du texte dans les paragraphes */
-        }
-
-        .btn {
-            border-radius: 5px;
-            padding: 10px 15px;
-            font-size: 14px;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: #ffffff;
-            border: none;
-        }
-
-        .btn-export {
-            background-color: #457b9d;
-            color: #ffffff;
-            border: none;
-        }
-
-        .icon-large {
-            font-size: 24px;
-            color: #555555;
-            /* Couleur de l'icône plus visible */
-        }
-
-        .actions button {
-            margin-right: 10px;
-        }
-
-        .container-fluid {
-            padding-top: 70px;
-        }
-
-        h1.main-title {
-            color: #2c3e50;
-            /* Couleur sombre pour le titre principal */
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style_liste_demande_absence.css">
 </head>
 
 <body>
 
     <?php include 'menu.php'; ?>
-
 
     <div class="container-fluid mt-5">
         <div class="row">
@@ -210,7 +69,7 @@ $demandes = $demandeAbsence->lireDemandesAbsences();
                                 <?php else: ?>
                                     <button class="btn btn-success">Accepter</button>
                                 <?php endif; ?>
-                                <button class="btn btn-export">Exporter</button>
+                                <a style="margin-top:19px;" target="_blank" href="request/export_demande_absence.php?id=<?= $demande['id']; ?>" class="btn btn-export">Exporter</a>
                             </div>
                         </div>
                     </div>
