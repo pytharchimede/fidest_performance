@@ -244,7 +244,7 @@ include('header_dashboard.php');
 
             $("#alert-sound")[0].play();
 
-            <?php if ($_SESSION['nombre_connection'] <= 1) { ?>
+            <?php if ($_SESSION['nombre_connection'] <= 2) { ?>
                 introJs().start();
             <?php } ?>
 
