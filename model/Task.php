@@ -291,4 +291,13 @@ class Task
         $stmt->execute(['matricule' => $matricule, 'date_debut' => $date_debut, 'date_fin' => $date_fin]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    //    
+    public function getTasksEnAttenteByDateRange($date_debut, $date_fin)
+    {
+        // Assurez-vous que les dates sont formatées correctement pour votre requête SQL
+        $stmt = $this->conn->prepare("SELECT * FROM tasks WHERE created_at BETWEEN :date_debut AND :date_fin AND statut='En Attente' ");
+        $stmt->execute(['date_debut' => $date_debut, 'date_fin' => $date_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

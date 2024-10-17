@@ -21,7 +21,7 @@ if (!$date_debut && !$date_fin) {
     // Vérification de la présence des dates pour filtrer les tâches
     if ($_SESSION['role'] == 'superviseur') {
         // Si l'utilisateur est superviseur, récupérer toutes les tâches dans la plage de dates
-        $taches = $taskObj->getTasksByDateRange($date_debut, $date_fin);
+        $taches = $taskObj->getTasksEnAttenteByDateRange($date_debut, $date_fin);
     } else {
         // Sinon, récupérer les tâches assignées à l'utilisateur dans la plage de dates
         $matricule = $_SESSION['matricule_personnel_tasks'];
@@ -97,7 +97,7 @@ $nbTaches = count($taches);
                             </button>
                         </form>
                     <?php endif; ?>
-                        <!-- Bouton Modifier ajouté ici -->
+                    <!-- Bouton Modifier ajouté ici -->
                     <a style="margin : 5px;" href="modifier_tache.php?id=<?php echo $tache['id']; ?>" class="btn btn-info">Modifier</a>
                 </div>
             </li>
@@ -109,4 +109,3 @@ $nbTaches = count($taches);
         </div>
     <?php endif; ?>
 </ul>
-
