@@ -842,4 +842,74 @@ class Personnel
 
         return $data;
     }
+
+    // Mise à jour OTP et nombre de demandes OTP
+    public function mettreAJourOTP($phone, $otp)
+    {
+        // Requête SQL pour mettre à jour otp_reinitialisation et incrémenter nombre_demande_otp
+        $sql = "UPDATE personnel_tasks SET
+                otp_reinitialisation = ?,
+                nombre_demande_otp = nombre_demande_otp + 1
+            WHERE tel_personnel_tasks = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        // Exécution de la requête avec les valeurs $otp et $phone
+        if (!$stmt->execute([$otp, $phone])) {
+            // Afficher les erreurs PDO si la requête échoue
+            $errorInfo = $stmt->errorInfo();
+            throw new Exception("Erreur lors de la mise à jour de la base de données : " . $errorInfo[2]);
+        }
+
+        return true;
+    }
+
+
+    // Mise à jour OTP et nombre de demandes OTP
+    public function verifierOTP($phone, $otp)
+    {
+        // Requête SQL pour vérifier si l'OTP correspond pour le numéro de téléphone donné
+        $sql = "SELECT otp_reinitialisation FROM personnel_tasks WHERE tel_personnel_tasks = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$phone]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Logging pour débogage
+        error_log("Vérification de l'OTP pour le numéro de téléphone: " . $phone); // Log numéro de téléphone
+        if ($result) {
+            error_log("OTP en BDD: " . $result['otp_reinitialisation']); // Log OTP de la BDD
+        } else {
+            error_log("Aucun OTP trouvé en BDD pour le numéro de téléphone: " . $phone); // Log si aucun résultat
+        }
+
+        // Log l'OTP soumis
+        error_log("OTP soumis: " . $otp); // Log OTP soumis
+
+        // Vérification de l'OTP
+        if ($result && $result['otp_reinitialisation'] == $otp) {
+            return true; // OTP valide
+        } else {
+            return false; // OTP invalide
+        }
+    }
+
+
+    public function ReinitialiserCompteUtilisateur($phone)
+    {
+        // Requête SQL pour vider le champ password_personnel_tasks
+        $sql = "UPDATE personnel_tasks SET password_personnel_tasks = '' WHERE tel_personnel_tasks = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        // Exécution de la requête avec le numéro de téléphone
+        if (!$stmt->execute([$phone])) {
+            // Afficher les erreurs PDO si la requête échoue
+            $errorInfo = $stmt->errorInfo();
+            throw new Exception("Erreur lors de la mise à jour de la base de données : " . $errorInfo[2]);
+        }
+
+        return true;
+    }
 }

@@ -80,6 +80,18 @@ unset($_SESSION['error_message']);
         .position-relative {
             position: relative;
         }
+
+        .forgot-password-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1d2b57;
+            text-decoration: none;
+        }
+
+        .forgot-password-link:hover {
+            color: #fabd02;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -107,6 +119,10 @@ unset($_SESSION['error_message']);
                 <div class="error-msg"><?= $error_message; ?></div>
             <?php } ?>
         </form>
+        <!-- Lien pour la récupération de mot de passe -->
+        <div class="text-center mt-3">
+            <a href="forgot_password.php" class="forgot-password-link">Mot de passe oublié ?</a>
+        </div>
     </div>
 
     <script src="js/style_script.js"></script>
