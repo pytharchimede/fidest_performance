@@ -1,12 +1,14 @@
 <?php
 
 // Inclure les classes Task et Personnel
+require_once 'model/Database.php';
 require_once 'model/Task.php';
 require_once 'model/Personnel.php';
 require_once 'model/Helper.php';
 require_once 'model/Helper.php';
 require_once 'model/Fonction.php';
 require_once 'model/Service.php';
+require_once 'model/FicheExpressionBesoin.php';
 
 
 
@@ -23,6 +25,22 @@ $presenceInfo = $personnelObj->getPresenceByPersonnelId($personnelId);
 $salaireMensuel = $salaireInfo['salaire_mensuel_personnel_tasks'];
 $avanceDeductible = $avanceInfo['avance_deductible'];
 $joursTravailles = $presenceInfo['jours_travailles'];
+
+$databaseObj = new Database();
+$pdo = $databaseObj->getConnection();
+
+$ficheExpressionObj = new FicheExpressionBesoin($pdo);
+
+$matricule = $_SESSION['matricule_personnel_tasks'];
+
+
+if ($_SESSION['valid_besoin'] == 1) {
+  $nbNotifications = count($ficheExpressionObj->listerFichesEnAttente());
+  $nbNotificationsValides = count($ficheExpressionObj->listerFichesValide());
+} else {
+  $nbNotifications = count($ficheExpressionObj->listerMesFichesValide($matricule));
+  $nbNotificationsValides = count($ficheExpressionObj->listerMesFichesValide($matricule));
+}
 
 //Récupérer les tâches en attente 
 $taskObj = new Task();

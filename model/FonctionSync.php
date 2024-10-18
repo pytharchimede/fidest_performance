@@ -1,20 +1,24 @@
 <?php
-class FonctionSync {
+class FonctionSync
+{
     private $dbSoignant;
     private $dbTasks;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->connectDatabases();
     }
 
-    private function connectDatabases() {
+    private function connectDatabases()
+    {
         // Connexion à la base de données pour fonction (personnel_soignant)
         $this->dbSoignant = $this->getConnection('fidestci_stock_db', 'fidestci_ulrich', '@Succes2019');
         // Connexion à la base de données pour fonction_tasks
         $this->dbTasks = $this->getConnection('fidestci_app_db', 'fidestci_ulrich', '@Succes2019');
     }
 
-    private function getConnection($dbname, $username, $password) {
+    private function getConnection($dbname, $username, $password)
+    {
         try {
             $pdo = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,7 +28,8 @@ class FonctionSync {
         }
     }
 
-    public function synchronizeData() {
+    public function synchronizeData()
+    {
         $stmt = $this->dbSoignant->query("SELECT * FROM fonction");
         $fonctions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -44,7 +49,8 @@ class FonctionSync {
         }
     }
 
-    private function updateFonctionTasks($fonction) {
+    private function updateFonctionTasks($fonction)
+    {
         $stmt = $this->dbTasks->prepare("UPDATE fonction_tasks SET
             lib_fonction_tasks = :libelle,
             date_creat = :date_creat,
@@ -55,11 +61,12 @@ class FonctionSync {
             'id' => $fonction['id_fonction'],
             'libelle' => $fonction['lib_fonction'],
             'date_creat' => $fonction['date_creat'],
-            'secur' => $fonction['secur_ajout'],
+            'secur' => $fonction['secur_ajout']
         ]);
     }
 
-    private function insertFonctionTasks($fonction) {
+    private function insertFonctionTasks($fonction)
+    {
         $stmt = $this->dbTasks->prepare("INSERT INTO fonction_tasks (id_fonction_tasks, lib_fonction_tasks, date_creat, secur_ajout) VALUES
         (:id, :libelle, :date_creat, :secur)");
 
@@ -67,11 +74,12 @@ class FonctionSync {
             'id' => $fonction['id_fonction'],
             'libelle' => $fonction['lib_fonction'],
             'date_creat' => $fonction['date_creat'],
-            'secur' => $fonction['secur_ajout'],
+            'secur' => $fonction['secur_ajout']
         ]);
     }
 
-    public function run() {
+    public function run()
+    {
         $this->synchronizeData();
     }
 }

@@ -30,9 +30,9 @@ $matriculePersonnelConnecte = $_SESSION['matricule_personnel_tasks'];
 
 // Récupérer toutes les fiches d'expression de besoin
 if ($_SESSION['valid_besoin'] == 1) {
-    $fiches = $ficheExpression->listerFichesEnAttente();
+    $fiches = $ficheExpression->listerFichesValide();
 } else {
-    $fiches = $ficheExpression->listerMesFichesEnAttente($matriculePersonnelConnecte);
+    $fiches = $ficheExpression->listerMesFichesValide($matriculePersonnelConnecte);
 }
 
 ?>

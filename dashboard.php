@@ -145,17 +145,23 @@ include('header_dashboard.php');
             </div>
 
 
-            <div class="col-lg-4 col-md-12 col-xs-12 mb-4" data-intro="Cette section vous informe sur vos notifications récentes.">
+            <div class="col-lg-4 col-md-12 col-xs-12 mb-4" data-intro="Cette section vous informe sur vos fiches d'expression de besoins.">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-center text-primary fw-bold" data-intro="Ce titre indique la section Notifications.">Notifications</h5>
+                        <h5 class="card-title text-center text-primary fw-bold" data-intro="Ce titre indique la section expressions de besoin.">Fiches d'expression de besoins (FEB)</h5>
                         <hr class="my-3">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item" data-intro="Vous pouvez voir ici combien de nouvelles notifications vous avez reçues.">
                                 <i class="fas fa-bell text-info me-3"></i>
-                                <span class="fw-semibold">Vous avez <?php $nbNotifications = 2;
-                                                                    echo $nbNotifications; ?> nouvelles notifications</span>
+                                <span class="fw-semibold">Vous avez <?php
+                                                                    echo $nbNotifications; ?> fiches en attente d'approbation</span>
                                 <a href="liste_feb.php" class="btn btn-outline-info btn-sm float-right btn-notif" data-intro="Cliquez ici pour voir tous les détails de vos notifications.">Voir</a>
+                            </li>
+                            <li class="list-group-item" data-intro="Vous pouvez voir ici combien de nouvelles notifications vous avez reçues.">
+                                <i class="fas fa-bell text-success me-3"></i>
+                                <span class="fw-semibold">Vous avez <?php
+                                                                    echo $nbNotificationsValides; ?> fiches validées</span>
+                                <a href="liste_feb_valide.php" class="btn btn-outline-success btn-sm float-right btn-notif" style="background-color:#28a745;" data-intro="Cliquez ici pour voir tous les détails de vos notifications.">Voir</a>
                             </li>
                         </ul>
                     </div>

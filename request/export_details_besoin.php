@@ -57,7 +57,6 @@ if (!is_array($files)) {
 
 
 // Classe PDF personnalisée
-// Classe PDF personnalisée
 class PDF extends FPDF
 {
     function Header()
@@ -123,6 +122,32 @@ $pdf->SetFont('Arial', '', 12);
 $pdf->Ln(5); // Espace entre les sections
 
 $pdf->Ln(5);
+
+// Description du besoin
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(0, 10, 'DETAILS DU BESOIN', 0, 1); // Retrait de utf8_decode
+$pdf->SetFont('Arial', '', 12);
+
+
+// Définir une hauteur de ligne plus petite pour réduire l'interligne
+$lineHeight = 5; // Ajuste cette valeur pour obtenir l'interligne souhaité
+
+// Utiliser MultiCell avec justification ('J') et une hauteur de ligne réduite
+$pdf->MultiCell(0, $lineHeight, mb_convert_encoding($fiche['description'], 'ISO-8859-1', 'UTF-8'), 0, 'J');
+
+
+
+// Description du besoin
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(0, 10, 'IMPACT DE LA NON SATISFACTION DU BESOIN', 0, 1); // Retrait de utf8_decode
+$pdf->SetFont('Arial', '', 12);
+
+
+// Définir une hauteur de ligne plus petite pour réduire l'interligne
+$lineHeight = 5; // Ajuste cette valeur pour obtenir l'interligne souhaité
+
+// Utiliser MultiCell avec justification ('J') et une hauteur de ligne réduite
+$pdf->MultiCell(0, $lineHeight, mb_convert_encoding($fiche['impact'], 'ISO-8859-1', 'UTF-8'), 0, 'J');
 
 
 // Détails des besoins
